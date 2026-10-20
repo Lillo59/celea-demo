@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Celea · Demo</title>
+<meta name="description" content="Le demo di Celea: tre siti di esempio, per uno studio dentistico, un'agenzia immobiliare e un B&B, con l'assistente AI che risponde su WhatsApp e al telefono.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#F4EDE3;--card:#FFFFFF;--ink:#1F2D33;--muted:#5B6B70;--brand:#0F4C5C;--accent:#A9502F;--line:#E3D8C7;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0A3440;--card:#0F4C5C;--ink:#F4EDE3;--muted:#B9C6C6;--brand:#F4EDE3;--accent:#E08A6A;--line:#22606F;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Helvetica,Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:32px 16px 48px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;color:var(--brand);font-weight:800;font-size:26px;text-decoration:none;letter-spacing:-.5px}
+.logo svg{width:40px;height:40px}
+.back{color:var(--accent);font-weight:600}
+h1{color:var(--brand);font-size:clamp(28px,6vw,42px);line-height:1.15;margin:36px 0 10px;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:62ch;margin:0 0 8px}
+.note{font-size:14px;color:var(--muted);border-left:3px solid var(--accent);padding-left:10px;margin:14px 0 28px}
+.cards{display:grid;gap:16px}
+@media(min-width:800px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.card small{text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:12px;color:var(--accent)}
+.card h2{margin:0;color:var(--brand);font-size:22px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.btn{margin-top:auto;align-self:flex-start;background:var(--brand);color:var(--bg);text-decoration:none;font-weight:700;padding:11px 18px;border-radius:10px}
+.chat{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.chat h2{margin:0 0 6px;color:var(--brand);font-size:20px}
+.chat a{color:var(--accent);font-weight:700}
+.langs{margin-top:28px;font-size:14px;color:var(--muted)}
+footer{margin-top:36px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="https://www.celea.it/" aria-label="celea">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M85.71 90.64A40 40 0 1 1 85.71 29.36" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M72.86 75.32A20 20 0 1 1 72.86 44.68" fill="none" stroke="#C8664A" stroke-width="10" stroke-linecap="round"/><circle cx="96" cy="60" r="6" fill="#C8664A"/></svg>celea
+    </a>
+    <a class="back" href="https://www.celea.it/">← Torna a celea.it</a>
+  </header>
+
+  <h1>Veda Celea al lavoro nella Sua attività</h1>
+  <p class="lead">Tre siti di esempio, uno per settore. In ognuno l'assistente risponde ai clienti su WhatsApp e al telefono, e vede cosa trova il titolare la mattina.</p>
+  <p class="note">Sono attività inventate a scopo dimostrativo: nomi, indirizzi, prezzi e persone sono di fantasia.</p>
+
+  <div class="cards">
+    <article class="card">
+      <small>Studio dentistico</small>
+      <h2>Odontèa</h2>
+      <p>Disdette con lista d'attesa, promemoria del giorno prima, urgenze passate subito allo studio.</p>
+      <a class="btn" href="odontea/">Apri la demo</a>
+    </article>
+    <article class="card">
+      <small>Agenzia immobiliare</small>
+      <h2>Domèa Immobiliare</h2>
+      <p>Contatti dagli annunci qualificati, visite con conferma e promemoria, avvisi per immobili simili.</p>
+      <a class="btn" href="domea/">Apri la demo</a>
+    </article>
+    <article class="card">
+      <small>B&amp;B e hotel</small>
+      <h2>Casa Lumèa</h2>
+      <p>Richieste di prenotazione, istruzioni per l'arrivo, ospiti stranieri in inglese e tedesco.</p>
+      <a class="btn" href="casa-lumea/">Apri la demo</a>
+    </article>
+  </div>
+
+  <section class="chat">
+    <h2>Preferisce scrivere direttamente all'assistente?</h2>
+    <p>Provi la chat dimostrativa sul sito di Celea: <a href="https://www.celea.it/#demo">www.celea.it</a>.</p>
+  </section>
+
+  <p class="langs">English: three sample websites with Celea's AI assistant, for a dental practice, a real estate agency and a B&amp;B. All businesses are fictional. · Deutsch: drei Beispiel-Websites mit dem KI-Assistenten von Celea; alle Betriebe sind frei erfunden.</p>
+
+  <footer>Celea · risponde sempre, con cura. · <a class="back" href="https://www.celea.it/">www.celea.it</a></footer>
+</div>
+</body>
+</html>

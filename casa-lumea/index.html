@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<title>Casa Lumèa · B&B sul mare (sito di esempio)</title>
+<meta name="description" content="Sito di esempio realizzato da Celea per un B&B inventato: camere, arrivo e self check-in, assistente virtuale che risponde agli ospiti in tre lingue, gestisce cancellazioni e messaggi prima dell'arrivo, e la vista del titolare.">
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#F7F2EA;--surface:#FFFDF9;--ink:#2A2620;--muted:#5F574C;--line:#E6DDD0;--acc:#4E5F2A;--acc-ink:#FFFFFF;--acc-text:#4E5F2A;--label:#8A4A2A;--soft:#EEE7D8;--warn:#A1470F;--band:#2A2620;--band-ink:#F7F2EA;--shadow:rgba(42,38,32,.13);--ok-bg:#E1E8CF;--ok-ink:#33401A;--wa-bg:#0B141A;--wa-bub:#FFFFFF;--f-display:'Young Serif',Georgia,serif;--f-body:'Nunito Sans',ui-sans-serif,system-ui,sans-serif;--w-display:400;--w-h3:800;--track:-.01em;--r:20px;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171511;--surface:#211E18;--ink:#F1ECE3;--muted:#B5AB9C;--line:#352F26;--acc:#C3D08F;--acc-ink:#1C2108;--acc-text:#CAD69A;--label:#E3A17E;--soft:#2A261E;--warn:#A1470F;--band:#0F0D0A;--band-ink:#F1ECE3;--shadow:rgba(0,0,0,.45);--ok-bg:#37431E;--ok-ink:#E5EDC9;--wa-bg:#0B141A;--wa-bub:#FFFFFF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171511;--surface:#211E18;--ink:#F1ECE3;--muted:#B5AB9C;--line:#352F26;--acc:#C3D08F;--acc-ink:#1C2108;--acc-text:#CAD69A;--label:#E3A17E;--soft:#2A261E;--warn:#A1470F;--band:#0F0D0A;--band-ink:#F1ECE3;--shadow:rgba(0,0,0,.45);--ok-bg:#37431E;--ok-ink:#E5EDC9;--wa-bg:#0B141A;--wa-bub:#FFFFFF;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;margin:0;overflow-x:hidden}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;letter-spacing:var(--track,-.02em);margin:0;text-wrap:balance;font-weight:var(--w-display,800)}
+h1{font-size:clamp(2.2rem,6.4vw,4.1rem)}
+h2{font-size:clamp(1.65rem,4vw,2.5rem)}
+h3{font-size:1.18rem;font-weight:var(--w-h3,700);letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--acc-text)}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--acc-text);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:16px}
+@media (min-width:900px){.wrap{padding-inline:48px}}
+.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--surface);color:var(--ink);padding:10px 14px;border-radius:10px}
+.skip:focus{left:8px}
+section{padding-block:64px}
+@media (min-width:900px){section{padding-block:88px}}
+.label{font-family:var(--f-body);font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--label)}
+.lead{font-size:1.14rem;color:var(--muted);max-width:60ch}
+.head{display:grid;gap:12px;margin-bottom:36px;max-width:720px}
+.muted{color:var(--muted)}
+.small{font-size:.9rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;font-family:var(--f-body);font-weight:700;font-size:1rem;text-decoration:none;border:2px solid var(--acc);cursor:pointer;background:var(--acc);color:var(--acc-ink);text-align:center}
+.btn.line{background:transparent;color:var(--acc-text);border-color:currentColor}
+.btn.sm{min-height:40px;padding:7px 15px;font-size:.92rem}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.alt{background:var(--soft)}
+
+/* banda d'esempio */
+.sample{background:var(--band);color:var(--band-ink);font-size:.9rem;line-height:1.45}
+.sample .wrap{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;justify-content:space-between;padding-block:8px}
+.sample a{color:var(--band-ink);font-weight:700}
+
+/* intestazione */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:10px;min-height:64px}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--f-display);font-weight:var(--w-display,800);font-size:1.3rem;color:var(--ink);text-decoration:none;margin-right:auto;white-space:nowrap;letter-spacing:-.01em}
+.brand svg{width:30px;height:30px;color:var(--acc-text);flex:none}
+nav.menu{display:none;gap:22px}
+nav.menu a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
+nav.menu a[aria-current="page"]{border-color:var(--acc-text);color:var(--acc-text)}
+nav.menu a .badge,.drawer-nav .badge{display:inline-block;min-width:1.4em;padding:0 5px;margin-left:5px;border-radius:999px;background:var(--warn);color:#fff;font-size:.75rem;text-align:center;line-height:1.4em}
+.langs{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+.langs button{appearance:none;border:0;background:transparent;color:var(--muted);font-weight:700;font-size:.8rem;padding:7px 8px;cursor:pointer;min-width:34px;min-height:36px}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.menu-btn{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;width:40px;height:40px;padding:0;display:grid;place-items:center;cursor:pointer;flex:none}
+@media (max-width:400px){.brand{font-size:1.1rem;gap:6px}.brand svg{width:24px;height:24px}.langs button{min-width:30px;padding:6px 4px}header.top .wrap{gap:6px}}
+.hcta{display:none}
+@media (min-width:1020px){nav.menu{display:flex}.menu-btn{display:none}}
+@media (min-width:640px){.hcta{display:inline-flex}}
+.drawer-nav{display:none;border-top:1px solid var(--line);background:var(--bg)}
+.drawer-nav.open{display:block}
+.drawer-nav a{display:block;padding:14px 16px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:700}
+.drawer-nav a[aria-current="page"]{color:var(--acc-text)}
+
+/* hero */
+.hero{padding-block:44px 64px}
+.hero .wrap{display:grid;gap:36px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:960px){.hero .wrap{grid-template-columns:1.08fr .92fr;align-items:center;gap:60px}.hero{padding-block:72px 96px}}
+.hero-text{display:grid;gap:22px;min-width:0}
+.hero h1 em{font-style:normal;color:var(--acc-text)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.facts li{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.9rem;font-weight:700}
+
+/* chat */
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:24px;display:flex;flex-direction:column;height:560px;max-height:82vh;min-width:0;overflow:hidden;box-shadow:0 24px 60px var(--shadow)}
+.chat-h{display:flex;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--acc);color:var(--acc-ink);display:grid;place-items:center;font-weight:800;font-family:var(--f-display);flex:none}
+.chat-h .who{min-width:0;flex:1}
+.chat-h b{display:block;line-height:1.2;font-size:.98rem}
+.chat-h small{color:var(--muted);font-size:.8rem;display:block}
+.chat-h .x{appearance:none;border:0;background:transparent;color:var(--ink);font-size:1.5rem;line-height:1;cursor:pointer;padding:4px 8px;border-radius:8px}
+.log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.m{max-width:86%;padding:9px 13px;border-radius:16px;font-size:.96rem;line-height:1.42;overflow-wrap:anywhere;white-space:pre-line}
+.m.a{align-self:flex-start;background:var(--soft);border-top-left-radius:5px}
+.m.u{align-self:flex-end;background:var(--acc);color:var(--acc-ink);border-top-right-radius:5px}
+.m.s{align-self:center;background:transparent;border:1px dashed var(--line);color:var(--muted);font-size:.83rem;text-align:center;max-width:94%}
+.m.r{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--acc-text);border-radius:12px;max-width:92%}
+.m.r .tag{display:block;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--label);margin-bottom:3px}
+.typing{align-self:flex-start;color:var(--muted);font-size:.85rem;padding:2px 6px}
+.opts{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;justify-content:flex-end;border-top:1px solid var(--line)}
+.opts button{appearance:none;border:1.5px solid var(--acc-text);background:var(--surface);color:var(--acc-text);border-radius:999px;padding:7px 13px;font-size:.9rem;font-weight:700;cursor:pointer;min-height:38px}
+.opts button:hover{background:var(--soft)}
+.chat form{display:flex;gap:6px;padding:0 12px 8px}
+.chat input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:9px 14px;font:inherit;font-size:.95rem}
+.chat form button{appearance:none;border:0;background:var(--acc);color:var(--acc-ink);border-radius:999px;padding:0 15px;font-weight:700;cursor:pointer;min-height:40px}
+.chat-note{font-size:.8rem;color:var(--muted);padding:0 14px 10px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px}
+.chat-note a{font-weight:700}
+.fab{position:fixed;right:16px;bottom:16px;z-index:30;display:none;align-items:center;gap:8px;border:0;background:var(--acc);color:var(--acc-ink);border-radius:999px;padding:13px 18px;font-weight:700;box-shadow:0 10px 30px var(--shadow);cursor:pointer}
+.fab.show{display:inline-flex}
+.dock{position:fixed;inset:auto 16px 16px auto;z-index:40;width:min(400px,calc(100vw - 32px))}
+.dock .chat{height:min(600px,calc(100dvh - 32px));max-height:none}
+@media (max-width:600px){.dock{inset:0;width:auto}.dock .chat{height:100dvh;border-radius:0;border:0}}
+
+/* blocchi comuni */
+.grid2{display:grid;gap:28px}
+@media (min-width:860px){.grid2{grid-template-columns:1fr 1fr;gap:56px}}
+.grid3{display:grid;gap:16px}
+@media (min-width:760px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r,18px);padding:22px;display:grid;gap:8px;align-content:start;min-width:0}
+.card p{color:var(--muted)}
+.list{display:grid;border-top:1px solid var(--line)}
+@media (min-width:760px){.list{grid-template-columns:1fr 1fr;column-gap:48px}}
+.list>div{display:grid;gap:4px;padding:18px 0;border-bottom:1px solid var(--line)}
+.list p{color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:s}
+@media (min-width:860px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r,18px);padding:22px;display:grid;gap:6px;align-content:start}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--f-display);font-weight:var(--w-display,800);font-size:1.7rem;color:var(--acc-text);line-height:1}
+.steps p{color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+td,th{text-align:left;padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:700;padding-right:12px}
+td:last-child{text-align:right}
+.kv{display:grid;gap:4px}
+.kv .v{font-weight:700}
+.note{border-left:4px solid var(--warn);padding:12px 16px;background:var(--surface);border-radius:0 12px 12px 0}
+.faq{display:grid;border-top:1px solid var(--line);max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;padding:18px 0;font-weight:700;font-size:1.05rem;list-style-position:outside}
+.faq .ans{padding-bottom:18px;color:var(--muted);max-width:68ch}
+.band-cta{display:grid;gap:18px;align-items:center;background:var(--ink);color:var(--bg);border-radius:24px;padding:32px 24px}
+.band-cta p{opacity:.85}
+.band-cta .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+@media (min-width:860px){.band-cta{grid-template-columns:1fr auto;padding:40px 44px}}
+.strip{display:grid;gap:0;border-block:1px solid var(--line)}
+@media (min-width:760px){.strip{grid-template-columns:repeat(3,1fr)}}
+.strip>div{padding:22px 0;display:grid;gap:6px}
+@media (min-width:760px){.strip>div{padding:26px 24px}.strip>div+div{border-left:1px solid var(--line)}.strip>div:first-child{padding-left:0}}
+.strip b{font-family:var(--f-display);font-size:1.15rem;font-weight:var(--w-h3,700)}
+.strip p{color:var(--muted)}
+
+/* vista del titolare */
+.owner-top{display:grid;gap:10px;margin-bottom:28px}
+.ex{display:inline-block;background:var(--soft);border:1px dashed var(--line);border-radius:999px;padding:4px 12px;font-size:.85rem;color:var(--muted);font-weight:700;justify-self:start}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:28px}
+@media (min-width:860px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:2px}
+.kpi b{font-family:var(--f-display);font-size:2rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--muted);font-size:.9rem;line-height:1.35}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:12px;align-content:start;min-width:0}
+.panel h3{font-size:1.1rem}
+.rows{display:grid}
+.row{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:11px 0;border-bottom:1px solid var(--line);align-items:start}
+.row:last-child{border-bottom:0}
+.row time{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted);min-width:3.2em}
+.row .t{min-width:0}
+.row .t small{display:block;color:var(--muted);font-size:.86rem}
+.pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:.78rem;font-weight:700;margin:2px 4px 0 0;border:1px solid var(--line)}
+.pill.ok{background:var(--ok-bg);color:var(--ok-ink);border-color:transparent}
+.pill.wait{background:var(--soft);color:var(--ink)}
+.pill.alert{background:var(--warn);color:#fff;border-color:transparent}
+.owner-grid{display:grid;gap:16px}
+@media (min-width:960px){.owner-grid{grid-template-columns:1.2fr .8fr}}
+.phone{background:var(--ink);border-radius:30px;padding:12px;max-width:330px;width:100%;justify-self:center}
+.phone .scr{background:var(--wa-bg);border-radius:22px;padding:14px;display:grid;gap:8px;min-height:300px;align-content:start}
+.phone .bub{background:var(--wa-bub);color:#1b1b1b;border-radius:12px;border-top-left-radius:4px;padding:9px 11px;font-size:.9rem;line-height:1.4;max-width:92%;box-shadow:0 1px 1px rgba(0,0,0,.08);white-space:pre-line}
+.phone .me{justify-self:end;background:#D9FDD3;border-top-left-radius:12px;border-top-right-radius:4px}
+.phone .who{color:#e9edef;font-size:.85rem;font-weight:700;padding:2px 4px 6px}
+.live:empty::before{content:attr(data-empty);color:var(--muted);font-size:.92rem}
+
+footer.site{background:var(--band);color:var(--band-ink);padding-block:44px 90px}
+footer.site .wrap{display:grid;gap:14px}
+footer.site p{max-width:74ch;opacity:.92}
+footer.site a{color:var(--band-ink);font-weight:700}
+footer.site .cols{display:grid;gap:18px}
+@media (min-width:860px){footer.site .cols{grid-template-columns:1.3fr 1fr}}
+[tabindex="-1"]:focus{outline:none}
+.phone{align-self:start}
+.hcta{white-space:nowrap}
+@media (min-width:1020px) and (max-width:1239px){.hcta{display:none}}
+
+h3{font-family:var(--f-body)}.hero h1 em{font-style:normal;color:var(--label)}.steps li::before,.kpi b{font-weight:400}.rooms{display:grid;gap:18px}@media (min-width:760px){.rooms{grid-template-columns:1fr 1fr}}.room{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;min-width:0}.room .art{background:var(--soft);aspect-ratio:16/8;color:var(--acc-text)}.room .art svg{width:100%;height:100%}.room .body{padding:20px;display:grid;gap:8px}.room ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}.room li{border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:.85rem;color:var(--muted)}.room .from{font-weight:800}
+</style>
+<a class="skip" id="skip" href="#home">Vai al contenuto</a>
+<div class="sample" role="note"><div class="wrap"><span id="band"></span><a id="back" href="https://www.celea.it/">Torna al sito di Celea</a></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 24 24"><circle cx="12" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v1.5M4.5 10H3M21 10h-1.5M6.7 4.7l1 1M17.3 4.7l-1 1M3 17c3-2 6 2 9 0s6 2 9 0M5 21c2.4-1.5 4.8 1.5 7 0s4.6 1.5 7 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol></svg>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" data-go="home"><svg aria-hidden="true"><use href="#logo"/></svg>Casa Lumèa</a>
+    <nav class="menu" id="nav" aria-label="Menu"></nav>
+    <div class="langs" id="langs" role="group"><button type="button" data-l="it" lang="it" aria-label="Italiano">IT</button><button type="button" data-l="en" lang="en" aria-label="English">EN</button><button type="button" data-l="de" lang="de" aria-label="Deutsch">DE</button></div>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer-nav" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="btn sm hcta" id="hcta" href="#home" data-chat="start">Chat</a>
+  </div>
+  <nav class="drawer-nav" id="drawer-nav" aria-label="Menu"></nav>
+</header>
+<main id="main" tabindex="-1"></main>
+<div id="chat-park" hidden></div>
+<div class="dock" id="dock" hidden>
+  <div class="chat" id="chat">
+    <div class="chat-h"><span class="avatar" aria-hidden="true">L</span><div class="who"><b id="chat-name"></b><small id="chat-sub"></small></div><button class="x" id="chat-x" type="button" hidden>×</button></div>
+    <div class="log" id="log" role="log" aria-live="polite"></div>
+    <div class="opts" id="opts"></div>
+    <form id="chat-form" autocomplete="off"><input id="chat-input" type="text" maxlength="200"><button id="chat-send" type="submit">Invia</button></form>
+    <p class="chat-note"><span id="chat-note"></span><a id="chat-owner" href="#titolare" data-go="titolare"></a></p>
+  </div>
+</div>
+<button class="fab" id="fab" type="button"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span id="fab-t">Chat</span></button>
+<footer class="site" id="foot"></footer>
+<script>
+window.SITE={i18n:{}};
+(function(){
+var CELEA="https://www.celea.it/";
+var ART={
+g:'<svg viewBox="0 0 320 160" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="200" y="26" width="70" height="70" rx="4"/><path d="M235 26v70M200 61h70" opacity=".6"/><path d="M40 120h150v-34a10 10 0 0 0-10-10H50a10 10 0 0 0-10 10z"/><path d="M40 120v14M190 120v14M58 76V60a8 8 0 0 1 8-8h98a8 8 0 0 1 8 8v16"/><path d="M60 96h44M126 96h44" opacity=".6"/><path d="M215 140c8-20 22-20 30 0M250 140c5-14 15-14 20 0" opacity=".7"/><path d="M10 140h300"/></svg>',
+m:'<svg viewBox="0 0 320 160" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="180" y="20" width="110" height="80" rx="4"/><path d="M180 70c18-8 36 8 55 0s37-8 55 0" opacity=".7"/><circle cx="262" cy="42" r="9" opacity=".7"/><path d="M30 120h130v-30a10 10 0 0 0-10-10H40a10 10 0 0 0-10 10z"/><path d="M30 120v14M160 120v14"/><path d="M46 100h40M104 100h40" opacity=".6"/><path d="M10 140h300"/></svg>',
+c:'<svg viewBox="0 0 320 160" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M200 100V40a30 30 0 0 1 60 0v60z"/><path d="M230 10v90" opacity=".6"/><path d="M40 120h130v-30a10 10 0 0 0-10-10H50a10 10 0 0 0-10 10z"/><path d="M40 120v14M170 120v14"/><circle cx="105" cy="56" r="10" opacity=".7"/><path d="M105 46V30M10 140h300"/></svg>',
+s:'<svg viewBox="0 0 320 160" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M190 30h110v70H190z"/><path d="M190 76h110" opacity=".6"/><path d="M200 76c10-6 20 6 30 0s20-6 30 0 20 6 30 0" opacity=".7"/><path d="M196 100v34M294 100v34M190 112h110" opacity=".7"/><path d="M30 120h140v-30a10 10 0 0 0-10-10H40a10 10 0 0 0-10 10z"/><path d="M30 120v14M170 120v14M48 80V64a8 8 0 0 1 8-8h88a8 8 0 0 1 8 8v16"/><path d="M10 140h300"/></svg>'
+};
+var ROOMS=[
+ {k:"g",p:"110",it:["Doppia Giardino","Letto matrimoniale, bagno privato, porta sul giardino.",["2 persone","22 m²","giardino","piano terra"]],en:["Garden Double","Double bed, private bathroom, door onto the garden.",["2 guests","22 m²","garden","ground floor"]],de:["Doppelzimmer Garten","Doppelbett, eigenes Bad, Tür zum Garten.",["2 Personen","22 m²","Garten","Erdgeschoss"]]},
+ {k:"m",p:"130",it:["Doppia Mare","Finestra sul mare, letto matrimoniale o due letti singoli.",["2 persone","20 m²","vista mare","primo piano"]],en:["Sea Double","Sea-view window, double or twin beds.",["2 guests","20 m²","sea view","first floor"]],de:["Doppelzimmer Meer","Fenster zum Meer, Doppelbett oder zwei Einzelbetten.",["2 Personen","20 m²","Meerblick","erster Stock"]]},
+ {k:"c",p:"95",it:["Camera Corte","Silenziosa, sulla corte interna, ideale per chi arriva tardi.",["2 persone","18 m²","corte interna","accesso diretto"]],en:["Courtyard Room","Quiet, on the inner courtyard, ideal for late arrivals.",["2 guests","18 m²","inner courtyard","direct access"]],de:["Hofzimmer","Ruhig, zum Innenhof, ideal für späte Ankünfte.",["2 Personen","18 m²","Innenhof","direkter Zugang"]]},
+ {k:"s",p:"155",it:["Suite Terrazza","Terrazza privata vista mare, zona giorno con divano letto.",["fino a 4 persone","35 m²","terrazza privata","ultimo piano"]],en:["Terrace Suite","Private sea-view terrace, living area with sofa bed.",["up to 4 guests","35 m²","private terrace","top floor"]],de:["Terrassensuite","Private Terrasse mit Meerblick, Wohnbereich mit Schlafsofa.",["bis zu 4 Personen","35 m²","private Terrasse","oberstes Geschoss"]]}
+];
+var FROM={it:function(p){return "da "+p+" € a notte, colazione inclusa · prezzo d'esempio";},en:function(p){return "from €"+p+" a night, breakfast included · sample price";},de:function(p){return "ab "+p+" € pro Nacht, inkl. Frühstück · Beispielpreis";}};
+var ASK={it:"Verifichi le date",en:"Check dates",de:"Termine prüfen"};
+function rooms(l,n){return '<div class="rooms">'+ROOMS.slice(0,n||4).map(function(r){var t=r[l];return '<article class="room"><div class="art" role="img" aria-label="'+t[0]+'">'+ART[r.k]+'</div><div class="body"><h3>'+t[0]+'</h3><p class="muted">'+t[1]+'</p><ul>'+t[2].map(function(x){return "<li>"+x+"</li>";}).join("")+'</ul><p class="from small">'+FROM[l](r.p)+'</p><div class="cta"><a class="btn sm" href="#home" data-chat="dl">'+ASK[l]+'</a></div></div></article>';}).join("")+'</div>';}
+var PHONE='<div class="phone" aria-label="WhatsApp"><div class="scr"><div class="who">Casa Lumèa</div><div class="bub">Welcome to Casa Lumèa! We look forward to seeing you on Friday. Check-in 15:00–20:00; after 20:00, self check-in with the code we send you on the day. Free parking in the courtyard.\nWhat time do you expect to arrive? Reply 1 before 18:00, 2 between 18:00 and 22:00, 3 after 22:00.</div><div class="bub me">3</div><div class="bub">No problem! On the day of arrival we\'ll send you the door code and step-by-step instructions.</div></div></div>';
+
+/* ======================= ITALIANO ======================= */
+SITE.i18n.it={
+band:"<b>Sito di esempio realizzato da Celea.</b> La struttura, gli ospiti, i prezzi, le condizioni e i numeri sono inventati.",
+back:"Torna al sito di Celea",
+cta:"Verifichi le date",
+nav:[["home","Home"],["camere","Camere"],["soggiorno","Arrivo e servizi"],["dove","Dove siamo"],["domande","Domande"],["titolare","Vista del titolare"]],
+titles:{home:"Casa Lumèa · B&B sul mare (sito di esempio)",camere:"Camere · Casa Lumèa (esempio)",soggiorno:"Arrivo e servizi · Casa Lumèa (esempio)",dove:"Dove siamo · Casa Lumèa (esempio)",domande:"Domande · Casa Lumèa (esempio)",titolare:"Vista del titolare · Casa Lumèa (esempio)"},
+desc:{home:"Sito di esempio di Celea per un B&B inventato: l'assistente risponde agli ospiti a ogni ora in italiano, inglese e tedesco, gestisce arrivi tardi, cancellazioni secondo le condizioni e il messaggio prima dell'arrivo.",titolare:"Cosa trova il titolare la mattina: arrivi con orario confermato, cancellazioni da decidere, richieste dall'estero. Dati d'esempio."},
+ui:{menu:"Menu",skip:"Vai al contenuto",fab:"Scriva alla struttura",placeholder:"Scriva una domanda…",send:"Invia",close:"Chiudi la chat",typing:"sta scrivendo…",demoNote:"Dimostrazione: risposte preimpostate, nulla viene inviato o salvato.",ownerLink:"Cosa vede il titolare →",liveEmpty:"Ancora nulla: provi la chat (per esempio «Cancellare una prenotazione») e torni qui.",livePill:"dalla chat di questa pagina",newEvents:"novità per il titolare",langs:"Lingua"},
+chat:{name:"Assistente di Casa Lumèa",sub:"Assistente virtuale · dimostrazione",fb:"fb",
+end:[["Ricomincia","start"],["Cosa vede il titolare","__owner"]],
+kw:[[/cancell|annull|disdi|spost/i,"cc"],[/messaggio prima|promemoria|ricord|benvenut/i,"pr"],[/tardi|notte|arriv|check|codice|chiav/i,"at"],[/chiuso|chiusi|inverno|riapr|stagion/i,"ch"],[/colazion/i,"co"],[/dove|indirizz|parchegg|aeroporto|spiaggia|mare/i,"dv"],[/titolare|persona|operat|parlare|richiam|umano/i,"ti"],[/liber|disponib|camera|prenot|notti|prezz|costa/i,"dl"],[/english|deutsch|inglese|tedesco/i,"lg"]],
+flows:{
+start:{a:["%HI%, sono l'assistente virtuale di Casa Lumèa. Posso verificare le date libere, aiutarLa con l'arrivo e il check-in, gestire una cancellazione o passarLa al titolare."],o:[["Date libere","dl"],["Arrivo tardi","at"],["Cancellare una prenotazione","cc"],["Il messaggio prima dell'arrivo","pr"],["Parlare con il titolare","ti"]]},
+fb:{a:["Mi scusi, sono un assistente dimostrativo con risposte preimpostate e non ho capito la richiesta. Posso aiutarLa con una di queste:"],o:[["Date libere","dl"],["Arrivo tardi","at"],["Cancellare una prenotazione","cc"],["Siete aperti in inverno?","ch"],["Parlare con il titolare","ti"]]},
+dl:{u:"Avete una camera per due persone, tre notti, dal 12 del mese prossimo?",a:["Sì: per quelle tre notti sono libere la Doppia Giardino e la Suite Terrazza. Quale preferisce vedere?"],o:[["Doppia Giardino","dl1"],["Suite Terrazza","dl2"]]},
+dl1:{u:"Doppia Giardino",a:["Doppia Giardino: letto matrimoniale, bagno privato, porta sul giardino, colazione inclusa. Tre notti: 330 € in totale (prezzo d'esempio).","Le mando il link per completare la prenotazione sul nostro sistema? Non chiedo mai i dati della carta in chat."],o:[["Sì, mandatemi il link","dl3"],["Prima ho una domanda","ti"]]},
+dl2:{u:"Suite Terrazza",a:["Suite Terrazza: terrazza privata vista mare, fino a 4 persone, colazione inclusa. Tre notti: 465 € in totale (prezzo d'esempio).","Le mando il link per completare la prenotazione sul nostro sistema? Non chiedo mai i dati della carta in chat."],o:[["Sì, mandatemi il link","dl3"],["Prima ho una domanda","ti"]]},
+dl3:{u:"Sì, mandatemi il link.",a:["Fatto: Le ho mandato il link del nostro sistema di prenotazione su WhatsApp. Le date restano bloccate per Lei per 30 minuti."],s:"Richiesta di prenotazione · date bloccate per 30 minuti",log:"Richiesta di prenotazione: 3 notti, 2 persone · link inviato · date bloccate 30 minuti"},
+at:{u:"Il mio volo atterra tardi: arrivo verso l'1:30. È un problema?",a:["Nessun problema: Casa Lumèa ha il self check-in. Il giorno dell'arrivo Le mando su WhatsApp il codice della porta e della camera, con le istruzioni passo passo.","Vuole che avvisi il titolare dell'orario di arrivo?"],o:[["Sì, grazie","at1"],["Non serve","at2"]]},
+at1:{u:"Sì, grazie.",a:["Fatto: il titolare sa che arriva verso l'1:30 e Le lascia accesa la luce dell'ingresso. La colazione è servita fino alle 10:30."],s:"Orario di arrivo comunicato al titolare",log:"Arrivo tardi: ospite verso l'1:30 · self check-in · codice da inviare il giorno dell'arrivo"},
+at2:{u:"Non serve.",a:["Va bene. Il codice Le arriva comunque il giorno dell'arrivo. Buon viaggio!"]},
+cc:{u:"Devo cancellare la prenotazione di sabato.",a:["Mi dispiace. L'ho trovata: Doppia Giardino, da sabato, due notti.","Secondo le condizioni della struttura la cancellazione è gratuita fino a 7 giorni prima dell'arrivo; dopo si paga la prima notte (condizioni d'esempio). Mancano 4 giorni. Preferisce spostare le date o cancellare?"],o:[["Spostare le date","cc1"],["Cancellare","cc2"]]},
+cc1:{u:"Preferisco spostare le date.",a:["Posso proporLe la stessa camera da venerdì della settimana dopo, due notti, senza costi di modifica. Va bene?"],o:[["Sì, va bene","cc3"],["Preferisco cancellare","cc2"]]},
+cc3:{u:"Sì, va bene.",a:["Fatto: prenotazione spostata a venerdì della settimana dopo, due notti, stessa camera. Il titolare è avvisato e Le arriva la conferma scritta."],s:"Prenotazione spostata · titolare avvisato",log:"Prenotazione spostata di una settimana, stessa camera · titolare avvisato"},
+cc2:{u:"Cancello.",a:["D'accordo. Ho passato la richiesta al titolare, che oggi Le conferma per iscritto la cancellazione e l'eventuale addebito secondo le condizioni. Appena confermata, le date tornano disponibili per altri ospiti."],s:"Cancellazione passata al titolare",log:"Cancellazione richiesta: Doppia Giardino da sabato · a 4 giorni dall'arrivo: decide il titolare secondo le condizioni"},
+pr:{u:"Che messaggio arriva prima dell'arrivo?",r:["Esempio del messaggio che l'ospite riceve su WhatsApp due giorni prima dell'arrivo","Benvenuti a Casa Lumèa! La aspettiamo venerdì. Check-in dalle 15:00 alle 20:00; dopo le 20:00 self check-in con il codice che Le mandiamo il giorno stesso. Parcheggio gratuito in cortile.\nA che ora pensa di arrivare? Risponda 1 prima delle 18, 2 tra le 18 e le 22, 3 dopo le 22.","WhatsApp · due giorni prima"],a:["L'ospite risponde con un numero. Provi Lei:"],o:[["1 · Prima delle 18","pr1"],["2 · Tra le 18 e le 22","pr2"],["3 · Dopo le 22","pr3"]]},
+pr1:{u:"1",a:["Perfetto, La aspettiamo nel pomeriggio: il titolare L'accoglie di persona."],s:"Orario di arrivo registrato",log:"Orario di arrivo confermato: prima delle 18 · accoglienza di persona"},
+pr2:{u:"2",a:["Perfetto. La reception è aperta fino alle 20:00: se arriva dopo, il giorno stesso Le mando il codice per il self check-in."],s:"Orario di arrivo registrato",log:"Orario di arrivo confermato: tra le 18 e le 22 · codice self check-in pronto"},
+pr3:{u:"3",a:["Nessun problema: il giorno dell'arrivo Le mando il codice della porta e le istruzioni passo passo."],s:"Orario di arrivo registrato",log:"Orario di arrivo confermato: dopo le 22 · self check-in"},
+ti:{u:"Posso parlare con il titolare?",a:["Certo. Preferisce essere richiamato o ricevere la risposta qui?"],o:[["Richiamatemi","ti1"],["Rispondete qui","ti2"]]},
+ti1:{u:"Richiamatemi.",a:["D'accordo: il titolare La richiama appena possibile, con il riepilogo della conversazione già davanti."],s:"Richiesta passata al titolare",log:"Da richiamare: l'ospite chiede di parlare con il titolare"},
+ti2:{u:"Rispondete qui.",a:["D'accordo: il titolare Le risponde qui appena possibile."],s:"Richiesta passata al titolare",log:"Da rispondere in chat: domanda per il titolare"},
+ch:{u:"Siete aperti in inverno?",a:["Casa Lumèa è chiusa da novembre a marzo (date d'esempio), ma io rispondo lo stesso: posso raccogliere la Sua richiesta per la prossima stagione e il titolare Gliela conferma appena apre il calendario."],o:[["Sì, raccogliete la richiesta","ch1"],["No, grazie","start"]]},
+ch1:{u:"Sì, raccogliete la richiesta.",a:["Fatto: ho annotato la richiesta. Le scriviamo su WhatsApp appena il calendario della nuova stagione è aperto."],s:"Richiesta salvata per la riapertura",log:"Richiesta durante la chiusura: da confermare all'apertura del calendario"},
+co:{a:["La colazione è servita dalle 7:30 alle 10:30, dolce e salata, con prodotti del territorio. Senza glutine o senza lattosio su richiesta: basta dirlo prima dell'arrivo."]},
+dv:{a:["Casa Lumèa è in Via del Faro 3 (indirizzo inventato), a cinque minuti a piedi dal mare. Parcheggio gratuito in cortile. Vuole che Le mandi le indicazioni su WhatsApp il giorno prima?"],o:[["Sì","at"],["No, grazie","start"]]},
+lg:{a:["Rispondo in italiano, inglese e tedesco, a qualsiasi ora: può scrivermi nella lingua che preferisce."]}
+}},
+pages:{
+home:`<section class="hero"><div class="wrap">
+<div class="hero-text"><p class="label">B&amp;B sul mare · esempio</p>
+<h1>Arriva all'1:30? <em>Le rispondiamo.</em></h1>
+<p class="lead">Sei camere a cinque minuti dal mare. Scriva quando vuole, anche in inglese o tedesco: l'assistente verifica le date, Le spiega l'arrivo e il self check-in, gestisce le cancellazioni secondo le condizioni e passa al titolare quando serve.</p>
+<div class="cta"><a class="btn" href="#home" data-chat="dl">Verifichi le date</a><a class="btn line" href="#camere" data-go="camere">Veda le camere</a></div>
+<ul class="facts" aria-label="In breve"><li>Su WhatsApp e sul sito</li><li>Italiano, inglese e tedesco</li><li>Self check-in a ogni ora</li></ul></div>
+<div data-chat-slot></div></div></section>
+<section class="alt"><div class="wrap"><div class="head"><p class="label">Perché scriverci</p><h2>Ogni ospite ha una risposta, anche a mezzanotte.</h2></div>
+<div class="strip"><div><b>Nella lingua dell'ospite</b><p>Italiano, inglese e tedesco, a ogni ora: niente richieste perse per il fuso orario.</p></div><div><b>Arrivi senza sorprese</b><p>Due giorni prima, orari di check-in e istruzioni; l'ospite conferma a che ora arriva.</p></div><div><b>Cancellazioni chiare</b><p>L'assistente spiega le condizioni, propone di spostare le date e passa la decisione al titolare.</p></div></div></div></section>
+<section><div class="wrap"><div class="head"><p class="label">Camere</p><h2>Dormire a due passi dal mare</h2><p class="lead">Camere e prezzi d'esempio, colazione sempre inclusa.</p></div>%R2%
+<p style="margin-top:22px"><a href="#camere" data-go="camere"><b>Tutte le camere →</b></a></p></div></section>
+<section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">Per il titolare della struttura</p><h2 style="margin-top:8px">Cosa trova il titolare la mattina?</h2><p style="margin-top:10px">Gli arrivi del giorno con l'orario confermato, le richieste dall'estero già risposte e solo le decisioni che spettano a lui. Lo vede in un colpo d'occhio.</p></div><a class="btn" href="#titolare" data-go="titolare">Apra la vista del titolare</a></div></div></section>`,
+camere:`<section><div class="wrap"><div class="head"><p class="label">Camere</p><h1>Le camere</h1><p class="lead">Camere e prezzi d'esempio. Per ognuna può verificare le date in chat: l'assistente Le risponde subito.</p></div>%R4%</div></section>`,
+soggiorno:`<section><div class="wrap"><div class="head"><p class="label">Arrivo e servizi</p><h1>Il Suo soggiorno, passo per passo</h1></div>
+<ol class="steps"><li><h3>Due giorni prima</h3><p>Le scriviamo su WhatsApp con orari e indicazioni e Le chiediamo a che ora pensa di arrivare.</p></li><li><h3>All'arrivo</h3><p>Check-in dalle 15:00 alle 20:00 con il titolare; dopo, self check-in con il codice che riceve il giorno stesso.</p></li><li><h3>Durante il soggiorno</h3><p>Colazione dalle 7:30 alle 10:30. Per qualsiasi cosa scriva all'assistente, anche di notte.</p></li></ol></div></section>
+<section class="alt"><div class="wrap grid2"><div class="kv"><p class="label">Servizi</p><h2>Inclusi nel prezzo</h2><ul class="muted" style="margin:12px 0 0;padding-left:20px"><li>Colazione dolce e salata con prodotti del territorio</li><li>Parcheggio gratuito in cortile</li><li>Wi-Fi in tutte le camere</li><li>Biciclette su richiesta</li><li>Check-out entro le 11:00</li></ul></div>
+<div class="kv"><p class="label">Condizioni (d'esempio)</p><h2>Cancellazioni</h2><p class="muted" style="margin-top:12px">Cancellazione gratuita fino a 7 giorni prima dell'arrivo; dopo, si paga la prima notte. Le eccezioni le decide sempre il titolare. Da novembre a marzo la struttura è chiusa: l'assistente raccoglie le richieste per la stagione successiva.</p><div class="cta" style="margin-top:16px"><a class="btn" href="#home" data-chat="pr">Veda il messaggio prima dell'arrivo</a></div></div></div></section>`,
+dove:`<section><div class="wrap"><div class="head"><p class="label">Dove siamo</p><h1>A cinque minuti a piedi dal mare</h1></div>
+<div class="grid2"><table aria-label="Orari"><tbody><tr><th scope="row">Check-in</th><td>15:00–20:00</td></tr><tr><th scope="row">Self check-in</th><td>dopo le 20:00, con codice</td></tr><tr><th scope="row">Colazione</th><td>7:30–10:30</td></tr><tr><th scope="row">Check-out</th><td>entro le 11:00</td></tr><tr><th scope="row">Stagione</th><td>aprile – ottobre</td></tr><tr><th scope="row">Assistente virtuale</th><td>sempre attivo</td></tr></tbody></table>
+<div class="kv" style="gap:14px"><div class="kv"><span class="muted">Indirizzo (inventato)</span><span class="v">Via del Faro 3, Città</span></div><div class="kv"><span class="muted">Telefono e WhatsApp (inventati)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Parcheggio</span><span class="v">Gratuito, in cortile</span></div><p class="note">Arriva di notte? Nessun problema: il giorno dell'arrivo riceve il codice della porta e le istruzioni passo passo su WhatsApp.</p></div></div></div></section>`,
+domande:`<section><div class="wrap"><div class="head"><p class="label">Domande</p><h1>Le domande più frequenti</h1></div><div class="faq">
+<details><summary>Con chi parlo quando scrivo di notte?</summary><div class="ans"><p>Con l'assistente virtuale della struttura, che si presenta sempre come tale. Verifica le date, spiega l'arrivo, gestisce le cancellazioni e passa la conversazione al titolare quando serve.</p></div></details>
+<details><summary>Posso arrivare dopo mezzanotte?</summary><div class="ans"><p>Sì. Il giorno dell'arrivo riceve su WhatsApp il codice della porta e della camera, con le istruzioni passo passo.</p></div></details>
+<details><summary>Come funziona la cancellazione?</summary><div class="ans"><p>L'assistente Le spiega le condizioni della struttura e Le propone, se possibile, di spostare le date. La cancellazione e l'eventuale addebito li conferma sempre il titolare, per iscritto.</p></div></details>
+<details><summary>Devo dare i dati della carta in chat?</summary><div class="ans"><p>No, mai. La prenotazione si completa sul sistema di prenotazione della struttura, con il link che riceve.</p></div></details>
+<details><summary>Siete aperti in inverno?</summary><div class="ans"><p>La struttura è chiusa da novembre a marzo, ma l'assistente risponde lo stesso e raccoglie le richieste per la nuova stagione.</p></div></details>
+<details><summary>Parlate inglese o tedesco?</summary><div class="ans"><p>L'assistente risponde in italiano, inglese e tedesco, a qualsiasi ora.</p></div></details>
+</div></div></section>`,
+titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Vista del titolare</p><h1>Cosa ha fatto l'assistente mentre Lei dormiva</h1><p class="lead">Ogni mattina il titolare trova gli arrivi del giorno con l'orario confermato, le domande degli ospiti stranieri già risposte e solo le decisioni che spettano a lui, come una cancellazione fuori termine.</p><span class="ex">Dati d'esempio: la struttura e gli ospiti sono inventati</span></div>
+<div class="kpis"><div class="kpi"><b>11</b><span>messaggi tra le 21:00 e le 8:00, 6 in inglese o tedesco</span></div><div class="kpi"><b>2</b><span>richieste di prenotazione con link inviato</span></div><div class="kpi"><b>4</b><span>orari di arrivo confermati per oggi</span></div><div class="kpi"><b>1</b><span>cancellazione da decidere</span></div></div>
+<div class="owner-grid"><div class="panel"><h3>Arrivi di oggi</h3><div class="rows">
+<div class="row"><time>15:30</time><div class="t">Doppia Giardino · famiglia K. (scrive in tedesco)<br><span class="pill ok">Arrivo confermato: prima delle 18</span></div></div>
+<div class="row"><time>19:00</time><div class="t">Suite Terrazza · J. e M. (scrivono in inglese)<br><span class="pill ok">Arrivo confermato: tra le 18 e le 22</span></div></div>
+<div class="row"><time>01:30</time><div class="t">Camera Corte · S. P.<small>Volo in ritardo: codice del self check-in da inviare alle 14:00</small><span class="pill wait">Self check-in</span></div></div>
+<div class="row"><time>—</time><div class="t">Doppia Mare · L. R.<br><span class="pill alert">Nessuna risposta al messaggio di benvenuto: da chiamare</span></div></div></div></div>
+${PHONE}</div>
+<div class="owner-grid" style="margin-top:16px"><div class="panel"><h3>Da decidere stamattina</h3><div class="rows">
+<div class="row"><time>22:40</time><div class="t">Cancellazione: Doppia Giardino da sabato, due notti<small>A 4 giorni dall'arrivo: secondo le condizioni si paga la prima notte. Spostamento proposto, l'ospite preferisce cancellare</small><span class="pill alert">Decide il titolare</span></div></div>
+<div class="row"><time>23:55</time><div class="t">Richiesta per aprile, mentre la struttura è chiusa<small>Due notti, due persone: richiesta salvata</small><span class="pill wait">Da confermare all'apertura</span></div></div>
+<div class="row"><time>07:10</time><div class="t">Ospite chiede un lettino per un bambino<small>Disponibile: annotato sulla prenotazione</small><span class="pill ok">Risolto</span></div></div></div></div>
+<div class="panel"><h3>Dalla chat di questa pagina</h3><p class="muted small">Provi la chat: ogni azione compare qui, come la vedrebbe il titolare.</p><div class="rows live" data-live></div><a class="btn sm" href="#home" data-chat="cc">Provi a cancellare una prenotazione</a></div></div>
+<div class="panel" style="margin-top:16px"><h3>Cosa l'assistente non fa mai</h3><p class="muted">Non conferma rimborsi o eccezioni alle condizioni: decide il titolare. Non chiede i dati della carta in chat. Si presenta sempre come assistente virtuale. Passa al titolare quando l'ospite lo chiede o quando serve.</p></div>
+</div></section>
+<section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Vuole vederlo con la Sua struttura?</h2><p style="margin-top:10px">Questo sito è un esempio di Celea. La demo dell'assistente e tutti i prezzi sono sul sito di Celea.</p></div><a class="btn" href="${CELEA}">Vada al sito di Celea</a></div></div></section>`
+},
+footer:`<div class="wrap cols"><div><p><b>Questo è un sito dimostrativo.</b> Casa Lumèa non esiste: è un esempio realizzato da Celea per far vedere come può diventare il sito di una struttura ricettiva, con l'assistente che risponde agli ospiti in tre lingue, gestisce arrivi, cancellazioni e messaggi prima dell'arrivo. Camere, prezzi, condizioni e numeri sono d'esempio.</p></div>
+<div><p>Un sito così rientra nel <b>Sito premium multilingua</b> di Celea (10 pagine in italiano, inglese e tedesco): 1.990 € + 79 €/mese. L'assistente sul sito si aggiunge alla receptionist a 49 €/mese + 90 € di attivazione. Versione più semplice: Sito vetrina, 990 € + 49 €/mese. Prezzi IVA esclusa.</p><p style="margin-top:10px"><a href="${CELEA}">La demo e tutti i prezzi di Celea</a></p></div></div>`
+};
+
+/* ======================= ENGLISH ======================= */
+SITE.i18n.en={
+band:"<b>Sample website made by Celea.</b> The property, guests, prices, terms and numbers are invented.",
+back:"Back to Celea",
+cta:"Check dates",
+nav:[["home","Home"],["camere","Rooms"],["soggiorno","Arrival & services"],["dove","Location"],["domande","FAQ"],["titolare","Owner view"]],
+titles:{home:"Casa Lumèa · B&B by the sea (sample website)",camere:"Rooms · Casa Lumèa (sample)",soggiorno:"Arrival & services · Casa Lumèa (sample)",dove:"Location · Casa Lumèa (sample)",domande:"FAQ · Casa Lumèa (sample)",titolare:"Owner view · Casa Lumèa (sample)"},
+desc:{home:"Celea sample website for an invented B&B: the assistant answers guests at any hour in Italian, English and German, handles late arrivals, cancellations under the terms and the pre-arrival message.",titolare:"What the owner finds in the morning: arrivals with confirmed times, cancellations to decide, enquiries from abroad. Sample data."},
+ui:{menu:"Menu",skip:"Skip to content",fab:"Message us",placeholder:"Type a question…",send:"Send",close:"Close chat",typing:"typing…",demoNote:"Demo: preset replies, nothing is sent or stored.",ownerLink:"What the owner sees →",liveEmpty:"Nothing yet: try the chat (for example «Cancel a booking») and come back here.",livePill:"from the chat on this page",newEvents:"updates for the owner",langs:"Language"},
+chat:{name:"Casa Lumèa assistant",sub:"Virtual assistant · demo",fb:"fb",
+end:[["Start again","start"],["What the owner sees","__owner"]],
+kw:[[/cancel|move my|change my/i,"cc"],[/before arrival|reminder|welcome message/i,"pr"],[/late|night|arriv|check-in|check in|code|key/i,"at"],[/closed|winter|reopen|season/i,"ch"],[/breakfast/i,"co"],[/where|address|parking|airport|beach|sea/i,"dv"],[/owner|person|human|talk|call me|call back/i,"ti"],[/free|availab|room|book|nights|price|cost/i,"dl"],[/italian|german|language/i,"lg"]],
+flows:{
+start:{a:["%HI%, I'm Casa Lumèa's virtual assistant. I can check available dates, help with your arrival and check-in, handle a cancellation or put you through to the owner."],o:[["Available dates","dl"],["Late arrival","at"],["Cancel a booking","cc"],["The pre-arrival message","pr"],["Talk to the owner","ti"]]},
+fb:{a:["Sorry, I'm a demo assistant with preset replies and didn't understand that. I can help with one of these:"],o:[["Available dates","dl"],["Late arrival","at"],["Cancel a booking","cc"],["Are you open in winter?","ch"],["Talk to the owner","ti"]]},
+dl:{u:"Do you have a room for two, three nights, from the 12th of next month?",a:["Yes: for those three nights the Garden Double and the Terrace Suite are free. Which would you like to see?"],o:[["Garden Double","dl1"],["Terrace Suite","dl2"]]},
+dl1:{u:"Garden Double",a:["Garden Double: double bed, private bathroom, door onto the garden, breakfast included. Three nights: €330 in total (sample price).","Shall I send you the link to complete the booking on our system? I never ask for card details in chat."],o:[["Yes, send the link","dl3"],["I have a question first","ti"]]},
+dl2:{u:"Terrace Suite",a:["Terrace Suite: private sea-view terrace, up to 4 guests, breakfast included. Three nights: €465 in total (sample price).","Shall I send you the link to complete the booking on our system? I never ask for card details in chat."],o:[["Yes, send the link","dl3"],["I have a question first","ti"]]},
+dl3:{u:"Yes, send the link.",a:["Done: I've sent you the link to our booking system on WhatsApp. The dates are held for you for 30 minutes."],s:"Booking request · dates held for 30 minutes",log:"Booking request: 3 nights, 2 guests · link sent · dates held 30 minutes"},
+at:{u:"My flight lands late: I'll arrive around 1:30 am. Is that a problem?",a:["Not at all: Casa Lumèa has self check-in. On the day of arrival I'll send you the door and room code on WhatsApp, with step-by-step instructions.","Shall I let the owner know your arrival time?"],o:[["Yes, please","at1"],["No need","at2"]]},
+at1:{u:"Yes, please.",a:["Done: the owner knows you'll arrive around 1:30 am and will leave the entrance light on. Breakfast is served until 10:30."],s:"Arrival time passed to the owner",log:"Late arrival: guest around 1:30 am · self check-in · code to send on arrival day"},
+at2:{u:"No need.",a:["All right. You'll get the code on the day of arrival anyway. Safe travels!"]},
+cc:{u:"I need to cancel my booking for Saturday.",a:["I'm sorry to hear that. Found it: Garden Double, from Saturday, two nights.","Under the property's terms, cancellation is free up to 7 days before arrival; after that the first night is charged (sample terms). Arrival is in 4 days. Would you rather move the dates or cancel?"],o:[["Move the dates","cc1"],["Cancel","cc2"]]},
+cc1:{u:"I'd rather move the dates.",a:["I can offer the same room from the Friday of the following week, two nights, with no change fee. Does that work?"],o:[["Yes, that works","cc3"],["I'd rather cancel","cc2"]]},
+cc3:{u:"Yes, that works.",a:["Done: booking moved to the Friday of the following week, two nights, same room. The owner has been told and you'll receive written confirmation."],s:"Booking moved · owner informed",log:"Booking moved by one week, same room · owner informed"},
+cc2:{u:"I'll cancel.",a:["All right. I've passed the request to the owner, who will confirm the cancellation and any charge under the terms in writing today. Once confirmed, the dates become available to other guests again."],s:"Cancellation passed to the owner",log:"Cancellation requested: Garden Double from Saturday · 4 days before arrival: the owner decides under the terms"},
+pr:{u:"What message do I get before arrival?",r:["Example of the message the guest receives on WhatsApp two days before arrival","Welcome to Casa Lumèa! We look forward to seeing you on Friday. Check-in 15:00–20:00; after 20:00, self check-in with the code we send you on the day. Free parking in the courtyard.\nWhat time do you expect to arrive? Reply 1 before 18:00, 2 between 18:00 and 22:00, 3 after 22:00.","WhatsApp · two days before"],a:["The guest replies with a number. Try it:"],o:[["1 · Before 18:00","pr1"],["2 · 18:00 to 22:00","pr2"],["3 · After 22:00","pr3"]]},
+pr1:{u:"1",a:["Perfect, see you in the afternoon: the owner will welcome you in person."],s:"Arrival time recorded",log:"Arrival time confirmed: before 18:00 · welcomed in person"},
+pr2:{u:"2",a:["Perfect. Reception is open until 20:00: if you arrive later, I'll send you the self check-in code on the day."],s:"Arrival time recorded",log:"Arrival time confirmed: 18:00 to 22:00 · self check-in code ready"},
+pr3:{u:"3",a:["No problem: on the day of arrival I'll send you the door code and step-by-step instructions."],s:"Arrival time recorded",log:"Arrival time confirmed: after 22:00 · self check-in"},
+ti:{u:"Can I talk to the owner?",a:["Of course. Would you like a call back or a reply here?"],o:[["Call me back","ti1"],["Reply here","ti2"]]},
+ti1:{u:"Call me back.",a:["All right: the owner will call you back as soon as possible, with a summary of this conversation in front of them."],s:"Request passed to the owner",log:"Call back: the guest asks to speak to the owner"},
+ti2:{u:"Reply here.",a:["All right: the owner will reply here as soon as possible."],s:"Request passed to the owner",log:"Reply in chat: question for the owner"},
+ch:{u:"Are you open in winter?",a:["Casa Lumèa is closed from November to March (sample dates), but I still reply: I can take your request for next season and the owner will confirm it as soon as the calendar opens."],o:[["Yes, take my request","ch1"],["No, thanks","start"]]},
+ch1:{u:"Yes, take my request.",a:["Done: your request is noted. We'll message you on WhatsApp as soon as the new season's calendar is open."],s:"Request saved for reopening",log:"Request during closure: to confirm when the calendar opens"},
+co:{a:["Breakfast is served from 7:30 to 10:30, sweet and savoury, with local produce. Gluten-free or lactose-free on request: just let us know before arrival."]},
+dv:{a:["Casa Lumèa is at Via del Faro 3 (invented address), a five-minute walk from the sea. Free parking in the courtyard. Shall I send you directions on WhatsApp the day before?"],o:[["Yes","at"],["No, thanks","start"]]},
+lg:{a:["I reply in Italian, English and German, at any hour: write in whichever you prefer."]}
+}},
+pages:{
+home:`<section class="hero"><div class="wrap">
+<div class="hero-text"><p class="label">B&amp;B by the sea · sample</p>
+<h1>Arriving at 1:30 am? <em>We'll answer.</em></h1>
+<p class="lead">Six rooms five minutes from the sea. Write whenever you like, in English, German or Italian: the assistant checks dates, explains arrival and self check-in, handles cancellations under the terms and hands over to the owner when needed.</p>
+<div class="cta"><a class="btn" href="#en" data-chat="dl">Check dates</a><a class="btn line" href="#en/camere" data-go="camere">See the rooms</a></div>
+<ul class="facts" aria-label="At a glance"><li>On WhatsApp and the website</li><li>Italian, English and German</li><li>Self check-in at any hour</li></ul></div>
+<div data-chat-slot></div></div></section>
+<section class="alt"><div class="wrap"><div class="head"><p class="label">Why message us</p><h2>Every guest gets an answer, even at midnight.</h2></div>
+<div class="strip"><div><b>In the guest's language</b><p>Italian, English and German, at any hour: no enquiry lost to time zones.</p></div><div><b>Arrivals without surprises</b><p>Two days before: check-in times and directions; the guest confirms when they'll arrive.</p></div><div><b>Clear cancellations</b><p>The assistant explains the terms, offers to move the dates and leaves the decision to the owner.</p></div></div></div></section>
+<section><div class="wrap"><div class="head"><p class="label">Rooms</p><h2>Sleep a stone's throw from the sea</h2><p class="lead">Sample rooms and prices, breakfast always included.</p></div>%R2%
+<p style="margin-top:22px"><a href="#en/camere" data-go="camere"><b>All rooms →</b></a></p></div></section>
+<section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">For the property owner</p><h2 style="margin-top:8px">What does the owner find in the morning?</h2><p style="margin-top:10px">Today's arrivals with confirmed times, guest questions from abroad already answered and only the decisions that are theirs to make. All at a glance.</p></div><a class="btn" href="#en/titolare" data-go="titolare">Open the owner view</a></div></div></section>`,
+camere:`<section><div class="wrap"><div class="head"><p class="label">Rooms</p><h1>Our rooms</h1><p class="lead">Sample rooms and prices. For each you can check dates in the chat: the assistant replies straight away.</p></div>%R4%</div></section>`,
+soggiorno:`<section><div class="wrap"><div class="head"><p class="label">Arrival & services</p><h1>Your stay, step by step</h1></div>
+<ol class="steps"><li><h3>Two days before</h3><p>We message you on WhatsApp with times and directions and ask when you expect to arrive.</p></li><li><h3>On arrival</h3><p>Check-in 15:00–20:00 with the owner; after that, self check-in with the code you receive on the day.</p></li><li><h3>During your stay</h3><p>Breakfast 7:30–10:30. For anything at all, message the assistant, even at night.</p></li></ol></div></section>
+<section class="alt"><div class="wrap grid2"><div class="kv"><p class="label">Services</p><h2>Included in the price</h2><ul class="muted" style="margin:12px 0 0;padding-left:20px"><li>Sweet and savoury breakfast with local produce</li><li>Free parking in the courtyard</li><li>Wi-Fi in every room</li><li>Bicycles on request</li><li>Check-out by 11:00</li></ul></div>
+<div class="kv"><p class="label">Terms (sample)</p><h2>Cancellations</h2><p class="muted" style="margin-top:12px">Free cancellation up to 7 days before arrival; after that the first night is charged. Exceptions are always decided by the owner. From November to March the property is closed: the assistant takes requests for the following season.</p><div class="cta" style="margin-top:16px"><a class="btn" href="#en" data-chat="pr">See the pre-arrival message</a></div></div></div></section>`,
+dove:`<section><div class="wrap"><div class="head"><p class="label">Location</p><h1>A five-minute walk from the sea</h1></div>
+<div class="grid2"><table aria-label="Times"><tbody><tr><th scope="row">Check-in</th><td>15:00–20:00</td></tr><tr><th scope="row">Self check-in</th><td>after 20:00, with a code</td></tr><tr><th scope="row">Breakfast</th><td>7:30–10:30</td></tr><tr><th scope="row">Check-out</th><td>by 11:00</td></tr><tr><th scope="row">Season</th><td>April – October</td></tr><tr><th scope="row">Virtual assistant</th><td>always on</td></tr></tbody></table>
+<div class="kv" style="gap:14px"><div class="kv"><span class="muted">Address (invented)</span><span class="v">Via del Faro 3, Città</span></div><div class="kv"><span class="muted">Phone and WhatsApp (invented)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Parking</span><span class="v">Free, in the courtyard</span></div><p class="note">Arriving at night? No problem: on the day of arrival you receive the door code and step-by-step instructions on WhatsApp.</p></div></div></div></section>`,
+domande:`<section><div class="wrap"><div class="head"><p class="label">FAQ</p><h1>Frequently asked questions</h1></div><div class="faq">
+<details><summary>Who am I talking to when I write at night?</summary><div class="ans"><p>The property's virtual assistant, which always introduces itself as such. It checks dates, explains arrival, handles cancellations and passes the conversation to the owner when needed.</p></div></details>
+<details><summary>Can I arrive after midnight?</summary><div class="ans"><p>Yes. On the day of arrival you receive the door and room code on WhatsApp, with step-by-step instructions.</p></div></details>
+<details><summary>How does cancellation work?</summary><div class="ans"><p>The assistant explains the property's terms and, where possible, offers to move your dates. The cancellation and any charge are always confirmed by the owner, in writing.</p></div></details>
+<details><summary>Do I have to give card details in the chat?</summary><div class="ans"><p>No, never. Bookings are completed on the property's booking system, with the link you receive.</p></div></details>
+<details><summary>Are you open in winter?</summary><div class="ans"><p>The property is closed from November to March, but the assistant still replies and takes requests for the new season.</p></div></details>
+<details><summary>Do you speak English or German?</summary><div class="ans"><p>The assistant replies in Italian, English and German, at any hour.</p></div></details>
+</div></div></section>`,
+titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Owner view</p><h1>What the assistant did while you were asleep</h1><p class="lead">Every morning the owner finds today's arrivals with confirmed times, foreign guests' questions already answered and only the decisions that are theirs to make, such as a late cancellation.</p><span class="ex">Sample data: the property and guests are invented</span></div>
+<div class="kpis"><div class="kpi"><b>11</b><span>messages between 21:00 and 8:00, 6 in English or German</span></div><div class="kpi"><b>2</b><span>booking requests with link sent</span></div><div class="kpi"><b>4</b><span>arrival times confirmed for today</span></div><div class="kpi"><b>1</b><span>cancellation to decide</span></div></div>
+<div class="owner-grid"><div class="panel"><h3>Today's arrivals</h3><div class="rows">
+<div class="row"><time>15:30</time><div class="t">Garden Double · K. family (writes in German)<br><span class="pill ok">Arrival confirmed: before 18:00</span></div></div>
+<div class="row"><time>19:00</time><div class="t">Terrace Suite · J. and M. (write in English)<br><span class="pill ok">Arrival confirmed: 18:00 to 22:00</span></div></div>
+<div class="row"><time>01:30</time><div class="t">Courtyard Room · S. P.<small>Delayed flight: self check-in code to send at 14:00</small><span class="pill wait">Self check-in</span></div></div>
+<div class="row"><time>—</time><div class="t">Sea Double · L. R.<br><span class="pill alert">No reply to the welcome message: call them</span></div></div></div></div>
+${PHONE}</div>
+<div class="owner-grid" style="margin-top:16px"><div class="panel"><h3>To decide this morning</h3><div class="rows">
+<div class="row"><time>22:40</time><div class="t">Cancellation: Garden Double from Saturday, two nights<small>4 days before arrival: under the terms the first night is charged. A date change was offered; the guest prefers to cancel</small><span class="pill alert">Owner decides</span></div></div>
+<div class="row"><time>23:55</time><div class="t">Request for April, while the property is closed<small>Two nights, two guests: request saved</small><span class="pill wait">Confirm when calendar opens</span></div></div>
+<div class="row"><time>07:10</time><div class="t">Guest asks for a cot for a child<small>Available: noted on the booking</small><span class="pill ok">Solved</span></div></div></div></div>
+<div class="panel"><h3>From the chat on this page</h3><p class="muted small">Try the chat: every action appears here, as the owner would see it.</p><div class="rows live" data-live></div><a class="btn sm" href="#en" data-chat="cc">Try cancelling a booking</a></div></div>
+<div class="panel" style="margin-top:16px"><h3>What the assistant never does</h3><p class="muted">It never confirms refunds or exceptions to the terms: the owner decides. It never asks for card details in chat. It always introduces itself as a virtual assistant. It hands over to the owner when the guest asks or when needed.</p></div>
+</div></section>
+<section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Want to see this for your property?</h2><p style="margin-top:10px">This website is a Celea sample. The assistant demo and all prices are on Celea's website.</p></div><a class="btn" href="${CELEA}#en">Go to Celea</a></div></div></section>`
+},
+footer:`<div class="wrap cols"><div><p><b>This is a demo website.</b> Casa Lumèa does not exist: it is a sample made by Celea to show what a guest house or hotel website can become, with an assistant that answers guests in three languages and handles arrivals, cancellations and pre-arrival messages. Rooms, prices, terms and figures are examples.</p></div>
+<div><p>A site like this falls under Celea's <b>premium multilingual website</b> (10 pages in Italian, English and German): €1,990 + €79/month. The website assistant is added to the receptionist for €49/month + €90 setup. Simpler option: showcase website, €990 + €49/month. Prices excluding VAT.</p><p style="margin-top:10px"><a href="${CELEA}#en">Celea's demo and all prices</a></p></div></div>`
+};
+
+/* ======================= DEUTSCH ======================= */
+SITE.i18n.de={
+band:"<b>Beispiel-Website von Celea.</b> Unterkunft, Gäste, Preise, Bedingungen und Zahlen sind erfunden.",
+back:"Zurück zu Celea",
+cta:"Termine prüfen",
+nav:[["home","Start"],["camere","Zimmer"],["soggiorno","Anreise & Service"],["dove","Lage"],["domande","Fragen"],["titolare","Ansicht für Gastgeber"]],
+titles:{home:"Casa Lumèa · B&B am Meer (Beispiel-Website)",camere:"Zimmer · Casa Lumèa (Beispiel)",soggiorno:"Anreise & Service · Casa Lumèa (Beispiel)",dove:"Lage · Casa Lumèa (Beispiel)",domande:"Fragen · Casa Lumèa (Beispiel)",titolare:"Ansicht für Gastgeber · Casa Lumèa (Beispiel)"},
+desc:{home:"Beispiel-Website von Celea für ein erfundenes B&B: Der Assistent antwortet Gästen rund um die Uhr auf Italienisch, Englisch und Deutsch, kümmert sich um späte Ankünfte, Stornierungen nach den Bedingungen und die Nachricht vor der Anreise.",titolare:"Was der Gastgeber morgens vorfindet: Ankünfte mit bestätigter Uhrzeit, offene Stornierungen, Anfragen aus dem Ausland. Beispieldaten."},
+ui:{menu:"Menü",skip:"Zum Inhalt",fab:"Schreiben Sie uns",placeholder:"Frage eingeben…",send:"Senden",close:"Chat schließen",typing:"schreibt…",demoNote:"Demo: vorbereitete Antworten, nichts wird gesendet oder gespeichert.",ownerLink:"Was der Gastgeber sieht →",liveEmpty:"Noch nichts: Probieren Sie den Chat (zum Beispiel «Buchung stornieren») und kommen Sie hierher zurück.",livePill:"aus dem Chat dieser Seite",newEvents:"Neuigkeiten für den Gastgeber",langs:"Sprache"},
+chat:{name:"Assistent von Casa Lumèa",sub:"Virtueller Assistent · Demo",fb:"fb",
+end:[["Neu starten","start"],["Was der Gastgeber sieht","__owner"]],
+kw:[[/stornier|absag|verschieb|umbuch/i,"cc"],[/vor der anreise|erinner|willkommen/i,"pr"],[/spät|nacht|ankunft|anreise|check-in|code|schlüssel/i,"at"],[/geschlossen|winter|wiederer|saison/i,"ch"],[/frühstück/i,"co"],[/wo |adresse|parken|flughafen|strand|meer/i,"dv"],[/gastgeber|inhaber|person|mensch|sprechen|rückruf|zurückrufen/i,"ti"],[/frei|verfügbar|zimmer|buchen|nächte|preis|kost/i,"dl"],[/englisch|italienisch|sprache/i,"lg"]],
+flows:{
+start:{a:["%HI%, ich bin der virtuelle Assistent von Casa Lumèa. Ich kann freie Termine prüfen, Ihnen bei Anreise und Check-in helfen, eine Stornierung bearbeiten oder Sie mit dem Gastgeber verbinden."],o:[["Freie Termine","dl"],["Späte Ankunft","at"],["Buchung stornieren","cc"],["Die Nachricht vor der Anreise","pr"],["Mit dem Gastgeber sprechen","ti"]]},
+fb:{a:["Entschuldigung, ich bin ein Demo-Assistent mit vorbereiteten Antworten und habe das nicht verstanden. Ich helfe Ihnen gern hierbei:"],o:[["Freie Termine","dl"],["Späte Ankunft","at"],["Buchung stornieren","cc"],["Haben Sie im Winter geöffnet?","ch"],["Mit dem Gastgeber sprechen","ti"]]},
+dl:{u:"Haben Sie ein Zimmer für zwei Personen, drei Nächte, ab dem 12. des nächsten Monats?",a:["Ja: Für diese drei Nächte sind das Doppelzimmer Garten und die Terrassensuite frei. Welches möchten Sie ansehen?"],o:[["Doppelzimmer Garten","dl1"],["Terrassensuite","dl2"]]},
+dl1:{u:"Doppelzimmer Garten",a:["Doppelzimmer Garten: Doppelbett, eigenes Bad, Tür zum Garten, Frühstück inklusive. Drei Nächte: 330 € insgesamt (Beispielpreis).","Soll ich Ihnen den Link schicken, um die Buchung in unserem System abzuschließen? Ich frage im Chat nie nach Kartendaten."],o:[["Ja, Link schicken","dl3"],["Vorher eine Frage","ti"]]},
+dl2:{u:"Terrassensuite",a:["Terrassensuite: private Terrasse mit Meerblick, bis zu 4 Personen, Frühstück inklusive. Drei Nächte: 465 € insgesamt (Beispielpreis).","Soll ich Ihnen den Link schicken, um die Buchung in unserem System abzuschließen? Ich frage im Chat nie nach Kartendaten."],o:[["Ja, Link schicken","dl3"],["Vorher eine Frage","ti"]]},
+dl3:{u:"Ja, bitte den Link schicken.",a:["Erledigt: Ich habe Ihnen den Link zu unserem Buchungssystem per WhatsApp geschickt. Die Termine sind 30 Minuten für Sie reserviert."],s:"Buchungsanfrage · Termine 30 Minuten reserviert",log:"Buchungsanfrage: 3 Nächte, 2 Personen · Link gesendet · Termine 30 Minuten reserviert"},
+at:{u:"Mein Flug landet spät: Ich komme gegen 1:30 Uhr an. Ist das ein Problem?",a:["Überhaupt nicht: Casa Lumèa hat Self-Check-in. Am Anreisetag schicke ich Ihnen per WhatsApp den Code für Haustür und Zimmer, mit einer Schritt-für-Schritt-Anleitung.","Soll ich dem Gastgeber Ihre Ankunftszeit mitteilen?"],o:[["Ja, bitte","at1"],["Nicht nötig","at2"]]},
+at1:{u:"Ja, bitte.",a:["Erledigt: Der Gastgeber weiß, dass Sie gegen 1:30 Uhr ankommen, und lässt das Licht am Eingang an. Frühstück gibt es bis 10:30."],s:"Ankunftszeit an den Gastgeber übermittelt",log:"Späte Ankunft: Gast gegen 1:30 Uhr · Self-Check-in · Code am Anreisetag senden"},
+at2:{u:"Nicht nötig.",a:["In Ordnung. Den Code erhalten Sie am Anreisetag trotzdem. Gute Reise!"]},
+cc:{u:"Ich muss meine Buchung für Samstag stornieren.",a:["Das tut mir leid. Gefunden: Doppelzimmer Garten, ab Samstag, zwei Nächte.","Nach den Bedingungen der Unterkunft ist die Stornierung bis 7 Tage vor Anreise kostenlos; danach wird die erste Nacht berechnet (Beispielbedingungen). Die Anreise ist in 4 Tagen. Möchten Sie lieber umbuchen oder stornieren?"],o:[["Umbuchen","cc1"],["Stornieren","cc2"]]},
+cc1:{u:"Ich möchte lieber umbuchen.",a:["Ich kann Ihnen dasselbe Zimmer ab Freitag der Folgewoche anbieten, zwei Nächte, ohne Umbuchungsgebühr. Passt das?"],o:[["Ja, passt","cc3"],["Lieber stornieren","cc2"]]},
+cc3:{u:"Ja, das passt.",a:["Erledigt: Buchung auf Freitag der Folgewoche verschoben, zwei Nächte, gleiches Zimmer. Der Gastgeber ist informiert, und Sie erhalten eine schriftliche Bestätigung."],s:"Buchung umgebucht · Gastgeber informiert",log:"Buchung um eine Woche verschoben, gleiches Zimmer · Gastgeber informiert"},
+cc2:{u:"Ich storniere.",a:["In Ordnung. Ich habe die Anfrage an den Gastgeber weitergeleitet, der Ihnen heute die Stornierung und eventuelle Kosten nach den Bedingungen schriftlich bestätigt. Sobald sie bestätigt ist, sind die Termine wieder für andere Gäste frei."],s:"Stornierung an den Gastgeber weitergeleitet",log:"Stornierung angefragt: Doppelzimmer Garten ab Samstag · 4 Tage vor Anreise: Gastgeber entscheidet nach den Bedingungen"},
+pr:{u:"Welche Nachricht kommt vor der Anreise?",r:["Beispiel der Nachricht, die der Gast zwei Tage vor der Anreise per WhatsApp erhält","Willkommen in der Casa Lumèa! Wir freuen uns auf Sie am Freitag. Check-in 15:00–20:00; nach 20:00 Self-Check-in mit dem Code, den wir Ihnen am selben Tag schicken. Kostenloses Parken im Hof.\nWann möchten Sie ankommen? Antworten Sie 1 vor 18 Uhr, 2 zwischen 18 und 22 Uhr, 3 nach 22 Uhr.","WhatsApp · zwei Tage vorher"],a:["Der Gast antwortet mit einer Zahl. Probieren Sie es aus:"],o:[["1 · Vor 18 Uhr","pr1"],["2 · 18 bis 22 Uhr","pr2"],["3 · Nach 22 Uhr","pr3"]]},
+pr1:{u:"1",a:["Perfekt, wir erwarten Sie am Nachmittag: Der Gastgeber empfängt Sie persönlich."],s:"Ankunftszeit erfasst",log:"Ankunftszeit bestätigt: vor 18 Uhr · persönlicher Empfang"},
+pr2:{u:"2",a:["Perfekt. Die Rezeption ist bis 20:00 besetzt: Wenn Sie später kommen, schicke ich Ihnen am selben Tag den Code für den Self-Check-in."],s:"Ankunftszeit erfasst",log:"Ankunftszeit bestätigt: 18 bis 22 Uhr · Self-Check-in-Code bereit"},
+pr3:{u:"3",a:["Kein Problem: Am Anreisetag schicke ich Ihnen den Türcode und eine Schritt-für-Schritt-Anleitung."],s:"Ankunftszeit erfasst",log:"Ankunftszeit bestätigt: nach 22 Uhr · Self-Check-in"},
+ti:{u:"Kann ich mit dem Gastgeber sprechen?",a:["Natürlich. Möchten Sie einen Rückruf oder eine Antwort hier?"],o:[["Bitte zurückrufen","ti1"],["Antwort hier","ti2"]]},
+ti1:{u:"Bitte zurückrufen.",a:["In Ordnung: Der Gastgeber ruft Sie so bald wie möglich zurück, mit der Zusammenfassung dieses Gesprächs vor sich."],s:"Anfrage an den Gastgeber weitergeleitet",log:"Rückruf: Der Gast möchte mit dem Gastgeber sprechen"},
+ti2:{u:"Antwort hier.",a:["In Ordnung: Der Gastgeber antwortet Ihnen hier so bald wie möglich."],s:"Anfrage an den Gastgeber weitergeleitet",log:"Antwort im Chat: Frage für den Gastgeber"},
+ch:{u:"Haben Sie im Winter geöffnet?",a:["Die Casa Lumèa ist von November bis März geschlossen (Beispieldaten), aber ich antworte trotzdem: Ich nehme Ihre Anfrage für die nächste Saison auf, und der Gastgeber bestätigt sie, sobald der Kalender öffnet."],o:[["Ja, Anfrage aufnehmen","ch1"],["Nein, danke","start"]]},
+ch1:{u:"Ja, bitte aufnehmen.",a:["Erledigt: Ihre Anfrage ist notiert. Wir schreiben Ihnen per WhatsApp, sobald der Kalender der neuen Saison geöffnet ist."],s:"Anfrage für die Wiedereröffnung gespeichert",log:"Anfrage während der Schließzeit: bei Öffnung des Kalenders bestätigen"},
+co:{a:["Frühstück gibt es von 7:30 bis 10:30, süß und herzhaft, mit regionalen Produkten. Glutenfrei oder laktosefrei auf Anfrage: Sagen Sie es uns einfach vor der Anreise."]},
+dv:{a:["Die Casa Lumèa liegt in der Via del Faro 3 (erfundene Adresse), fünf Gehminuten vom Meer. Kostenloses Parken im Hof. Soll ich Ihnen am Vortag die Wegbeschreibung per WhatsApp schicken?"],o:[["Ja","at"],["Nein, danke","start"]]},
+lg:{a:["Ich antworte auf Italienisch, Englisch und Deutsch, rund um die Uhr: Schreiben Sie in der Sprache, die Ihnen lieber ist."]}
+}},
+pages:{
+home:`<section class="hero"><div class="wrap">
+<div class="hero-text"><p class="label">B&amp;B am Meer · Beispiel</p>
+<h1>Ankunft um 1:30 Uhr? <em>Wir antworten.</em></h1>
+<p class="lead">Sechs Zimmer, fünf Minuten vom Meer. Schreiben Sie, wann Sie möchten, auf Deutsch, Englisch oder Italienisch: Der Assistent prüft freie Termine, erklärt Anreise und Self-Check-in, bearbeitet Stornierungen nach den Bedingungen und übergibt bei Bedarf an den Gastgeber.</p>
+<div class="cta"><a class="btn" href="#de" data-chat="dl">Termine prüfen</a><a class="btn line" href="#de/camere" data-go="camere">Zimmer ansehen</a></div>
+<ul class="facts" aria-label="Kurz gesagt"><li>Per WhatsApp und auf der Website</li><li>Italienisch, Englisch und Deutsch</li><li>Self-Check-in rund um die Uhr</li></ul></div>
+<div data-chat-slot></div></div></section>
+<section class="alt"><div class="wrap"><div class="head"><p class="label">Warum uns schreiben</p><h2>Jeder Gast bekommt eine Antwort, auch um Mitternacht.</h2></div>
+<div class="strip"><div><b>In der Sprache des Gastes</b><p>Italienisch, Englisch und Deutsch, rund um die Uhr: Keine Anfrage geht wegen der Zeitzone verloren.</p></div><div><b>Anreise ohne Überraschungen</b><p>Zwei Tage vorher: Check-in-Zeiten und Wegbeschreibung; der Gast bestätigt seine Ankunftszeit.</p></div><div><b>Klare Stornierungen</b><p>Der Assistent erklärt die Bedingungen, schlägt eine Umbuchung vor und überlässt die Entscheidung dem Gastgeber.</p></div></div></div></section>
+<section><div class="wrap"><div class="head"><p class="label">Zimmer</p><h2>Schlafen nur wenige Schritte vom Meer</h2><p class="lead">Beispielzimmer und -preise, Frühstück immer inklusive.</p></div>%R2%
+<p style="margin-top:22px"><a href="#de/camere" data-go="camere"><b>Alle Zimmer →</b></a></p></div></section>
+<section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">Für Gastgeber</p><h2 style="margin-top:8px">Was findet der Gastgeber am Morgen vor?</h2><p style="margin-top:10px">Die heutigen Ankünfte mit bestätigter Uhrzeit, bereits beantwortete Fragen ausländischer Gäste und nur die Entscheidungen, die ihm zustehen. Alles auf einen Blick.</p></div><a class="btn" href="#de/titolare" data-go="titolare">Ansicht für Gastgeber öffnen</a></div></div></section>`,
+camere:`<section><div class="wrap"><div class="head"><p class="label">Zimmer</p><h1>Unsere Zimmer</h1><p class="lead">Beispielzimmer und -preise. Für jedes können Sie im Chat die Termine prüfen: Der Assistent antwortet sofort.</p></div>%R4%</div></section>`,
+soggiorno:`<section><div class="wrap"><div class="head"><p class="label">Anreise & Service</p><h1>Ihr Aufenthalt, Schritt für Schritt</h1></div>
+<ol class="steps"><li><h3>Zwei Tage vorher</h3><p>Wir schreiben Ihnen per WhatsApp mit Zeiten und Wegbeschreibung und fragen nach Ihrer Ankunftszeit.</p></li><li><h3>Bei der Ankunft</h3><p>Check-in 15:00–20:00 mit dem Gastgeber; danach Self-Check-in mit dem Code, den Sie am selben Tag erhalten.</p></li><li><h3>Während des Aufenthalts</h3><p>Frühstück 7:30–10:30. Für alles andere schreiben Sie dem Assistenten, auch nachts.</p></li></ol></div></section>
+<section class="alt"><div class="wrap grid2"><div class="kv"><p class="label">Service</p><h2>Im Preis inbegriffen</h2><ul class="muted" style="margin:12px 0 0;padding-left:20px"><li>Süßes und herzhaftes Frühstück mit regionalen Produkten</li><li>Kostenloses Parken im Hof</li><li>WLAN in allen Zimmern</li><li>Fahrräder auf Anfrage</li><li>Check-out bis 11:00</li></ul></div>
+<div class="kv"><p class="label">Bedingungen (Beispiel)</p><h2>Stornierungen</h2><p class="muted" style="margin-top:12px">Kostenlose Stornierung bis 7 Tage vor Anreise; danach wird die erste Nacht berechnet. Über Ausnahmen entscheidet immer der Gastgeber. Von November bis März ist die Unterkunft geschlossen: Der Assistent nimmt Anfragen für die nächste Saison auf.</p><div class="cta" style="margin-top:16px"><a class="btn" href="#de" data-chat="pr">Nachricht vor der Anreise ansehen</a></div></div></div></section>`,
+dove:`<section><div class="wrap"><div class="head"><p class="label">Lage</p><h1>Fünf Gehminuten vom Meer</h1></div>
+<div class="grid2"><table aria-label="Zeiten"><tbody><tr><th scope="row">Check-in</th><td>15:00–20:00</td></tr><tr><th scope="row">Self-Check-in</th><td>nach 20:00, mit Code</td></tr><tr><th scope="row">Frühstück</th><td>7:30–10:30</td></tr><tr><th scope="row">Check-out</th><td>bis 11:00</td></tr><tr><th scope="row">Saison</th><td>April – Oktober</td></tr><tr><th scope="row">Virtueller Assistent</th><td>immer aktiv</td></tr></tbody></table>
+<div class="kv" style="gap:14px"><div class="kv"><span class="muted">Adresse (erfunden)</span><span class="v">Via del Faro 3, Città</span></div><div class="kv"><span class="muted">Telefon und WhatsApp (erfunden)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Parken</span><span class="v">Kostenlos, im Hof</span></div><p class="note">Ankunft in der Nacht? Kein Problem: Am Anreisetag erhalten Sie per WhatsApp den Türcode und eine Schritt-für-Schritt-Anleitung.</p></div></div></div></section>`,
+domande:`<section><div class="wrap"><div class="head"><p class="label">Fragen</p><h1>Häufige Fragen</h1></div><div class="faq">
+<details><summary>Mit wem spreche ich, wenn ich nachts schreibe?</summary><div class="ans"><p>Mit dem virtuellen Assistenten der Unterkunft, der sich immer als solcher vorstellt. Er prüft Termine, erklärt die Anreise, bearbeitet Stornierungen und übergibt das Gespräch bei Bedarf an den Gastgeber.</p></div></details>
+<details><summary>Kann ich nach Mitternacht ankommen?</summary><div class="ans"><p>Ja. Am Anreisetag erhalten Sie per WhatsApp den Code für Haustür und Zimmer, mit einer Schritt-für-Schritt-Anleitung.</p></div></details>
+<details><summary>Wie funktioniert die Stornierung?</summary><div class="ans"><p>Der Assistent erklärt die Bedingungen der Unterkunft und schlägt, wenn möglich, eine Umbuchung vor. Die Stornierung und eventuelle Kosten bestätigt immer der Gastgeber, schriftlich.</p></div></details>
+<details><summary>Muss ich Kartendaten im Chat angeben?</summary><div class="ans"><p>Nein, niemals. Die Buchung wird im Buchungssystem der Unterkunft abgeschlossen, über den Link, den Sie erhalten.</p></div></details>
+<details><summary>Haben Sie im Winter geöffnet?</summary><div class="ans"><p>Die Unterkunft ist von November bis März geschlossen, aber der Assistent antwortet trotzdem und nimmt Anfragen für die neue Saison auf.</p></div></details>
+<details><summary>Sprechen Sie Englisch oder Deutsch?</summary><div class="ans"><p>Der Assistent antwortet auf Italienisch, Englisch und Deutsch, rund um die Uhr.</p></div></details>
+</div></div></section>`,
+titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Ansicht für Gastgeber</p><h1>Was der Assistent erledigt hat, während Sie geschlafen haben</h1><p class="lead">Jeden Morgen findet der Gastgeber die heutigen Ankünfte mit bestätigter Uhrzeit, bereits beantwortete Fragen ausländischer Gäste und nur die Entscheidungen, die ihm zustehen, etwa eine kurzfristige Stornierung.</p><span class="ex">Beispieldaten: Unterkunft und Gäste sind erfunden</span></div>
+<div class="kpis"><div class="kpi"><b>11</b><span>Nachrichten zwischen 21:00 und 8:00, 6 auf Englisch oder Deutsch</span></div><div class="kpi"><b>2</b><span>Buchungsanfragen mit gesendetem Link</span></div><div class="kpi"><b>4</b><span>bestätigte Ankunftszeiten für heute</span></div><div class="kpi"><b>1</b><span>Stornierung zu entscheiden</span></div></div>
+<div class="owner-grid"><div class="panel"><h3>Ankünfte heute</h3><div class="rows">
+<div class="row"><time>15:30</time><div class="t">Doppelzimmer Garten · Familie K. (schreibt auf Deutsch)<br><span class="pill ok">Ankunft bestätigt: vor 18 Uhr</span></div></div>
+<div class="row"><time>19:00</time><div class="t">Terrassensuite · J. und M. (schreiben auf Englisch)<br><span class="pill ok">Ankunft bestätigt: 18 bis 22 Uhr</span></div></div>
+<div class="row"><time>01:30</time><div class="t">Hofzimmer · S. P.<small>Verspäteter Flug: Self-Check-in-Code um 14:00 senden</small><span class="pill wait">Self-Check-in</span></div></div>
+<div class="row"><time>—</time><div class="t">Doppelzimmer Meer · L. R.<br><span class="pill alert">Keine Antwort auf die Willkommensnachricht: anrufen</span></div></div></div></div>
+${PHONE}</div>
+<div class="owner-grid" style="margin-top:16px"><div class="panel"><h3>Heute Morgen zu entscheiden</h3><div class="rows">
+<div class="row"><time>22:40</time><div class="t">Stornierung: Doppelzimmer Garten ab Samstag, zwei Nächte<small>4 Tage vor Anreise: Nach den Bedingungen wird die erste Nacht berechnet. Umbuchung angeboten, der Gast möchte stornieren</small><span class="pill alert">Gastgeber entscheidet</span></div></div>
+<div class="row"><time>23:55</time><div class="t">Anfrage für April, während die Unterkunft geschlossen ist<small>Zwei Nächte, zwei Personen: Anfrage gespeichert</small><span class="pill wait">Bei Kalenderöffnung bestätigen</span></div></div>
+<div class="row"><time>07:10</time><div class="t">Gast fragt nach einem Kinderbett<small>Verfügbar: in der Buchung vermerkt</small><span class="pill ok">Erledigt</span></div></div></div></div>
+<div class="panel"><h3>Aus dem Chat dieser Seite</h3><p class="muted small">Probieren Sie den Chat: Jede Aktion erscheint hier, so wie der Gastgeber sie sehen würde.</p><div class="rows live" data-live></div><a class="btn sm" href="#de" data-chat="cc">Stornierung testen</a></div></div>
+<div class="panel" style="margin-top:16px"><h3>Was der Assistent nie tut</h3><p class="muted">Er bestätigt keine Erstattungen oder Ausnahmen von den Bedingungen: Das entscheidet der Gastgeber. Er fragt im Chat nie nach Kartendaten. Er stellt sich immer als virtueller Assistent vor. Er übergibt an den Gastgeber, wenn der Gast es wünscht oder wenn es nötig ist.</p></div>
+</div></section>
+<section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Möchten Sie das für Ihre Unterkunft sehen?</h2><p style="margin-top:10px">Diese Website ist ein Beispiel von Celea. Die Demo des Assistenten und alle Preise finden Sie auf der Website von Celea.</p></div><a class="btn" href="${CELEA}#de">Zur Website von Celea</a></div></div></section>`
+},
+footer:`<div class="wrap cols"><div><p><b>Dies ist eine Demo-Website.</b> Die Casa Lumèa gibt es nicht: Es ist ein Beispiel von Celea, das zeigt, wie die Website einer Unterkunft aussehen kann, mit einem Assistenten, der Gästen in drei Sprachen antwortet und sich um Anreise, Stornierungen und Nachrichten vor der Ankunft kümmert. Zimmer, Preise, Bedingungen und Zahlen sind Beispiele.</p></div>
+<div><p>Eine solche Website entspricht der <b>mehrsprachigen Premium-Website</b> von Celea (10 Seiten auf Italienisch, Englisch und Deutsch): 1.990 € + 79 €/Monat. Der Website-Assistent kommt zur Rezeption hinzu: 49 €/Monat + 90 € Einrichtung. Einfachere Variante: Präsentations-Website, 990 € + 49 €/Monat. Preise ohne MwSt.</p><p style="margin-top:10px"><a href="${CELEA}#de">Demo und alle Preise von Celea</a></p></div></div>`
+};
+
+["it","en","de"].forEach(function(l){ var P=SITE.i18n[l].pages; P.home=P.home.replace("%R2%",rooms(l,2)); P.camere=P.camere.replace("%R4%",rooms(l,4)); });
+})();
+
+</script>
+<script>
+(function(){
+  "use strict";
+  var S=window.SITE, LANGS=["it","en","de"];
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $=function(s,r){return (r||document).querySelector(s);};
+  var lang="it", page="home", L=S.i18n.it, events=[], seen=0, firstRender=true;
+
+  /* ---------- chat ---------- */
+  var chat=$("#chat"), log=$("#log"), opts=$("#opts"), form=$("#chat-form"), input=$("#chat-input");
+  var slotHome=$("#chat-park"), dock=$("#dock"), fab=$("#fab"), run=0;
+  function greet(){
+    var h=new Date().getHours();
+    if(lang==="it") return (h>=5&&h<18)?"Buongiorno":"Buonasera";
+    if(lang==="en") return h>=5&&h<12?"Good morning":(h>=12&&h<18?"Good afternoon":"Good evening");
+    return h>=5&&h<11?"Guten Morgen":(h>=11&&h<18?"Guten Tag":"Guten Abend");
+  }
+  function fill(t){return t.replace(/%HI%/g,greet());}
+  function add(cls,t,tag){
+    var d=document.createElement("div"); d.className="m "+cls;
+    if(tag){var s=document.createElement("span");s.className="tag";s.textContent=tag;d.appendChild(s);}
+    d.appendChild(document.createTextNode(fill(t))); log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
+  }
+  function wait(ms){return new Promise(function(r){setTimeout(r,reduce?40:ms);});}
+  function note(text){
+    var d=new Date(), hh=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+    events.unshift({t:hh,text:text,lang:lang}); renderLive(); badge();
+  }
+  async function go(k,silentUser){
+    var C=L.chat, n=C.flows[k]; if(!n){n=C.flows[C.fb];}
+    var id=++run; opts.innerHTML="";
+    if(n.u&&!silentUser) add("u",n.u);
+    if(n.r){ await wait(300); if(id!==run) return; add("s",n.r[0]); await wait(500); if(id!==run) return; add("r",n.r[1],n.r[2]); }
+    var a=n.a||[];
+    for(var i=0;i<a.length;i++){
+      var ty=document.createElement("div"); ty.className="typing"; ty.textContent=L.ui.typing; log.appendChild(ty); log.scrollTop=log.scrollHeight;
+      await wait(Math.min(1300,450+a[i].length*7)); ty.remove(); if(id!==run) return; add("a",a[i]);
+    }
+    if(n.s){await wait(300); if(id!==run) return; add("s",n.s);}
+    if(n.log){note(n.log);}
+    var list=n.o||C.end;
+    list.forEach(function(o){
+      var b=document.createElement("button"); b.type="button"; b.textContent=o[0];
+      b.addEventListener("click",function(){ if(o[1]==="__owner"){navigate("titolare");return;} if(o[1]==="start"){log.innerHTML="";} go(o[1]); });
+      opts.appendChild(b);
+    });
+  }
+  function startChat(){ log.innerHTML=""; go("start"); }
+  form.addEventListener("submit",function(e){
+    e.preventDefault(); var q=input.value.trim(); if(!q) return; input.value="";
+    add("u",q); var C=L.chat, key=C.fb;
+    for(var i=0;i<C.kw.length;i++){ if(C.kw[i][0].test(q)){ key=C.kw[i][1]; break; } }
+    go(key,true);
+  });
+  function openDock(){ dock.hidden=false; fab.classList.remove("show"); chat.setAttribute("role","dialog"); chat.setAttribute("aria-modal","false"); setTimeout(function(){input.focus();},30); }
+  function closeDock(){ dock.hidden=true; if(page!=="home") fab.classList.add("show"); fab.focus(); }
+  fab.addEventListener("click",openDock);
+  $("#chat-x").addEventListener("click",closeDock);
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!dock.hidden) closeDock(); });
+  function placeChat(){
+    var slot=$("[data-chat-slot]",$("#main"));
+    if(slot){ slot.appendChild(chat); dock.hidden=true; fab.classList.remove("show"); $("#chat-x").hidden=true; chat.removeAttribute("role"); }
+    else { dock.appendChild(chat); $("#chat-x").hidden=false; if(dock.hidden) fab.classList.add("show"); }
+  }
+  function openChatWith(k){
+    if(!$("[data-chat-slot]",$("#main"))) openDock(); else chat.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});
+    log.innerHTML=""; go(k);
+  }
+
+  /* ---------- vista del titolare: registro in tempo reale ---------- */
+  function renderLive(){
+    var box=$("[data-live]"); if(!box) return;
+    box.setAttribute("data-empty",L.ui.liveEmpty); box.innerHTML="";
+    events.forEach(function(ev){
+      var r=document.createElement("div"); r.className="row";
+      var t=document.createElement("time"); t.textContent=ev.t;
+      var x=document.createElement("div"); x.className="t"; x.textContent=ev.text;
+      var p=document.createElement("span"); p.className="pill ok"; p.textContent=L.ui.livePill; x.appendChild(document.createElement("br")); x.appendChild(p);
+      r.appendChild(t); r.appendChild(x); box.appendChild(r);
+    });
+  }
+  function badge(){
+    document.querySelectorAll("[data-badge]").forEach(function(b){
+      var n=page==="titolare"?0:events.length-seen; b.textContent=n>0?n:""; b.hidden=!(n>0);
+      b.setAttribute("aria-label",n>0?(n+" "+L.ui.newEvents):"");
+    });
+  }
+
+  /* ---------- pagine ---------- */
+  function href(p,lg){ lg=lg||lang; var a=(lg==="it"?"":lg+"/")+(p==="home"?"":p); return "#"+(a.replace(/\/$/,"")||"home"); }
+  function navigate(p,lg){ var h=href(p,lg); if(location.hash===h){route();} else location.hash=h; }
+  function buildNav(){
+    var nav=$("#nav"), dn=$("#drawer-nav"); nav.innerHTML=""; dn.innerHTML="";
+    L.nav.forEach(function(it){
+      [nav,dn].forEach(function(box){
+        var a=document.createElement("a"); a.href=href(it[0]); a.setAttribute("data-go",it[0]); a.textContent=it[1];
+        if(it[0]==="titolare"){var b=document.createElement("span");b.className="badge";b.setAttribute("data-badge","");b.hidden=true;a.appendChild(b);}
+        if(it[0]===page) a.setAttribute("aria-current","page");
+        box.appendChild(a);
+      });
+    });
+    $("#menu-btn").setAttribute("aria-label",L.ui.menu); $("#hcta").textContent=L.cta; $("#hcta").href=href("home");
+    $("#band").innerHTML=L.band; $("#back").textContent=L.back; $("#skip").textContent=L.ui.skip;
+    $("#fab-t").textContent=L.ui.fab; $("#chat-input").placeholder=L.ui.placeholder; $("#chat-input").setAttribute("aria-label",L.ui.placeholder);
+    $("#chat-send").textContent=L.ui.send; $("#chat-name").textContent=L.chat.name; $("#chat-sub").textContent=L.chat.sub;
+    $("#chat-note").textContent=L.ui.demoNote; $("#chat-owner").textContent=L.ui.ownerLink; $("#chat-owner").href=href("titolare");
+    $("#chat-x").setAttribute("aria-label",L.ui.close); $("#log").setAttribute("aria-label",L.chat.name);
+    $("#foot").innerHTML=L.footer;
+    document.querySelectorAll(".langs button").forEach(function(b){ b.setAttribute("aria-pressed",b.dataset.l===lang?"true":"false"); });
+    $("#langs").setAttribute("aria-label",L.ui.langs);
+    badge();
+  }
+  function route(){
+    var h=decodeURIComponent(location.hash.slice(1)), parts=h.split("/"), lg="it", p;
+    if(LANGS.indexOf(parts[0])>=0){ lg=parts[0]; p=parts[1]||"home"; } else { p=parts[0]||"home"; }
+    if(!S.i18n[lg].pages[p]) p="home";
+    var langChanged=lg!==lang||firstRender; lang=lg; L=S.i18n[lang]; page=p;
+    if(page==="titolare") seen=events.length;
+    document.documentElement.lang=lang;
+    var main=$("#main"); if(main.contains(chat)) $("#chat-park").appendChild(chat); main.innerHTML=L.pages[page];
+    document.title=L.titles[page];
+    var md=$('meta[name="description"]'); if(md) md.setAttribute("content",L.desc[page]||L.desc.home);
+    buildNav(); $("#drawer-nav").classList.remove("open"); $("#menu-btn").setAttribute("aria-expanded","false");
+    placeChat();
+    if(langChanged){ events=events.filter(function(e){return e.lang===lang;}); seen=Math.min(seen,events.length); startChat(); }
+    renderLive(); badge();
+    if(S.init) S.init(lang,page,main);
+    if(!firstRender){ window.scrollTo(0,0); var h1=$("h1",main); if(h1){h1.setAttribute("tabindex","-1");h1.focus({preventScroll:true});} }
+    firstRender=false;
+  }
+  document.addEventListener("click",function(e){
+    var a=e.target.closest("[data-go],[data-chat],[data-l],#skip");
+    if(!a) return;
+    if(a.id==="skip"){ e.preventDefault(); var m=$("#main"); m.focus(); return; }
+    if(a.hasAttribute("data-l")){ e.preventDefault(); navigate(page,a.dataset.l); return; }
+    if(a.hasAttribute("data-chat")){ e.preventDefault(); openChatWith(a.getAttribute("data-chat")); return; }
+    if(a.hasAttribute("data-go")){ e.preventDefault(); navigate(a.getAttribute("data-go")); }
+  });
+  $("#menu-btn").addEventListener("click",function(){ var d=$("#drawer-nav"), o=!d.classList.contains("open"); d.classList.toggle("open",o); this.setAttribute("aria-expanded",o?"true":"false"); });
+  window.addEventListener("hashchange",route);
+  route();
+})();
+
+</script>
+
+
+</body>
+</html>

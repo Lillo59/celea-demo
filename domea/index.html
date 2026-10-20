@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<title>Domèa Immobiliare (sito di esempio)</title>
+<meta name="description" content="Sito di esempio realizzato da Celea per un'agenzia immobiliare inventata: immobili, vendita, assistente virtuale che qualifica i contatti, fissa, sposta e disdice le visite e manda i promemoria, e la vista del titolare.">
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#F5F3EF;--surface:#FFFFFF;--ink:#1D2433;--muted:#555C6B;--line:#E2DDD3;--acc:#1F3A5F;--acc-ink:#FFFFFF;--acc-text:#1F3A5F;--label:#7A5A1C;--soft:#ECE6DA;--warn:#A1470F;--band:#1D2433;--band-ink:#F5F3EF;--shadow:rgba(29,36,51,.14);--ok-bg:#DCE6F2;--ok-ink:#173052;--wa-bg:#0B141A;--wa-bub:#FFFFFF;--f-display:'Instrument Serif',Georgia,'Times New Roman',serif;--f-body:'Figtree',ui-sans-serif,system-ui,sans-serif;--w-display:400;--w-h3:700;--track:-.01em;--r:18px;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#12161F;--surface:#1A2030;--ink:#ECEFF4;--muted:#A7AEBD;--line:#2A3245;--acc:#A9C2E6;--acc-ink:#0F1A2C;--acc-text:#B4CBEB;--label:#D9B26A;--soft:#222A3B;--warn:#A1470F;--band:#0B0E15;--band-ink:#ECEFF4;--shadow:rgba(0,0,0,.45);--ok-bg:#24395A;--ok-ink:#DCE6F2;--wa-bg:#0B141A;--wa-bub:#FFFFFF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12161F;--surface:#1A2030;--ink:#ECEFF4;--muted:#A7AEBD;--line:#2A3245;--acc:#A9C2E6;--acc-ink:#0F1A2C;--acc-text:#B4CBEB;--label:#D9B26A;--soft:#222A3B;--warn:#A1470F;--band:#0B0E15;--band-ink:#ECEFF4;--shadow:rgba(0,0,0,.45);--ok-bg:#24395A;--ok-ink:#DCE6F2;--wa-bg:#0B141A;--wa-bub:#FFFFFF;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;margin:0;overflow-x:hidden}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;letter-spacing:var(--track,-.02em);margin:0;text-wrap:balance;font-weight:var(--w-display,800)}
+h1{font-size:clamp(2.2rem,6.4vw,4.1rem)}
+h2{font-size:clamp(1.65rem,4vw,2.5rem)}
+h3{font-size:1.18rem;font-weight:var(--w-h3,700);letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--acc-text)}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--acc-text);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:16px}
+@media (min-width:900px){.wrap{padding-inline:48px}}
+.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--surface);color:var(--ink);padding:10px 14px;border-radius:10px}
+.skip:focus{left:8px}
+section{padding-block:64px}
+@media (min-width:900px){section{padding-block:88px}}
+.label{font-family:var(--f-body);font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--label)}
+.lead{font-size:1.14rem;color:var(--muted);max-width:60ch}
+.head{display:grid;gap:12px;margin-bottom:36px;max-width:720px}
+.muted{color:var(--muted)}
+.small{font-size:.9rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;font-family:var(--f-body);font-weight:700;font-size:1rem;text-decoration:none;border:2px solid var(--acc);cursor:pointer;background:var(--acc);color:var(--acc-ink);text-align:center}
+.btn.line{background:transparent;color:var(--acc-text);border-color:currentColor}
+.btn.sm{min-height:40px;padding:7px 15px;font-size:.92rem}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.alt{background:var(--soft)}
+
+/* banda d'esempio */
+.sample{background:var(--band);color:var(--band-ink);font-size:.9rem;line-height:1.45}
+.sample .wrap{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;justify-content:space-between;padding-block:8px}
+.sample a{color:var(--band-ink);font-weight:700}
+
+/* intestazione */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:10px;min-height:64px}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--f-display);font-weight:var(--w-display,800);font-size:1.3rem;color:var(--ink);text-decoration:none;margin-right:auto;white-space:nowrap;letter-spacing:-.01em}
+.brand svg{width:30px;height:30px;color:var(--acc-text);flex:none}
+nav.menu{display:none;gap:22px}
+nav.menu a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
+nav.menu a[aria-current="page"]{border-color:var(--acc-text);color:var(--acc-text)}
+nav.menu a .badge,.drawer-nav .badge{display:inline-block;min-width:1.4em;padding:0 5px;margin-left:5px;border-radius:999px;background:var(--warn);color:#fff;font-size:.75rem;text-align:center;line-height:1.4em}
+.langs{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+.langs button{appearance:none;border:0;background:transparent;color:var(--muted);font-weight:700;font-size:.8rem;padding:7px 8px;cursor:pointer;min-width:34px;min-height:36px}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.menu-btn{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;width:40px;height:40px;padding:0;display:grid;place-items:center;cursor:pointer;flex:none}
+@media (max-width:400px){.brand{font-size:1.1rem;gap:6px}.brand svg{width:24px;height:24px}.langs button{min-width:30px;padding:6px 4px}header.top .wrap{gap:6px}}
+.hcta{display:none}
+@media (min-width:1020px){nav.menu{display:flex}.menu-btn{display:none}}
+@media (min-width:640px){.hcta{display:inline-flex}}
+.drawer-nav{display:none;border-top:1px solid var(--line);background:var(--bg)}
+.drawer-nav.open{display:block}
+.drawer-nav a{display:block;padding:14px 16px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:700}
+.drawer-nav a[aria-current="page"]{color:var(--acc-text)}
+
+/* hero */
+.hero{padding-block:44px 64px}
+.hero .wrap{display:grid;gap:36px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:960px){.hero .wrap{grid-template-columns:1.08fr .92fr;align-items:center;gap:60px}.hero{padding-block:72px 96px}}
+.hero-text{display:grid;gap:22px;min-width:0}
+.hero h1 em{font-style:normal;color:var(--acc-text)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.facts li{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.9rem;font-weight:700}
+
+/* chat */
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:24px;display:flex;flex-direction:column;height:560px;max-height:82vh;min-width:0;overflow:hidden;box-shadow:0 24px 60px var(--shadow)}
+.chat-h{display:flex;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--acc);color:var(--acc-ink);display:grid;place-items:center;font-weight:800;font-family:var(--f-display);flex:none}
+.chat-h .who{min-width:0;flex:1}
+.chat-h b{display:block;line-height:1.2;font-size:.98rem}
+.chat-h small{color:var(--muted);font-size:.8rem;display:block}
+.chat-h .x{appearance:none;border:0;background:transparent;color:var(--ink);font-size:1.5rem;line-height:1;cursor:pointer;padding:4px 8px;border-radius:8px}
+.log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.m{max-width:86%;padding:9px 13px;border-radius:16px;font-size:.96rem;line-height:1.42;overflow-wrap:anywhere;white-space:pre-line}
+.m.a{align-self:flex-start;background:var(--soft);border-top-left-radius:5px}
+.m.u{align-self:flex-end;background:var(--acc);color:var(--acc-ink);border-top-right-radius:5px}
+.m.s{align-self:center;background:transparent;border:1px dashed var(--line);color:var(--muted);font-size:.83rem;text-align:center;max-width:94%}
+.m.r{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--acc-text);border-radius:12px;max-width:92%}
+.m.r .tag{display:block;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--label);margin-bottom:3px}
+.typing{align-self:flex-start;color:var(--muted);font-size:.85rem;padding:2px 6px}
+.opts{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;justify-content:flex-end;border-top:1px solid var(--line)}
+.opts button{appearance:none;border:1.5px solid var(--acc-text);background:var(--surface);color:var(--acc-text);border-radius:999px;padding:7px 13px;font-size:.9rem;font-weight:700;cursor:pointer;min-height:38px}
+.opts button:hover{background:var(--soft)}
+.chat form{display:flex;gap:6px;padding:0 12px 8px}
+.chat input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:9px 14px;font:inherit;font-size:.95rem}
+.chat form button{appearance:none;border:0;background:var(--acc);color:var(--acc-ink);border-radius:999px;padding:0 15px;font-weight:700;cursor:pointer;min-height:40px}
+.chat-note{font-size:.8rem;color:var(--muted);padding:0 14px 10px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px}
+.chat-note a{font-weight:700}
+.fab{position:fixed;right:16px;bottom:16px;z-index:30;display:none;align-items:center;gap:8px;border:0;background:var(--acc);color:var(--acc-ink);border-radius:999px;padding:13px 18px;font-weight:700;box-shadow:0 10px 30px var(--shadow);cursor:pointer}
+.fab.show{display:inline-flex}
+.dock{position:fixed;inset:auto 16px 16px auto;z-index:40;width:min(400px,calc(100vw - 32px))}
+.dock .chat{height:min(600px,calc(100dvh - 32px));max-height:none}
+@media (max-width:600px){.dock{inset:0;width:auto}.dock .chat{height:100dvh;border-radius:0;border:0}}
+
+/* blocchi comuni */
+.grid2{display:grid;gap:28px}
+@media (min-width:860px){.grid2{grid-template-columns:1fr 1fr;gap:56px}}
+.grid3{display:grid;gap:16px}
+@media (min-width:760px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r,18px);padding:22px;display:grid;gap:8px;align-content:start;min-width:0}
+.card p{color:var(--muted)}
+.list{display:grid;border-top:1px solid var(--line)}
+@media (min-width:760px){.list{grid-template-columns:1fr 1fr;column-gap:48px}}
+.list>div{display:grid;gap:4px;padding:18px 0;border-bottom:1px solid var(--line)}
+.list p{color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:s}
+@media (min-width:860px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r,18px);padding:22px;display:grid;gap:6px;align-content:start}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--f-display);font-weight:var(--w-display,800);font-size:1.7rem;color:var(--acc-text);line-height:1}
+.steps p{color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+td,th{text-align:left;padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:700;padding-right:12px}
+td:last-child{text-align:right}
+.kv{display:grid;gap:4px}
+.kv .v{font-weight:700}
+.note{border-left:4px solid var(--warn);padding:12px 16px;background:var(--surface);border-radius:0 12px 12px 0}
+.faq{display:grid;border-top:1px solid var(--line);max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;padding:18px 0;font-weight:700;font-size:1.05rem;list-style-position:outside}
+.faq .ans{padding-bottom:18px;color:var(--muted);max-width:68ch}
+.band-cta{display:grid;gap:18px;align-items:center;background:var(--ink);color:var(--bg);border-radius:24px;padding:32px 24px}
+.band-cta p{opacity:.85}
+.band-cta .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+@media (min-width:860px){.band-cta{grid-template-columns:1fr auto;padding:40px 44px}}
+.strip{display:grid;gap:0;border-block:1px solid var(--line)}
+@media (min-width:760px){.strip{grid-template-columns:repeat(3,1fr)}}
+.strip>div{padding:22px 0;display:grid;gap:6px}
+@media (min-width:760px){.strip>div{padding:26px 24px}.strip>div+div{border-left:1px solid var(--line)}.strip>div:first-child{padding-left:0}}
+.strip b{font-family:var(--f-display);font-size:1.15rem;font-weight:var(--w-h3,700)}
+.strip p{color:var(--muted)}
+
+/* vista del titolare */
+.owner-top{display:grid;gap:10px;margin-bottom:28px}
+.ex{display:inline-block;background:var(--soft);border:1px dashed var(--line);border-radius:999px;padding:4px 12px;font-size:.85rem;color:var(--muted);font-weight:700;justify-self:start}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:28px}
+@media (min-width:860px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:2px}
+.kpi b{font-family:var(--f-display);font-size:2rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--muted);font-size:.9rem;line-height:1.35}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:12px;align-content:start;min-width:0}
+.panel h3{font-size:1.1rem}
+.rows{display:grid}
+.row{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:11px 0;border-bottom:1px solid var(--line);align-items:start}
+.row:last-child{border-bottom:0}
+.row time{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted);min-width:3.2em}
+.row .t{min-width:0}
+.row .t small{display:block;color:var(--muted);font-size:.86rem}
+.pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:.78rem;font-weight:700;margin:2px 4px 0 0;border:1px solid var(--line)}
+.pill.ok{background:var(--ok-bg);color:var(--ok-ink);border-color:transparent}
+.pill.wait{background:var(--soft);color:var(--ink)}
+.pill.alert{background:var(--warn);color:#fff;border-color:transparent}
+.owner-grid{display:grid;gap:16px}
+@media (min-width:960px){.owner-grid{grid-template-columns:1.2fr .8fr}}
+.phone{background:var(--ink);border-radius:30px;padding:12px;max-width:330px;width:100%;justify-self:center}
+.phone .scr{background:var(--wa-bg);border-radius:22px;padding:14px;display:grid;gap:8px;min-height:300px;align-content:start}
+.phone .bub{background:var(--wa-bub);color:#1b1b1b;border-radius:12px;border-top-left-radius:4px;padding:9px 11px;font-size:.9rem;line-height:1.4;max-width:92%;box-shadow:0 1px 1px rgba(0,0,0,.08);white-space:pre-line}
+.phone .me{justify-self:end;background:#D9FDD3;border-top-left-radius:12px;border-top-right-radius:4px}
+.phone .who{color:#e9edef;font-size:.85rem;font-weight:700;padding:2px 4px 6px}
+.live:empty::before{content:attr(data-empty);color:var(--muted);font-size:.92rem}
+
+footer.site{background:var(--band);color:var(--band-ink);padding-block:44px 90px}
+footer.site .wrap{display:grid;gap:14px}
+footer.site p{max-width:74ch;opacity:.92}
+footer.site a{color:var(--band-ink);font-weight:700}
+footer.site .cols{display:grid;gap:18px}
+@media (min-width:860px){footer.site .cols{grid-template-columns:1.3fr 1fr}}
+[tabindex="-1"]:focus{outline:none}
+.phone{align-self:start}
+.hcta{white-space:nowrap}
+@media (min-width:1020px) and (max-width:1239px){.hcta{display:none}}
+
+h1{font-size:clamp(2.6rem,7.4vw,4.8rem)}h2{font-size:clamp(2rem,4.6vw,3rem)}h3{font-family:var(--f-body)}.hero h1 em{font-style:italic}.steps li::before,.kpi b{font-family:var(--f-display);font-weight:400}.props{display:grid;gap:18px}@media (min-width:760px){.props{grid-template-columns:1fr 1fr}}.prop{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:grid;min-width:0}.prop .art{background:var(--soft);aspect-ratio:16/9;display:grid;place-items:center;color:var(--acc-text)}.prop .art svg{width:100%;height:100%}.prop .body{padding:20px;display:grid;gap:8px}.prop .price{font-family:var(--f-display);font-size:1.7rem;line-height:1}.prop ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}.prop li{border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:.85rem;color:var(--muted)}.prop .cta{margin-top:6px}
+</style>
+<a class="skip" id="skip" href="#home">Vai al contenuto</a>
+<div class="sample" role="note"><div class="wrap"><span id="band"></span><a id="back" href="https://www.celea.it/">Torna al sito di Celea</a></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 9.5V20h13V9.5M10 20v-5.5h4V20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" data-go="home"><svg aria-hidden="true"><use href="#logo"/></svg>Domèa</a>
+    <nav class="menu" id="nav" aria-label="Menu"></nav>
+    <div class="langs" id="langs" role="group"><button type="button" data-l="it" lang="it" aria-label="Italiano">IT</button><button type="button" data-l="en" lang="en" aria-label="English">EN</button><button type="button" data-l="de" lang="de" aria-label="Deutsch">DE</button></div>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer-nav" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="btn sm hcta" id="hcta" href="#home" data-chat="start">Chat</a>
+  </div>
+  <nav class="drawer-nav" id="drawer-nav" aria-label="Menu"></nav>
+</header>
+<main id="main" tabindex="-1"></main>
+<div id="chat-park" hidden></div>
+<div class="dock" id="dock" hidden>
+  <div class="chat" id="chat">
+    <div class="chat-h"><span class="avatar" aria-hidden="true">D</span><div class="who"><b id="chat-name"></b><small id="chat-sub"></small></div><button class="x" id="chat-x" type="button" hidden>×</button></div>
+    <div class="log" id="log" role="log" aria-live="polite"></div>
+    <div class="opts" id="opts"></div>
+    <form id="chat-form" autocomplete="off"><input id="chat-input" type="text" maxlength="200"><button id="chat-send" type="submit">Invia</button></form>
+    <p class="chat-note"><span id="chat-note"></span><a id="chat-owner" href="#titolare" data-go="titolare"></a></p>
+  </div>
+</div>
+<button class="fab" id="fab" type="button"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span id="fab-t">Chat</span></button>
+<footer class="site" id="foot"></footer>
+<script>
+window.SITE={i18n:{}};
+(function(){
+var CELEA="https://www.celea.it/";
+/* illustrazioni al tratto (nessuna foto: gli immobili sono inventati) */
+var ART={
+tri:'<svg viewBox="0 0 320 180" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M70 170V40h180v130"/><path d="M60 40h200"/><g opacity=".85"><rect x="90" y="58" width="30" height="34"/><rect x="145" y="58" width="30" height="34"/><rect x="200" y="58" width="30" height="34"/><rect x="90" y="110" width="30" height="34"/><rect x="200" y="110" width="30" height="34"/><path d="M145 170v-46h30v46"/></g><path d="M80 40V26h60v14M170 40V22h70v18" opacity=".6"/><path d="M180 22c6-10 20-10 26 0M214 22c4-7 14-7 18 0" opacity=".6"/><path d="M20 170h280"/></svg>',
+bil:'<svg viewBox="0 0 320 180" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 170V60h120v110M160 170V80h120v90"/><g opacity=".85"><rect x="60" y="80" width="26" height="30"/><rect x="112" y="80" width="26" height="30"/><rect x="60" y="126" width="26" height="30"/><path d="M112 170v-40h26v40"/><rect x="180" y="100" width="34" height="26"/><rect x="226" y="100" width="34" height="26"/></g><path d="M40 60h120M160 80h120"/><path d="M180 140h80" opacity=".6"/><path d="M20 170h280"/></svg>',
+vil:'<svg viewBox="0 0 320 180" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M70 170V92l70-46 70 46v78"/><path d="M58 100l82-56 82 56"/><g opacity=".85"><rect x="92" y="108" width="28" height="30"/><rect x="160" y="108" width="28" height="30"/><path d="M127 170v-36h26v36"/></g><circle cx="262" cy="118" r="22" opacity=".7"/><path d="M262 140v30M40 170c0-18 10-30 22-30" opacity=".7"/><path d="M20 170h280"/></svg>',
+att:'<svg viewBox="0 0 320 180" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M60 170V52h200v118"/><path d="M90 52V30h140v22"/><path d="M84 30h152" /><g opacity=".85"><rect x="110" y="34" width="22" height="18"/><rect x="190" y="34" width="22" height="18"/><path d="M80 70h160M80 100h160M80 130h160"/></g><path d="M0 172c30-8 50 8 80 0s50-8 80 0 50 8 80 0 50-8 80 0" opacity=".6"/><circle cx="276" cy="30" r="10" opacity=".6"/></svg>'
+};
+var PROPS=[
+ {k:"tri",chat:"anT",price:"285.000 €",it:["Trilocale con terrazzo","Centro storico",["95 m²","3° piano con ascensore","terrazzo 20 m²","classe C"]],en:["Three-room flat with terrace","Old town",["95 m²","3rd floor with lift","20 m² terrace","energy class C"]],de:["Dreizimmerwohnung mit Terrasse","Altstadt",["95 m²","3. Stock mit Aufzug","Terrasse 20 m²","Energieklasse C"]]},
+ {k:"bil",chat:"anB",price:"189.000 €",it:["Bilocale ristrutturato","Quartiere Marina",["58 m²","1° piano","ristrutturato","classe B"]],en:["Renovated two-room flat","Marina district",["58 m²","1st floor","renovated","energy class B"]],de:["Renovierte Zweizimmerwohnung","Viertel Marina",["58 m²","1. Stock","renoviert","Energieklasse B"]]},
+ {k:"vil",chat:"anV",price:"545.000 €",it:["Villa con giardino","Collina",["210 m²","giardino 600 m²","box doppio","classe D"]],en:["Villa with garden","Hillside",["210 m²","600 m² garden","double garage","energy class D"]],de:["Villa mit Garten","Hügellage",["210 m²","Garten 600 m²","Doppelgarage","Energieklasse D"]]},
+ {k:"att",chat:"anA",price:"690.000 €",it:["Attico vista mare","Lungomare",["120 m²","terrazzi 60 m²","ultimo piano","classe A"]],en:["Sea-view penthouse","Seafront",["120 m²","60 m² terraces","top floor","energy class A"]],de:["Penthouse mit Meerblick","Strandpromenade",["120 m²","Terrassen 60 m²","oberstes Geschoss","Energieklasse A"]]}
+];
+var BTN={it:"Chieda una visita",en:"Request a viewing",de:"Besichtigung anfragen"}, EX={it:"Immobile e prezzo d'esempio",en:"Sample property and price",de:"Beispielobjekt und -preis"};
+function cards(l,n){ return '<div class="props">'+PROPS.slice(0,n||4).map(function(p){var t=p[l];return '<article class="prop"><div class="art" role="img" aria-label="'+t[0]+'">'+ART[p.k]+'</div><div class="body"><p class="label">'+t[1]+'</p><h3>'+t[0]+'</h3><p class="price">'+p.price+'</p><ul>'+t[2].map(function(x){return "<li>"+x+"</li>";}).join("")+'</ul><p class="muted small">'+EX[l]+'</p><div class="cta"><a class="btn sm" href="#home" data-chat="'+p.chat+'">'+BTN[l]+'</a></div></div></article>';}).join("")+'</div>'; }
+
+/* ======================= ITALIANO ======================= */
+var Q_IT=[["Sì, mutuo già approvato","qA"],["Sì, devo ancora chiederlo","qB"],["No, senza mutuo","qC"]];
+SITE.i18n.it={
+band:"<b>Sito di esempio realizzato da Celea.</b> L'agenzia, gli immobili, i prezzi, gli agenti e i numeri sono inventati.",
+back:"Torna al sito di Celea",
+cta:"Chieda una visita",
+nav:[["home","Home"],["immobili","Immobili"],["vendere","Vendere casa"],["agenzia","Orari e contatti"],["domande","Domande"],["titolare","Vista del titolare"]],
+titles:{home:"Domèa Immobiliare (sito di esempio)",immobili:"Immobili · Domèa (esempio)",vendere:"Vendere casa · Domèa (esempio)",agenzia:"Orari e contatti · Domèa (esempio)",domande:"Domande · Domèa (esempio)",titolare:"Vista del titolare · Domèa (esempio)"},
+desc:{home:"Sito di esempio di Celea per un'agenzia immobiliare inventata: l'assistente risponde agli annunci a ogni ora, qualifica i contatti, fissa, sposta e disdice le visite e manda il promemoria con indirizzo e nome dell'agente.",titolare:"Cosa trova l'agenzia la mattina: contatti già qualificati, visite in agenda, disdette e promemoria. Dati d'esempio."},
+ui:{menu:"Menu",skip:"Vai al contenuto",fab:"Scriva all'agenzia",placeholder:"Scriva una domanda…",send:"Invia",close:"Chiudi la chat",typing:"sta scrivendo…",demoNote:"Dimostrazione: risposte preimpostate, nulla viene inviato o salvato.",ownerLink:"Cosa vede l'agenzia →",liveEmpty:"Ancora nulla: provi la chat (per esempio «Spostare o disdire una visita») e torni qui.",livePill:"dalla chat di questa pagina",newEvents:"novità per l'agenzia",langs:"Lingua"},
+chat:{name:"Assistente di Domèa",sub:"Assistente virtuale · dimostrazione",fb:"fb",
+end:[["Ricomincia","start"],["Cosa vede l'agenzia","__owner"]],
+kw:[[/disdi|annull|cancell|non posso venire/i,"dd"],[/spost|cambiar|rinvi/i,"sd"],[/promemoria|ricord/i,"pr"],[/vend|valut|stima/i,"vv"],[/agente|persona|operat|parlare|richiam|umano/i,"ag"],[/orari|aperti|apert|chiuso|sabato/i,"or"],[/provvig|commission|quanto costa/i,"pz"],[/villa|giardino/i,"anV"],[/attico|mare/i,"anA"],[/bilocale|marina/i,"anB"],[/trilocale|terrazz|disponibil|annuncio|immobile|casa|appartament|visita|vedere/i,"anT"],[/english|deutsch|inglese|tedesco/i,"lg"]],
+flows:{
+start:{a:["%HI%, sono l'assistente virtuale di Domèa Immobiliare. Posso darLe informazioni su un immobile, fissare, spostare o disdire una visita e raccogliere i dati per una valutazione."],o:[["Un immobile che ho visto","anT"],["Spostare o disdire una visita","sd"],["Com'è il promemoria","pr"],["Vorrei vendere casa","vv"],["Parlare con un agente","ag"]]},
+fb:{a:["Mi scusi, sono un assistente dimostrativo con risposte preimpostate e non ho capito la richiesta. Posso aiutarLa con una di queste:"],o:[["Un immobile che ho visto","anT"],["Spostare o disdire una visita","sd"],["Vorrei vendere casa","vv"],["Parlare con un agente","ag"]]},
+anT:{u:"Ho visto il trilocale con terrazzo in centro. È ancora disponibile?",a:["Sì, è disponibile: 95 m² al terzo piano con ascensore, terrazzo di 20 m², classe C, prezzo 285.000 €.","Per proporLe la visita giusta: lo acquisterebbe con un mutuo?"],o:Q_IT},
+anB:{u:"Mi interessa il bilocale ristrutturato in zona Marina.",a:["È disponibile: 58 m² al primo piano, appena ristrutturato, classe B, prezzo 189.000 €.","Per proporLe la visita giusta: lo acquisterebbe con un mutuo?"],o:Q_IT},
+anV:{u:"Vorrei informazioni sulla villa con giardino.",a:["È disponibile: 210 m² con giardino di 600 m² e box doppio, classe D, prezzo 545.000 €.","Per proporLe la visita giusta: la acquisterebbe con un mutuo?"],o:Q_IT},
+anA:{u:"L'attico vista mare è ancora in vendita?",a:["Sì: 120 m² all'ultimo piano con 60 m² di terrazzi, classe A, prezzo 690.000 €.","Per proporLe la visita giusta: lo acquisterebbe con un mutuo?"],o:Q_IT},
+qA:{u:"Sì, mutuo già approvato.",a:["Ottimo, così si va più veloci. Entro quando vorrebbe trasferirsi?"],o:[["Entro 3 mesi","t3"],["Entro un anno","t12"]]},
+qB:{u:"Sì, devo ancora chiederlo.",a:["Nessun problema: l'agente può indicarLe anche un consulente per il mutuo. Entro quando vorrebbe trasferirsi?"],o:[["Entro 3 mesi","t3"],["Entro un anno","t12"]]},
+qC:{u:"No, senza mutuo.",a:["Perfetto. Entro quando vorrebbe trasferirsi?"],o:[["Entro 3 mesi","t3"],["Entro un anno","t12"]]},
+t3:{u:"Entro 3 mesi.",a:["Grazie. Posso proporLe una visita sabato alle 10:30 oppure lunedì alle 18:00, con l'agente Paolo."],o:[["Sabato 10:30","v1"],["Lunedì 18:00","v2"]]},
+t12:{u:"Entro un anno.",a:["Grazie, c'è tempo per scegliere bene. Posso proporLe una visita sabato alle 10:30 oppure lunedì alle 18:00, con l'agente Paolo."],o:[["Sabato 10:30","v1"],["Lunedì 18:00","v2"]]},
+v1:{u:"Sabato 10:30",a:["Confermata: visita sabato alle 10:30 con l'agente Paolo. Mi lascia nome e cognome?","Grazie. Venerdì Le arriva un promemoria su WhatsApp con l'indirizzo esatto e il numero di Paolo."],s:"Visita in agenda · scheda del contatto passata all'agente",log:"Contatto da un annuncio, qualificato (mutuo e tempi) · visita sabato 10:30 con Paolo"},
+v2:{u:"Lunedì 18:00",a:["Confermata: visita lunedì alle 18:00 con l'agente Paolo. Domenica Le arriva un promemoria su WhatsApp con l'indirizzo esatto e il numero di Paolo."],s:"Visita in agenda · scheda del contatto passata all'agente",log:"Contatto da un annuncio, qualificato (mutuo e tempi) · visita lunedì 18:00 con Paolo"},
+sd:{u:"Ho una visita sabato alle 10:30 per il trilocale in centro.",a:["L'ho trovata: sabato alle 10:30 con l'agente Paolo. Vuole spostarla o disdirla?"],o:[["Spostarla","sp"],["Disdirla","dd"]]},
+sp:{u:"Vorrei spostarla.",a:["Nessun problema. Posso proporLe sabato alle 12:00 oppure martedì alle 18:30."],o:[["Sabato 12:00","sp1"],["Martedì 18:30","sp2"]]},
+sp1:{u:"Sabato 12:00",a:["Spostata a sabato alle 12:00. Ho avvisato Paolo e l'orario delle 10:30 è di nuovo libero per altri clienti."],s:"Agenda dell'agente aggiornata · Paolo avvisato",log:"Visita del trilocale spostata da sabato 10:30 a sabato 12:00 · agente avvisato · orario liberato"},
+sp2:{u:"Martedì 18:30",a:["Spostata a martedì alle 18:30. Ho avvisato Paolo e l'orario di sabato alle 10:30 è di nuovo libero per altri clienti."],s:"Agenda dell'agente aggiornata · Paolo avvisato",log:"Visita del trilocale spostata da sabato 10:30 a martedì 18:30 · agente avvisato · orario liberato"},
+dd:{u:"Vorrei disdirla.",a:["D'accordo. Posso chiederLe se è solo un problema di orario o se l'immobile non La convince più? Aiuta l'agente a proporLe le case giuste."],o:[["Non mi convince più","dd1"],["Solo l'orario","sp"]]},
+dd1:{u:"L'immobile non mi convince più.",a:["Grazie per la sincerità. Visita disdetta: l'orario di sabato alle 10:30 è di nuovo libero e Paolo è avvisato.","Vuole ricevere su WhatsApp gli immobili simili quando arrivano? Può fermare i messaggi quando vuole scrivendo STOP."],s:"Visita disdetta · orario liberato · agente avvisato",log:"Disdetta: visita del trilocale di sabato 10:30 · orario liberato · motivo: l'immobile non convince",o:[["Sì, grazie","dd2"],["No, grazie","dd3"]]},
+dd2:{u:"Sì, grazie.",a:["Fatto: Le scrivo solo quando arriva un immobile adatto. A presto!"],log:"Contatto iscritto agli avvisi di nuovi immobili, con il suo consenso"},
+dd3:{u:"No, grazie.",a:["Va bene. Quando vuole, mi scriva qui o su WhatsApp, a qualsiasi ora. A presto!"]},
+pr:{u:"Com'è il promemoria della visita?",r:["Esempio del messaggio che il cliente riceve su WhatsApp il giorno prima della visita","Promemoria di Domèa Immobiliare: domani, sabato, alle 10:30 visita del trilocale in Via del Porto 8 (indirizzo d'esempio). La accompagna l'agente Paolo, cellulare 000 000 0000.\nRisponda 1 per confermare, 2 per spostare, 3 per annullare.","WhatsApp · il giorno prima"],a:["Il cliente risponde con un numero. Provi Lei:"],o:[["1 · Confermo","pr1"],["2 · Sposto","sp"],["3 · Annullo","dd1"]]},
+pr1:{u:"1",a:["Grazie, visita confermata. Paolo La aspetta domani alle 10:30 davanti al portone."],s:"Conferma registrata · Paolo avvisato",log:"Promemoria: visita di sabato 10:30 confermata dal cliente"},
+vv:{u:"Vorrei vendere casa.",a:["Volentieri. Per preparare la valutazione: di che tipo di immobile si tratta?"],o:[["Appartamento","vv1"],["Casa indipendente","vv2"]]},
+vv1:{u:"Un appartamento.",a:["Grazie. Un agente della zona viene a vederlo e Le propone un prezzo realistico, senza impegno. Preferisce essere richiamato la mattina o il pomeriggio?"],o:[["Mattina","vv3"],["Pomeriggio","vv4"]]},
+vv2:{u:"Una casa indipendente.",a:["Grazie. Un agente della zona viene a vederla e Le propone un prezzo realistico, senza impegno. Preferisce essere richiamato la mattina o il pomeriggio?"],o:[["Mattina","vv3"],["Pomeriggio","vv4"]]},
+vv3:{u:"Mattina",a:["Perfetto: l'agente La richiama domani in mattinata per fissare il sopralluogo. Se ha la planimetria e l'anno di costruzione, li tenga a portata di mano."],s:"Richiesta di valutazione passata all'agente",log:"Nuova richiesta di valutazione · richiamata domani mattina"},
+vv4:{u:"Pomeriggio",a:["Perfetto: l'agente La richiama domani nel pomeriggio per fissare il sopralluogo. Se ha la planimetria e l'anno di costruzione, li tenga a portata di mano."],s:"Richiesta di valutazione passata all'agente",log:"Nuova richiesta di valutazione · richiamata domani pomeriggio"},
+ag:{u:"Posso parlare con un agente?",a:["Certo. Preferisce essere richiamato o ricevere la risposta qui?"],o:[["Richiamatemi","ag1"],["Rispondete qui","ag2"]]},
+ag1:{u:"Richiamatemi.",a:["D'accordo: un agente La richiama nel primo orario d'ufficio, con il riepilogo della conversazione già davanti."],s:"Richiesta passata a un agente",log:"Da richiamare: il cliente chiede di parlare con un agente"},
+ag2:{u:"Rispondete qui.",a:["D'accordo: un agente Le risponde qui appena possibile, in orario d'ufficio."],s:"Richiesta passata a un agente",log:"Da rispondere in chat: domanda per un agente"},
+or:{a:["L'agenzia è aperta dal lunedì al venerdì 9:00–13:00 e 15:30–19:30, il sabato 9:30–13:00. Le visite si fanno anche il sabato pomeriggio, su appuntamento. Io rispondo a qualsiasi ora."]},
+pz:{a:["Il prezzo di ogni immobile è nella sua scheda. Per chi vende, la provvigione si concorda per iscritto con l'agente durante il sopralluogo. Vuole parlare con un agente?"],o:[["Sì","ag"],["No, grazie","start"]]},
+lg:{a:["Rispondo in italiano, inglese e tedesco: può scrivermi nella lingua che preferisce. Le schede degli immobili sono disponibili anche in inglese e tedesco."]}
+}},
+pages:{
+home:`<section class="hero"><div class="wrap">
+<div class="hero-text"><p class="label">Agenzia immobiliare · esempio</p>
+<h1>La casa giusta non aspetta <em>l'orario d'ufficio.</em></h1>
+<p class="lead">Compravendite in città, al mare e in collina. Ci scriva quando vuole: l'assistente risponde sugli immobili, fissa la visita con l'agente, Le manda il promemoria il giorno prima e passa a una persona quando serve.</p>
+<div class="cta"><a class="btn" href="#immobili" data-go="immobili">Veda gli immobili</a><a class="btn line" href="#vendere" data-go="vendere">Vorrei vendere casa</a></div>
+<ul class="facts" aria-label="In breve"><li>Su WhatsApp e sul sito</li><li>Italiano, inglese e tedesco</li><li>Visite anche il sabato</li></ul></div>
+<div data-chat-slot></div></div></section>
+<section class="alt"><div class="wrap"><div class="head"><p class="label">Perché scriverci</p><h2>Ogni richiesta ha una risposta, ogni visita un promemoria.</h2></div>
+<div class="strip"><div><b>Risposta anche alle 23</b><p>Chi scrive da un annuncio la sera riceve subito le informazioni e un orario di visita.</p></div><div><b>Contatti già qualificati</b><p>Mutuo, tempi e zona: l'agente sa con chi parla prima di chiamare.</p></div><div><b>Visite che non saltano</b><p>Il giorno prima arriva il promemoria con indirizzo e nome dell'agente; si conferma, si sposta o si annulla con un numero.</p></div></div></div></section>
+<section><div class="wrap"><div class="head"><p class="label">In evidenza</p><h2>Alcuni immobili</h2><p class="lead">Immobili e prezzi d'esempio: chieda una visita e veda come risponde l'assistente.</p></div>%P2%
+<p style="margin-top:22px"><a href="#immobili" data-go="immobili"><b>Tutti gli immobili →</b></a></p></div></section>
+<section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">Per il titolare dell'agenzia</p><h2 style="margin-top:8px">Cosa trova l'agenzia la mattina?</h2><p style="margin-top:10px">I contatti della notte già qualificati, le visite in agenda, le disdette con l'orario liberato e i promemoria confermati. Lo vede in un colpo d'occhio.</p></div><a class="btn" href="#titolare" data-go="titolare">Apra la vista del titolare</a></div></div></section>`,
+immobili:`<section><div class="wrap"><div class="head"><p class="label">Immobili</p><h1>Immobili in vendita</h1><p class="lead">Immobili e prezzi d'esempio. Per ognuno può chiedere una visita: l'assistente Le fa due domande e Le propone un orario con l'agente.</p></div>%P4%</div></section>`,
+vendere:`<section><div class="wrap"><div class="head"><p class="label">Vendere casa</p><h1>Vendere con un prezzo realistico</h1><p class="lead">Tre passi, con un solo agente che La segue dall'inizio alla fine.</p></div>
+<ol class="steps"><li><h3>Valutazione</h3><p>L'agente viene a vedere la casa, controlla i documenti e Le propone un prezzo realistico, senza impegno.</p></li><li><h3>Promozione e visite</h3><p>Foto, planimetria e annunci. L'assistente risponde ai contatti a ogni ora e fissa solo visite con persone interessate davvero.</p></li><li><h3>Trattativa e rogito</h3><p>Proposte scritte, accordo e accompagnamento fino al notaio.</p></li></ol></div></section>
+<section class="alt"><div class="wrap grid2"><div class="kv"><p class="label">Trasparenza</p><h2>Sempre per iscritto</h2><p class="muted" style="margin-top:12px">La provvigione si concorda per iscritto prima di iniziare. Dopo ogni visita Le scriviamo com'è andata.</p></div>
+<div class="kv"><p class="label">Valutazione</p><h2>Cominci da qui</h2><p class="muted" style="margin-top:12px">L'assistente raccoglie i dati principali e un agente La richiama per fissare il sopralluogo.</p><div class="cta" style="margin-top:16px"><a class="btn" href="#home" data-chat="vv">Chieda una valutazione</a></div></div></div></section>`,
+agenzia:`<section><div class="wrap"><div class="head"><p class="label">Orari e contatti</p><h1>Quando siamo in agenzia</h1></div>
+<div class="grid2"><table aria-label="Orari dell'agenzia"><tbody><tr><th scope="row">Lunedì – venerdì</th><td>9:00–13:00 · 15:30–19:30</td></tr><tr><th scope="row">Sabato</th><td>9:30–13:00</td></tr><tr><th scope="row">Visite</th><td>anche sabato pomeriggio, su appuntamento</td></tr><tr><th scope="row">Domenica</th><td>chiuso</td></tr><tr><th scope="row">Assistente virtuale</th><td>sempre attivo</td></tr></tbody></table>
+<div class="kv" style="gap:14px"><div class="kv"><span class="muted">Indirizzo (inventato)</span><span class="v">Corso dell'Esempio 40, Città</span></div><div class="kv"><span class="muted">Telefono e WhatsApp (inventati)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Zone</span><span class="v">Centro storico, Marina, Lungomare, Collina</span></div><div class="kv"><span class="muted">Agenti (nomi d'esempio)</span><span class="v">Paolo e Marta</span></div></div></div></div></section>`,
+domande:`<section><div class="wrap"><div class="head"><p class="label">Domande</p><h1>Le domande più frequenti</h1></div><div class="faq">
+<details><summary>Con chi parlo quando scrivo la sera?</summary><div class="ans"><p>Con l'assistente virtuale dell'agenzia, che si presenta sempre come tale. Risponde sugli immobili, fissa, sposta e disdice le visite e passa la conversazione a un agente quando serve.</p></div></details>
+<details><summary>Perché l'assistente mi chiede del mutuo?</summary><div class="ans"><p>Per proporLe gli immobili e la visita giusti, e perché l'agente sappia già come aiutarLa. Può sempre rispondere che preferisce parlarne con l'agente.</p></div></details>
+<details><summary>Posso spostare o annullare una visita su WhatsApp?</summary><div class="ans"><p>Sì, a qualsiasi ora. L'agente viene avvisato subito e l'orario torna libero per altri clienti.</p></div></details>
+<details><summary>Che cosa dice il promemoria?</summary><div class="ans"><p>Giorno, ora, indirizzo dell'immobile e nome e numero dell'agente che La accompagna. Risponde 1 per confermare, 2 per spostare, 3 per annullare.</p></div></details>
+<details><summary>L'assistente può trattare sul prezzo?</summary><div class="ans"><p>No. Le proposte e le trattative le segue sempre un agente, per iscritto.</p></div></details>
+<details><summary>Parlate inglese o tedesco?</summary><div class="ans"><p>L'assistente risponde in italiano, inglese e tedesco, e le schede degli immobili sono disponibili anche nelle due lingue.</p></div></details>
+</div></div></section>`,
+titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Vista del titolare</p><h1>Cosa ha fatto l'assistente mentre l'agenzia era chiusa</h1><p class="lead">Ogni mattina l'agenzia trova i contatti della notte già qualificati, le visite in agenda con i promemoria inviati e le disdette con l'orario liberato. Gli agenti chiamano prima chi è pronto.</p><span class="ex">Dati d'esempio: l'agenzia, i clienti e gli agenti sono inventati</span></div>
+<div class="kpis"><div class="kpi"><b>14</b><span>richieste dagli annunci tra le 19:30 e le 9:00</span></div><div class="kpi"><b>6</b><span>contatti qualificati (mutuo, tempi, zona)</span></div><div class="kpi"><b>3</b><span>visite fissate per il weekend</span></div><div class="kpi"><b>1</b><span>visita disdetta, orario riassegnato</span></div></div>
+<div class="owner-grid"><div class="panel"><h3>Visite di domani e promemoria</h3><div class="rows">
+<div class="row"><time>09:30</time><div class="t">Bilocale Marina · C. D. · agente Marta<br><span class="pill ok">Confermata su WhatsApp</span></div></div>
+<div class="row"><time>10:30</time><div class="t">Trilocale centro · E. V. · agente Paolo<br><span class="pill ok">Confermata su WhatsApp</span></div></div>
+<div class="row"><time>12:00</time><div class="t">Trilocale centro · F. N. · agente Paolo<small>Orario liberato da una disdetta alle 21:30, preso da un nuovo contatto alle 22:14</small><span class="pill ok">Riassegnato</span></div></div>
+<div class="row"><time>16:00</time><div class="t">Villa collina · R. S. · agente Marta<br><span class="pill wait">Promemoria inviato, in attesa</span></div></div>
+<div class="row"><time>17:30</time><div class="t">Attico lungomare · B. L. · agente Paolo<br><span class="pill alert">Nessuna risposta: da chiamare</span></div></div></div></div>
+<div class="phone" aria-label="Esempio di promemoria su WhatsApp"><div class="scr"><div class="who">Domèa Immobiliare</div><div class="bub">Promemoria di Domèa Immobiliare: domani alle 10:30 visita del trilocale in Via del Porto 8. La accompagna l'agente Paolo, 000 000 0000.
+Risponda 1 per confermare, 2 per spostare, 3 per annullare.</div><div class="bub me">1</div><div class="bub">Grazie, visita confermata. Paolo La aspetta davanti al portone.</div></div></div></div>
+<div class="owner-grid" style="margin-top:16px"><div class="panel"><h3>Nuovi contatti della notte</h3><div class="rows">
+<div class="row"><time>23:12</time><div class="t">Trilocale centro · mutuo approvato, entro 3 mesi<small>Visita fissata sabato alle 12:00</small><span class="pill ok">Pronto</span></div></div>
+<div class="row"><time>00:40</time><div class="t">Villa collina · deve prima vendere la sua casa<small>Proposta una valutazione della sua casa</small><span class="pill wait">Da coltivare</span><span class="pill wait">Possibile venditore</span></div></div>
+<div class="row"><time>22:30</time><div class="t">Richiesta di valutazione · appartamento di circa 110 m²<small>Chiede di essere richiamato in mattinata</small><span class="pill alert">Richiamare oggi</span></div></div>
+<div class="row"><time>07:55</time><div class="t">Bilocale Marina · cerca in affitto, non in vendita<small>Risposto con cortesia, nessuna visita</small><span class="pill wait">Non adatto</span></div></div></div></div>
+<div class="panel"><h3>Dalla chat di questa pagina</h3><p class="muted small">Provi la chat: ogni azione compare qui, come la vedrebbe l'agenzia.</p><div class="rows live" data-live></div><a class="btn sm" href="#home" data-chat="sd">Provi a spostare o disdire una visita</a></div></div>
+<div class="panel" style="margin-top:16px"><h3>Cosa l'assistente non fa mai</h3><p class="muted">Non tratta sul prezzo e non promette sconti. Non dà consigli legali o fiscali. Si presenta sempre come assistente virtuale. Passa a un agente quando il cliente lo chiede o quando serve.</p></div>
+</div></section>
+<section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Vuole vederlo con la Sua agenzia?</h2><p style="margin-top:10px">Questo sito è un esempio di Celea. La demo dell'assistente e tutti i prezzi sono sul sito di Celea.</p></div><a class="btn" href="${CELEA}">Vada al sito di Celea</a></div></div></section>`
+},
+footer:`<div class="wrap cols"><div><p><b>Questo è un sito dimostrativo.</b> Domèa Immobiliare non esiste: è un esempio realizzato da Celea per far vedere come può diventare il sito di un'agenzia immobiliare, con l'assistente che risponde agli annunci, qualifica i contatti, fissa, sposta e disdice le visite e manda i promemoria. Immobili, prezzi, agenti e numeri sono d'esempio.</p></div>
+<div><p>Un sito così rientra nel <b>Sito premium multilingua</b> di Celea (10 pagine in italiano, inglese e tedesco): 1.990 € + 79 €/mese. L'assistente sul sito si aggiunge alla receptionist a 49 €/mese + 90 € di attivazione. Versione più semplice: Sito vetrina, 990 € + 49 €/mese. Prezzi IVA esclusa.</p><p style="margin-top:10px"><a href="${CELEA}">La demo e tutti i prezzi di Celea</a></p></div></div>`
+};
+
+/* ======================= ENGLISH ======================= */
+var Q_EN=[["Yes, mortgage approved","qA"],["Yes, not applied yet","qB"],["No mortgage","qC"]];
+SITE.i18n.en={
+band:"<b>Sample website made by Celea.</b> The agency, properties, prices, agents and numbers are invented.",
+back:"Back to Celea",
+cta:"Request a viewing",
+nav:[["home","Home"],["immobili","Properties"],["vendere","Sell your home"],["agenzia","Hours & contact"],["domande","FAQ"],["titolare","Owner view"]],
+titles:{home:"Domèa Real Estate (sample website)",immobili:"Properties · Domèa (sample)",vendere:"Sell your home · Domèa (sample)",agenzia:"Hours & contact · Domèa (sample)",domande:"FAQ · Domèa (sample)",titolare:"Owner view · Domèa (sample)"},
+desc:{home:"Celea sample website for an invented estate agency: the assistant answers listing enquiries at any hour, qualifies leads, books, moves and cancels viewings and sends reminders with the address and the agent's name.",titolare:"What the agency finds in the morning: qualified leads, viewings in the diary, cancellations and reminders. Sample data."},
+ui:{menu:"Menu",skip:"Skip to content",fab:"Message the agency",placeholder:"Type a question…",send:"Send",close:"Close chat",typing:"typing…",demoNote:"Demo: preset replies, nothing is sent or stored.",ownerLink:"What the agency sees →",liveEmpty:"Nothing yet: try the chat (for example «Move or cancel a viewing») and come back here.",livePill:"from the chat on this page",newEvents:"updates for the agency",langs:"Language"},
+chat:{name:"Domèa assistant",sub:"Virtual assistant · demo",fb:"fb",
+end:[["Start again","start"],["What the agency sees","__owner"]],
+kw:[[/cancel|can't come|cannot come/i,"dd"],[/move|reschedul|change/i,"sd"],[/remind/i,"pr"],[/sell|valuation|apprais/i,"vv"],[/agent|person|human|talk|call me|call back/i,"ag"],[/hour|open|closed|saturday/i,"or"],[/commission|fee/i,"pz"],[/villa|garden/i,"anV"],[/penthouse|sea/i,"anA"],[/two-room|marina/i,"anB"],[/three-room|terrace|available|listing|property|house|flat|apartment|viewing|see it/i,"anT"],[/italian|german|language/i,"lg"]],
+flows:{
+start:{a:["%HI%, I'm Domèa Real Estate's virtual assistant. I can tell you about a property, book, move or cancel a viewing and take the details for a valuation."],o:[["A property I saw","anT"],["Move or cancel a viewing","sd"],["See a reminder","pr"],["I want to sell","vv"],["Talk to an agent","ag"]]},
+fb:{a:["Sorry, I'm a demo assistant with preset replies and didn't understand that. I can help with one of these:"],o:[["A property I saw","anT"],["Move or cancel a viewing","sd"],["I want to sell","vv"],["Talk to an agent","ag"]]},
+anT:{u:"I saw the three-room flat with terrace in the old town. Is it still available?",a:["Yes, it's available: 95 m² on the third floor with lift, 20 m² terrace, energy class C, price €285,000.","To suggest the right viewing: would you buy with a mortgage?"],o:Q_EN},
+anB:{u:"I'm interested in the renovated two-room flat in the Marina district.",a:["It's available: 58 m² on the first floor, just renovated, energy class B, price €189,000.","To suggest the right viewing: would you buy with a mortgage?"],o:Q_EN},
+anV:{u:"Could I have details on the villa with garden?",a:["It's available: 210 m² with a 600 m² garden and double garage, energy class D, price €545,000.","To suggest the right viewing: would you buy with a mortgage?"],o:Q_EN},
+anA:{u:"Is the sea-view penthouse still for sale?",a:["Yes: 120 m² on the top floor with 60 m² of terraces, energy class A, price €690,000.","To suggest the right viewing: would you buy with a mortgage?"],o:Q_EN},
+qA:{u:"Yes, my mortgage is approved.",a:["Great, that speeds things up. When would you like to move?"],o:[["Within 3 months","t3"],["Within a year","t12"]]},
+qB:{u:"Yes, but I haven't applied yet.",a:["No problem: the agent can also recommend a mortgage adviser. When would you like to move?"],o:[["Within 3 months","t3"],["Within a year","t12"]]},
+qC:{u:"No, without a mortgage.",a:["Perfect. When would you like to move?"],o:[["Within 3 months","t3"],["Within a year","t12"]]},
+t3:{u:"Within 3 months.",a:["Thank you. I can offer a viewing on Saturday at 10:30 or Monday at 18:00, with our agent Paolo."],o:[["Saturday 10:30","v1"],["Monday 18:00","v2"]]},
+t12:{u:"Within a year.",a:["Thank you, there's time to choose well. I can offer a viewing on Saturday at 10:30 or Monday at 18:00, with our agent Paolo."],o:[["Saturday 10:30","v1"],["Monday 18:00","v2"]]},
+v1:{u:"Saturday 10:30",a:["Confirmed: viewing on Saturday at 10:30 with our agent Paolo. Could you give me your full name?","Thank you. On Friday you'll get a WhatsApp reminder with the exact address and Paolo's number."],s:"Viewing in the diary · lead card passed to the agent",log:"Lead from a listing, qualified (mortgage and timing) · viewing Saturday 10:30 with Paolo"},
+v2:{u:"Monday 18:00",a:["Confirmed: viewing on Monday at 18:00 with our agent Paolo. On Sunday you'll get a WhatsApp reminder with the exact address and Paolo's number."],s:"Viewing in the diary · lead card passed to the agent",log:"Lead from a listing, qualified (mortgage and timing) · viewing Monday 18:00 with Paolo"},
+sd:{u:"I have a viewing on Saturday at 10:30 for the flat in the old town.",a:["Found it: Saturday at 10:30 with our agent Paolo. Would you like to move it or cancel it?"],o:[["Move it","sp"],["Cancel it","dd"]]},
+sp:{u:"I'd like to move it.",a:["No problem. I can offer Saturday at 12:00 or Tuesday at 18:30."],o:[["Saturday 12:00","sp1"],["Tuesday 18:30","sp2"]]},
+sp1:{u:"Saturday 12:00",a:["Moved to Saturday at 12:00. I've told Paolo, and the 10:30 slot is free again for other clients."],s:"Agent's diary updated · Paolo informed",log:"Flat viewing moved from Saturday 10:30 to Saturday 12:00 · agent informed · slot freed"},
+sp2:{u:"Tuesday 18:30",a:["Moved to Tuesday at 18:30. I've told Paolo, and the Saturday 10:30 slot is free again for other clients."],s:"Agent's diary updated · Paolo informed",log:"Flat viewing moved from Saturday 10:30 to Tuesday 18:30 · agent informed · slot freed"},
+dd:{u:"I'd like to cancel it.",a:["Of course. May I ask whether it's just the timing or the property no longer convinces you? It helps the agent suggest the right homes."],o:[["Not convinced any more","dd1"],["Just the timing","sp"]]},
+dd1:{u:"The property no longer convinces me.",a:["Thank you for being frank. Viewing cancelled: the Saturday 10:30 slot is free again and Paolo has been told.","Would you like similar properties on WhatsApp when they come in? You can stop the messages any time by writing STOP."],s:"Viewing cancelled · slot freed · agent informed",log:"Cancellation: flat viewing Saturday 10:30 · slot freed · reason: property not convincing",o:[["Yes, please","dd2"],["No, thanks","dd3"]]},
+dd2:{u:"Yes, please.",a:["Done: I'll only write when a suitable property comes in. Speak soon!"],log:"Lead signed up for new-property alerts, with consent"},
+dd3:{u:"No, thanks.",a:["All right. Write to me here or on WhatsApp whenever you like, at any hour. Speak soon!"]},
+pr:{u:"What does the viewing reminder look like?",r:["Example of the message the client receives on WhatsApp the day before the viewing","Domèa Real Estate reminder: tomorrow, Saturday, at 10:30 viewing of the flat at Via del Porto 8 (sample address). Your agent is Paolo, mobile 000 000 0000.\nReply 1 to confirm, 2 to move, 3 to cancel.","WhatsApp · the day before"],a:["The client replies with a number. Try it:"],o:[["1 · Confirm","pr1"],["2 · Move","sp"],["3 · Cancel","dd1"]]},
+pr1:{u:"1",a:["Thank you, viewing confirmed. Paolo will meet you at the front door tomorrow at 10:30."],s:"Confirmation recorded · Paolo informed",log:"Reminder: Saturday 10:30 viewing confirmed by the client"},
+vv:{u:"I'd like to sell my home.",a:["Happy to help. To prepare the valuation: what kind of property is it?"],o:[["A flat","vv1"],["A detached house","vv2"]]},
+vv1:{u:"A flat.",a:["Thank you. A local agent will come to see it and suggest a realistic price, with no obligation. Would you like a call back in the morning or the afternoon?"],o:[["Morning","vv3"],["Afternoon","vv4"]]},
+vv2:{u:"A detached house.",a:["Thank you. A local agent will come to see it and suggest a realistic price, with no obligation. Would you like a call back in the morning or the afternoon?"],o:[["Morning","vv3"],["Afternoon","vv4"]]},
+vv3:{u:"Morning",a:["Perfect: the agent will call you tomorrow morning to arrange the visit. If you have the floor plan and the year of construction, keep them handy."],s:"Valuation request passed to the agent",log:"New valuation request · call back tomorrow morning"},
+vv4:{u:"Afternoon",a:["Perfect: the agent will call you tomorrow afternoon to arrange the visit. If you have the floor plan and the year of construction, keep them handy."],s:"Valuation request passed to the agent",log:"New valuation request · call back tomorrow afternoon"},
+ag:{u:"Can I talk to an agent?",a:["Of course. Would you like a call back or a reply here?"],o:[["Call me back","ag1"],["Reply here","ag2"]]},
+ag1:{u:"Call me back.",a:["All right: an agent will call you back as soon as the office opens, with a summary of this conversation in front of them."],s:"Request passed to an agent",log:"Call back: the client asks to speak to an agent"},
+ag2:{u:"Reply here.",a:["All right: an agent will reply here as soon as possible, during office hours."],s:"Request passed to an agent",log:"Reply in chat: question for an agent"},
+or:{a:["The agency is open Monday to Friday 9:00–13:00 and 15:30–19:30, Saturday 9:30–13:00. Viewings also on Saturday afternoon, by appointment. I answer at any hour."]},
+pz:{a:["Each property's price is on its page. For sellers, the commission is agreed in writing with the agent at the valuation visit. Would you like to talk to an agent?"],o:[["Yes","ag"],["No, thanks","start"]]},
+lg:{a:["I reply in Italian, English and German: write in whichever you prefer. Property details are also available in English and German."]}
+}},
+pages:{
+home:`<section class="hero"><div class="wrap">
+<div class="hero-text"><p class="label">Estate agency · sample</p>
+<h1>The right home doesn't wait for <em>office hours.</em></h1>
+<p class="lead">Homes for sale in town, by the sea and in the hills. Message us whenever you like: the assistant answers questions about properties, books the viewing with an agent, sends you a reminder the day before and hands over to a person when needed.</p>
+<div class="cta"><a class="btn" href="#en/immobili" data-go="immobili">See the properties</a><a class="btn line" href="#en/vendere" data-go="vendere">I want to sell</a></div>
+<ul class="facts" aria-label="At a glance"><li>On WhatsApp and the website</li><li>Italian, English and German</li><li>Viewings on Saturdays too</li></ul></div>
+<div data-chat-slot></div></div></section>
+<section class="alt"><div class="wrap"><div class="head"><p class="label">Why message us</p><h2>Every enquiry gets an answer, every viewing a reminder.</h2></div>
+<div class="strip"><div><b>Answers even at 11 pm</b><p>Anyone writing from a listing in the evening gets the details and a viewing time straight away.</p></div><div><b>Leads already qualified</b><p>Mortgage, timing and area: the agent knows who they're talking to before calling.</p></div><div><b>Viewings that happen</b><p>The day before, a reminder with the address and the agent's name; confirm, move or cancel with a number.</p></div></div></div></section>
+<section><div class="wrap"><div class="head"><p class="label">Featured</p><h2>Some of our properties</h2><p class="lead">Sample properties and prices: request a viewing and see how the assistant replies.</p></div>%P2%
+<p style="margin-top:22px"><a href="#en/immobili" data-go="immobili"><b>All properties →</b></a></p></div></section>
+<section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">For the agency owner</p><h2 style="margin-top:8px">What does the agency find in the morning?</h2><p style="margin-top:10px">Overnight leads already qualified, viewings in the diary, cancellations with the slot freed and confirmed reminders. All at a glance.</p></div><a class="btn" href="#en/titolare" data-go="titolare">Open the owner view</a></div></div></section>`,
+immobili:`<section><div class="wrap"><div class="head"><p class="label">Properties</p><h1>Properties for sale</h1><p class="lead">Sample properties and prices. For each one you can request a viewing: the assistant asks two questions and offers a time with an agent.</p></div>%P4%</div></section>`,
+vendere:`<section><div class="wrap"><div class="head"><p class="label">Sell your home</p><h1>Selling at a realistic price</h1><p class="lead">Three steps, with one agent by your side from start to finish.</p></div>
+<ol class="steps"><li><h3>Valuation</h3><p>The agent visits your home, checks the documents and suggests a realistic price, with no obligation.</p></li><li><h3>Marketing and viewings</h3><p>Photos, floor plan and listings. The assistant answers enquiries at any hour and books viewings only with genuinely interested people.</p></li><li><h3>Negotiation and completion</h3><p>Written offers, agreement and support all the way to the notary.</p></li></ol></div></section>
+<section class="alt"><div class="wrap grid2"><div class="kv"><p class="label">Transparency</p><h2>Always in writing</h2><p class="muted" style="margin-top:12px">The commission is agreed in writing before we start. After each viewing we tell you how it went.</p></div>
+<div class="kv"><p class="label">Valuation</p><h2>Start here</h2><p class="muted" style="margin-top:12px">The assistant takes the main details and an agent calls you back to arrange the visit.</p><div class="cta" style="margin-top:16px"><a class="btn" href="#en" data-chat="vv">Request a valuation</a></div></div></div></section>`,
+agenzia:`<section><div class="wrap"><div class="head"><p class="label">Hours & contact</p><h1>When we're in the office</h1></div>
+<div class="grid2"><table aria-label="Office hours"><tbody><tr><th scope="row">Monday – Friday</th><td>9:00–13:00 · 15:30–19:30</td></tr><tr><th scope="row">Saturday</th><td>9:30–13:00</td></tr><tr><th scope="row">Viewings</th><td>also Saturday afternoon, by appointment</td></tr><tr><th scope="row">Sunday</th><td>closed</td></tr><tr><th scope="row">Virtual assistant</th><td>always on</td></tr></tbody></table>
+<div class="kv" style="gap:14px"><div class="kv"><span class="muted">Address (invented)</span><span class="v">Corso dell'Esempio 40, Città</span></div><div class="kv"><span class="muted">Phone and WhatsApp (invented)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Areas</span><span class="v">Old town, Marina, Seafront, Hillside</span></div><div class="kv"><span class="muted">Agents (sample names)</span><span class="v">Paolo and Marta</span></div></div></div></div></section>`,
+domande:`<section><div class="wrap"><div class="head"><p class="label">FAQ</p><h1>Frequently asked questions</h1></div><div class="faq">
+<details><summary>Who am I talking to when I write in the evening?</summary><div class="ans"><p>The agency's virtual assistant, which always introduces itself as such. It answers questions about properties, books, moves and cancels viewings and passes the conversation to an agent when needed.</p></div></details>
+<details><summary>Why does the assistant ask about a mortgage?</summary><div class="ans"><p>To suggest the right properties and viewing, and so the agent already knows how to help you. You can always say you'd rather discuss it with the agent.</p></div></details>
+<details><summary>Can I move or cancel a viewing on WhatsApp?</summary><div class="ans"><p>Yes, at any hour. The agent is told straight away and the slot becomes free for other clients.</p></div></details>
+<details><summary>What does the reminder say?</summary><div class="ans"><p>Day, time, the property's address and the name and number of the agent meeting you. Reply 1 to confirm, 2 to move, 3 to cancel.</p></div></details>
+<details><summary>Can the assistant negotiate the price?</summary><div class="ans"><p>No. Offers and negotiations are always handled by an agent, in writing.</p></div></details>
+<details><summary>Do you speak English or German?</summary><div class="ans"><p>The assistant replies in Italian, English and German, and property details are available in both languages too.</p></div></details>
+</div></div></section>`,
+titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Owner view</p><h1>What the assistant did while the agency was closed</h1><p class="lead">Every morning the agency finds overnight leads already qualified, viewings in the diary with reminders sent and cancellations with the slot freed. Agents call the ready buyers first.</p><span class="ex">Sample data: the agency, clients and agents are invented</span></div>
+<div class="kpis"><div class="kpi"><b>14</b><span>listing enquiries between 19:30 and 9:00</span></div><div class="kpi"><b>6</b><span>leads qualified (mortgage, timing, area)</span></div><div class="kpi"><b>3</b><span>viewings booked for the weekend</span></div><div class="kpi"><b>1</b><span>viewing cancelled, slot reassigned</span></div></div>
+<div class="owner-grid"><div class="panel"><h3>Tomorrow's viewings and reminders</h3><div class="rows">
+<div class="row"><time>09:30</time><div class="t">Marina two-room flat · C. D. · agent Marta<br><span class="pill ok">Confirmed on WhatsApp</span></div></div>
+<div class="row"><time>10:30</time><div class="t">Old-town flat · E. V. · agent Paolo<br><span class="pill ok">Confirmed on WhatsApp</span></div></div>
+<div class="row"><time>12:00</time><div class="t">Old-town flat · F. N. · agent Paolo<small>Slot freed by a cancellation at 21:30, taken by a new lead at 22:14</small><span class="pill ok">Reassigned</span></div></div>
+<div class="row"><time>16:00</time><div class="t">Hillside villa · R. S. · agent Marta<br><span class="pill wait">Reminder sent, awaiting reply</span></div></div>
+<div class="row"><time>17:30</time><div class="t">Seafront penthouse · B. L. · agent Paolo<br><span class="pill alert">No reply: call them</span></div></div></div></div>
+<div class="phone" aria-label="Sample WhatsApp reminder"><div class="scr"><div class="who">Domèa Real Estate</div><div class="bub">Domèa Real Estate reminder: tomorrow at 10:30 viewing of the flat at Via del Porto 8. Your agent is Paolo, 000 000 0000.
+Reply 1 to confirm, 2 to move, 3 to cancel.</div><div class="bub me">1</div><div class="bub">Thank you, viewing confirmed. Paolo will meet you at the front door.</div></div></div></div>
+<div class="owner-grid" style="margin-top:16px"><div class="panel"><h3>New leads overnight</h3><div class="rows">
+<div class="row"><time>23:12</time><div class="t">Old-town flat · mortgage approved, within 3 months<small>Viewing booked for Saturday at 12:00</small><span class="pill ok">Ready</span></div></div>
+<div class="row"><time>00:40</time><div class="t">Hillside villa · needs to sell their own home first<small>Valuation of their home offered</small><span class="pill wait">To nurture</span><span class="pill wait">Possible seller</span></div></div>
+<div class="row"><time>22:30</time><div class="t">Valuation request · flat of about 110 m²<small>Asks for a call back in the morning</small><span class="pill alert">Call back today</span></div></div>
+<div class="row"><time>07:55</time><div class="t">Marina flat · looking to rent, not buy<small>Answered politely, no viewing</small><span class="pill wait">Not a fit</span></div></div></div></div>
+<div class="panel"><h3>From the chat on this page</h3><p class="muted small">Try the chat: every action appears here, as the agency would see it.</p><div class="rows live" data-live></div><a class="btn sm" href="#en" data-chat="sd">Try moving or cancelling a viewing</a></div></div>
+<div class="panel" style="margin-top:16px"><h3>What the assistant never does</h3><p class="muted">It never negotiates the price or promises discounts. It gives no legal or tax advice. It always introduces itself as a virtual assistant. It hands over to an agent when the client asks or when needed.</p></div>
+</div></section>
+<section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Want to see this for your agency?</h2><p style="margin-top:10px">This website is a Celea sample. The assistant demo and all prices are on Celea's website.</p></div><a class="btn" href="${CELEA}#en">Go to Celea</a></div></div></section>`
+},
+footer:`<div class="wrap cols"><div><p><b>This is a demo website.</b> Domèa Real Estate does not exist: it is a sample made by Celea to show what an estate agency's website can become, with an assistant that answers listing enquiries, qualifies leads, books, moves and cancels viewings and sends reminders. Properties, prices, agents and figures are examples.</p></div>
+<div><p>A site like this falls under Celea's <b>premium multilingual website</b> (10 pages in Italian, English and German): €1,990 + €79/month. The website assistant is added to the receptionist for €49/month + €90 setup. Simpler option: showcase website, €990 + €49/month. Prices excluding VAT.</p><p style="margin-top:10px"><a href="${CELEA}#en">Celea's demo and all prices</a></p></div></div>`
+};
+
+/* ======================= DEUTSCH ======================= */
+var Q_DE=[["Ja, Kredit genehmigt","qA"],["Ja, noch nicht beantragt","qB"],["Nein, ohne Kredit","qC"]];
+SITE.i18n.de={
+band:"<b>Beispiel-Website von Celea.</b> Agentur, Immobilien, Preise, Makler und Zahlen sind erfunden.",
+back:"Zurück zu Celea",
+cta:"Besichtigung anfragen",
+nav:[["home","Start"],["immobili","Immobilien"],["vendere","Verkaufen"],["agenzia","Zeiten & Kontakt"],["domande","Fragen"],["titolare","Ansicht für die Agentur"]],
+titles:{home:"Domèa Immobilien (Beispiel-Website)",immobili:"Immobilien · Domèa (Beispiel)",vendere:"Verkaufen · Domèa (Beispiel)",agenzia:"Zeiten & Kontakt · Domèa (Beispiel)",domande:"Fragen · Domèa (Beispiel)",titolare:"Ansicht für die Agentur · Domèa (Beispiel)"},
+desc:{home:"Beispiel-Website von Celea für eine erfundene Immobilienagentur: Der Assistent beantwortet Anfragen zu Inseraten rund um die Uhr, qualifiziert Interessenten, vereinbart, verschiebt und storniert Besichtigungen und schickt Erinnerungen mit Adresse und Namen des Maklers.",titolare:"Was die Agentur morgens vorfindet: qualifizierte Interessenten, Besichtigungen im Kalender, Absagen und Erinnerungen. Beispieldaten."},
+ui:{menu:"Menü",skip:"Zum Inhalt",fab:"Der Agentur schreiben",placeholder:"Frage eingeben…",send:"Senden",close:"Chat schließen",typing:"schreibt…",demoNote:"Demo: vorbereitete Antworten, nichts wird gesendet oder gespeichert.",ownerLink:"Was die Agentur sieht →",liveEmpty:"Noch nichts: Probieren Sie den Chat (zum Beispiel «Besichtigung verschieben oder absagen») und kommen Sie hierher zurück.",livePill:"aus dem Chat dieser Seite",newEvents:"Neuigkeiten für die Agentur",langs:"Sprache"},
+chat:{name:"Assistent von Domèa",sub:"Virtueller Assistent · Demo",fb:"fb",
+end:[["Neu starten","start"],["Was die Agentur sieht","__owner"]],
+kw:[[/absag|stornier|nicht kommen/i,"dd"],[/verschieb|änder|umbuch/i,"sd"],[/erinner/i,"pr"],[/verkauf|bewert|schätz/i,"vv"],[/makler|person|mensch|sprechen|rückruf|zurückrufen/i,"ag"],[/öffnungs|geöffnet|offen|geschlossen|samstag|zeiten/i,"or"],[/provision|kosten/i,"pz"],[/villa|garten/i,"anV"],[/penthouse|meer/i,"anA"],[/zweizimmer|marina/i,"anB"],[/dreizimmer|terrasse|verfügbar|inserat|immobilie|haus|wohnung|besichtig|ansehen/i,"anT"],[/englisch|italienisch|sprache/i,"lg"]],
+flows:{
+start:{a:["%HI%, ich bin der virtuelle Assistent von Domèa Immobilien. Ich kann Ihnen Auskunft zu einer Immobilie geben, eine Besichtigung vereinbaren, verschieben oder absagen und die Daten für eine Bewertung aufnehmen."],o:[["Eine Immobilie, die ich gesehen habe","anT"],["Besichtigung verschieben oder absagen","sd"],["Erinnerung ansehen","pr"],["Ich möchte verkaufen","vv"],["Mit einem Makler sprechen","ag"]]},
+fb:{a:["Entschuldigung, ich bin ein Demo-Assistent mit vorbereiteten Antworten und habe das nicht verstanden. Ich helfe Ihnen gern hierbei:"],o:[["Eine Immobilie, die ich gesehen habe","anT"],["Besichtigung verschieben oder absagen","sd"],["Ich möchte verkaufen","vv"],["Mit einem Makler sprechen","ag"]]},
+anT:{u:"Ich habe die Dreizimmerwohnung mit Terrasse in der Altstadt gesehen. Ist sie noch verfügbar?",a:["Ja, sie ist verfügbar: 95 m² im dritten Stock mit Aufzug, Terrasse 20 m², Energieklasse C, Preis 285.000 €.","Damit ich die passende Besichtigung vorschlage: Würden Sie mit einem Kredit kaufen?"],o:Q_DE},
+anB:{u:"Mich interessiert die renovierte Zweizimmerwohnung im Viertel Marina.",a:["Sie ist verfügbar: 58 m² im ersten Stock, frisch renoviert, Energieklasse B, Preis 189.000 €.","Damit ich die passende Besichtigung vorschlage: Würden Sie mit einem Kredit kaufen?"],o:Q_DE},
+anV:{u:"Ich hätte gern Informationen zur Villa mit Garten.",a:["Sie ist verfügbar: 210 m² mit 600 m² Garten und Doppelgarage, Energieklasse D, Preis 545.000 €.","Damit ich die passende Besichtigung vorschlage: Würden Sie mit einem Kredit kaufen?"],o:Q_DE},
+anA:{u:"Ist das Penthouse mit Meerblick noch zu verkaufen?",a:["Ja: 120 m² im obersten Geschoss mit 60 m² Terrassen, Energieklasse A, Preis 690.000 €.","Damit ich die passende Besichtigung vorschlage: Würden Sie mit einem Kredit kaufen?"],o:Q_DE},
+qA:{u:"Ja, der Kredit ist genehmigt.",a:["Sehr gut, das beschleunigt alles. Bis wann möchten Sie umziehen?"],o:[["Innerhalb von 3 Monaten","t3"],["Innerhalb eines Jahres","t12"]]},
+qB:{u:"Ja, aber noch nicht beantragt.",a:["Kein Problem: Der Makler kann Ihnen auch einen Finanzierungsberater empfehlen. Bis wann möchten Sie umziehen?"],o:[["Innerhalb von 3 Monaten","t3"],["Innerhalb eines Jahres","t12"]]},
+qC:{u:"Nein, ohne Kredit.",a:["Perfekt. Bis wann möchten Sie umziehen?"],o:[["Innerhalb von 3 Monaten","t3"],["Innerhalb eines Jahres","t12"]]},
+t3:{u:"Innerhalb von 3 Monaten.",a:["Danke. Ich kann Ihnen eine Besichtigung am Samstag um 10:30 oder am Montag um 18:00 mit unserem Makler Paolo anbieten."],o:[["Samstag 10:30","v1"],["Montag 18:00","v2"]]},
+t12:{u:"Innerhalb eines Jahres.",a:["Danke, so bleibt Zeit für eine gute Wahl. Ich kann Ihnen eine Besichtigung am Samstag um 10:30 oder am Montag um 18:00 mit unserem Makler Paolo anbieten."],o:[["Samstag 10:30","v1"],["Montag 18:00","v2"]]},
+v1:{u:"Samstag 10:30",a:["Bestätigt: Besichtigung am Samstag um 10:30 mit unserem Makler Paolo. Darf ich Ihren Vor- und Nachnamen notieren?","Danke. Am Freitag erhalten Sie eine WhatsApp-Erinnerung mit der genauen Adresse und Paolos Nummer."],s:"Besichtigung im Kalender · Kontaktkarte an den Makler übergeben",log:"Interessent aus einem Inserat, qualifiziert (Kredit und Zeitrahmen) · Besichtigung Samstag 10:30 mit Paolo"},
+v2:{u:"Montag 18:00",a:["Bestätigt: Besichtigung am Montag um 18:00 mit unserem Makler Paolo. Am Sonntag erhalten Sie eine WhatsApp-Erinnerung mit der genauen Adresse und Paolos Nummer."],s:"Besichtigung im Kalender · Kontaktkarte an den Makler übergeben",log:"Interessent aus einem Inserat, qualifiziert (Kredit und Zeitrahmen) · Besichtigung Montag 18:00 mit Paolo"},
+sd:{u:"Ich habe am Samstag um 10:30 eine Besichtigung der Wohnung in der Altstadt.",a:["Gefunden: Samstag um 10:30 mit unserem Makler Paolo. Möchten Sie sie verschieben oder absagen?"],o:[["Verschieben","sp"],["Absagen","dd"]]},
+sp:{u:"Ich möchte sie verschieben.",a:["Kein Problem. Ich kann Ihnen Samstag um 12:00 oder Dienstag um 18:30 anbieten."],o:[["Samstag 12:00","sp1"],["Dienstag 18:30","sp2"]]},
+sp1:{u:"Samstag 12:00",a:["Verschoben auf Samstag um 12:00. Ich habe Paolo informiert, und der Termin um 10:30 ist wieder frei für andere Kunden."],s:"Kalender des Maklers aktualisiert · Paolo informiert",log:"Besichtigung der Wohnung von Samstag 10:30 auf Samstag 12:00 verschoben · Makler informiert · Termin frei"},
+sp2:{u:"Dienstag 18:30",a:["Verschoben auf Dienstag um 18:30. Ich habe Paolo informiert, und der Termin am Samstag um 10:30 ist wieder frei für andere Kunden."],s:"Kalender des Maklers aktualisiert · Paolo informiert",log:"Besichtigung der Wohnung von Samstag 10:30 auf Dienstag 18:30 verschoben · Makler informiert · Termin frei"},
+dd:{u:"Ich möchte sie absagen.",a:["Selbstverständlich. Darf ich fragen, ob es nur am Termin liegt oder ob die Immobilie Sie nicht mehr überzeugt? Das hilft dem Makler, Ihnen passende Objekte vorzuschlagen."],o:[["Überzeugt mich nicht mehr","dd1"],["Nur der Termin","sp"]]},
+dd1:{u:"Die Immobilie überzeugt mich nicht mehr.",a:["Danke für Ihre Offenheit. Besichtigung abgesagt: Der Termin am Samstag um 10:30 ist wieder frei und Paolo ist informiert.","Möchten Sie ähnliche Immobilien per WhatsApp erhalten, sobald sie hereinkommen? Sie können die Nachrichten jederzeit mit STOP beenden."],s:"Besichtigung abgesagt · Termin frei · Makler informiert",log:"Absage: Besichtigung der Wohnung Samstag 10:30 · Termin frei · Grund: Immobilie überzeugt nicht",o:[["Ja, bitte","dd2"],["Nein, danke","dd3"]]},
+dd2:{u:"Ja, bitte.",a:["Erledigt: Ich schreibe Ihnen nur, wenn eine passende Immobilie hereinkommt. Bis bald!"],log:"Interessent für Hinweise auf neue Immobilien angemeldet, mit Einwilligung"},
+dd3:{u:"Nein, danke.",a:["In Ordnung. Schreiben Sie mir jederzeit hier oder per WhatsApp. Bis bald!"]},
+pr:{u:"Wie sieht die Erinnerung an die Besichtigung aus?",r:["Beispiel der Nachricht, die der Kunde am Vortag der Besichtigung per WhatsApp erhält","Erinnerung von Domèa Immobilien: Morgen, Samstag, um 10:30 Besichtigung der Wohnung in der Via del Porto 8 (Beispieladresse). Sie werden von unserem Makler Paolo begleitet, Mobil 000 000 0000.\nAntworten Sie 1 zum Bestätigen, 2 zum Verschieben, 3 zum Absagen.","WhatsApp · am Vortag"],a:["Der Kunde antwortet mit einer Zahl. Probieren Sie es aus:"],o:[["1 · Bestätigen","pr1"],["2 · Verschieben","sp"],["3 · Absagen","dd1"]]},
+pr1:{u:"1",a:["Danke, Besichtigung bestätigt. Paolo erwartet Sie morgen um 10:30 vor der Haustür."],s:"Bestätigung erfasst · Paolo informiert",log:"Erinnerung: Besichtigung Samstag 10:30 vom Kunden bestätigt"},
+vv:{u:"Ich möchte meine Immobilie verkaufen.",a:["Gern. Für die Bewertung: Um welche Art von Immobilie handelt es sich?"],o:[["Eine Wohnung","vv1"],["Ein freistehendes Haus","vv2"]]},
+vv1:{u:"Eine Wohnung.",a:["Danke. Ein Makler aus der Gegend sieht sie sich an und schlägt Ihnen unverbindlich einen realistischen Preis vor. Möchten Sie vormittags oder nachmittags zurückgerufen werden?"],o:[["Vormittags","vv3"],["Nachmittags","vv4"]]},
+vv2:{u:"Ein freistehendes Haus.",a:["Danke. Ein Makler aus der Gegend sieht es sich an und schlägt Ihnen unverbindlich einen realistischen Preis vor. Möchten Sie vormittags oder nachmittags zurückgerufen werden?"],o:[["Vormittags","vv3"],["Nachmittags","vv4"]]},
+vv3:{u:"Vormittags",a:["Perfekt: Der Makler ruft Sie morgen Vormittag an, um den Besichtigungstermin zu vereinbaren. Halten Sie, falls vorhanden, Grundriss und Baujahr bereit."],s:"Bewertungsanfrage an den Makler übergeben",log:"Neue Bewertungsanfrage · Rückruf morgen Vormittag"},
+vv4:{u:"Nachmittags",a:["Perfekt: Der Makler ruft Sie morgen Nachmittag an, um den Besichtigungstermin zu vereinbaren. Halten Sie, falls vorhanden, Grundriss und Baujahr bereit."],s:"Bewertungsanfrage an den Makler übergeben",log:"Neue Bewertungsanfrage · Rückruf morgen Nachmittag"},
+ag:{u:"Kann ich mit einem Makler sprechen?",a:["Natürlich. Möchten Sie einen Rückruf oder eine Antwort hier?"],o:[["Bitte zurückrufen","ag1"],["Antwort hier","ag2"]]},
+ag1:{u:"Bitte zurückrufen.",a:["In Ordnung: Ein Makler ruft Sie zur ersten Bürozeit zurück, mit der Zusammenfassung dieses Gesprächs vor sich."],s:"Anfrage an einen Makler weitergeleitet",log:"Rückruf: Der Kunde möchte mit einem Makler sprechen"},
+ag2:{u:"Antwort hier.",a:["In Ordnung: Ein Makler antwortet Ihnen hier so bald wie möglich während der Bürozeiten."],s:"Anfrage an einen Makler weitergeleitet",log:"Antwort im Chat: Frage für einen Makler"},
+or:{a:["Die Agentur ist Montag bis Freitag 9:00–13:00 und 15:30–19:30 geöffnet, Samstag 9:30–13:00. Besichtigungen auch am Samstagnachmittag nach Vereinbarung. Ich antworte rund um die Uhr."]},
+pz:{a:["Der Preis jeder Immobilie steht in ihrem Exposé. Für Verkäufer wird die Provision bei der Bewertung schriftlich mit dem Makler vereinbart. Möchten Sie mit einem Makler sprechen?"],o:[["Ja","ag"],["Nein, danke","start"]]},
+lg:{a:["Ich antworte auf Italienisch, Englisch und Deutsch: Schreiben Sie in der Sprache, die Ihnen lieber ist. Die Exposés gibt es auch auf Englisch und Deutsch."]}
+}},
+pages:{
+home:`<section class="hero"><div class="wrap">
+<div class="hero-text"><p class="label">Immobilienagentur · Beispiel</p>
+<h1>Das richtige Zuhause wartet nicht auf <em>Bürozeiten.</em></h1>
+<p class="lead">Immobilien in der Stadt, am Meer und in den Hügeln. Schreiben Sie uns, wann Sie möchten: Der Assistent beantwortet Fragen zu den Objekten, vereinbart die Besichtigung mit einem Makler, schickt Ihnen am Vortag eine Erinnerung und übergibt bei Bedarf an einen Menschen.</p>
+<div class="cta"><a class="btn" href="#de/immobili" data-go="immobili">Immobilien ansehen</a><a class="btn line" href="#de/vendere" data-go="vendere">Ich möchte verkaufen</a></div>
+<ul class="facts" aria-label="Kurz gesagt"><li>Per WhatsApp und auf der Website</li><li>Italienisch, Englisch und Deutsch</li><li>Besichtigungen auch samstags</li></ul></div>
+<div data-chat-slot></div></div></section>
+<section class="alt"><div class="wrap"><div class="head"><p class="label">Warum uns schreiben</p><h2>Jede Anfrage bekommt eine Antwort, jede Besichtigung eine Erinnerung.</h2></div>
+<div class="strip"><div><b>Antwort auch um 23 Uhr</b><p>Wer abends über ein Inserat schreibt, erhält sofort die Details und einen Besichtigungstermin.</p></div><div><b>Bereits qualifizierte Interessenten</b><p>Kredit, Zeitrahmen und Lage: Der Makler weiß vor dem Anruf, mit wem er spricht.</p></div><div><b>Besichtigungen, die stattfinden</b><p>Am Vortag eine Erinnerung mit Adresse und Namen des Maklers; mit einer Zahl bestätigen, verschieben oder absagen.</p></div></div></div></section>
+<section><div class="wrap"><div class="head"><p class="label">Ausgewählt</p><h2>Einige unserer Immobilien</h2><p class="lead">Beispielobjekte und -preise: Fragen Sie eine Besichtigung an und sehen Sie, wie der Assistent antwortet.</p></div>%P2%
+<p style="margin-top:22px"><a href="#de/immobili" data-go="immobili"><b>Alle Immobilien →</b></a></p></div></section>
+<section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">Für die Inhaber der Agentur</p><h2 style="margin-top:8px">Was findet die Agentur am Morgen vor?</h2><p style="margin-top:10px">Die Interessenten der Nacht bereits qualifiziert, Besichtigungen im Kalender, Absagen mit frei gewordenem Termin und bestätigte Erinnerungen. Alles auf einen Blick.</p></div><a class="btn" href="#de/titolare" data-go="titolare">Ansicht für die Agentur öffnen</a></div></div></section>`,
+immobili:`<section><div class="wrap"><div class="head"><p class="label">Immobilien</p><h1>Immobilien zum Verkauf</h1><p class="lead">Beispielobjekte und -preise. Für jedes können Sie eine Besichtigung anfragen: Der Assistent stellt zwei Fragen und schlägt einen Termin mit einem Makler vor.</p></div>%P4%</div></section>`,
+vendere:`<section><div class="wrap"><div class="head"><p class="label">Verkaufen</p><h1>Verkaufen zu einem realistischen Preis</h1><p class="lead">Drei Schritte, mit einem Makler, der Sie von Anfang bis Ende begleitet.</p></div>
+<ol class="steps"><li><h3>Bewertung</h3><p>Der Makler besichtigt Ihre Immobilie, prüft die Unterlagen und schlägt Ihnen unverbindlich einen realistischen Preis vor.</p></li><li><h3>Vermarktung und Besichtigungen</h3><p>Fotos, Grundriss und Inserate. Der Assistent beantwortet Anfragen rund um die Uhr und vereinbart nur Besichtigungen mit wirklich Interessierten.</p></li><li><h3>Verhandlung und Notartermin</h3><p>Schriftliche Angebote, Einigung und Begleitung bis zum Notar.</p></li></ol></div></section>
+<section class="alt"><div class="wrap grid2"><div class="kv"><p class="label">Transparenz</p><h2>Immer schriftlich</h2><p class="muted" style="margin-top:12px">Die Provision wird vor Beginn schriftlich vereinbart. Nach jeder Besichtigung berichten wir Ihnen, wie sie verlaufen ist.</p></div>
+<div class="kv"><p class="label">Bewertung</p><h2>Beginnen Sie hier</h2><p class="muted" style="margin-top:12px">Der Assistent nimmt die wichtigsten Daten auf und ein Makler ruft Sie zurück, um den Termin zu vereinbaren.</p><div class="cta" style="margin-top:16px"><a class="btn" href="#de" data-chat="vv">Bewertung anfragen</a></div></div></div></section>`,
+agenzia:`<section><div class="wrap"><div class="head"><p class="label">Zeiten & Kontakt</p><h1>Wann wir im Büro sind</h1></div>
+<div class="grid2"><table aria-label="Bürozeiten"><tbody><tr><th scope="row">Montag – Freitag</th><td>9:00–13:00 · 15:30–19:30</td></tr><tr><th scope="row">Samstag</th><td>9:30–13:00</td></tr><tr><th scope="row">Besichtigungen</th><td>auch Samstagnachmittag nach Vereinbarung</td></tr><tr><th scope="row">Sonntag</th><td>geschlossen</td></tr><tr><th scope="row">Virtueller Assistent</th><td>immer aktiv</td></tr></tbody></table>
+<div class="kv" style="gap:14px"><div class="kv"><span class="muted">Adresse (erfunden)</span><span class="v">Corso dell'Esempio 40, Città</span></div><div class="kv"><span class="muted">Telefon und WhatsApp (erfunden)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Gebiete</span><span class="v">Altstadt, Marina, Strandpromenade, Hügellage</span></div><div class="kv"><span class="muted">Makler (Beispielnamen)</span><span class="v">Paolo und Marta</span></div></div></div></div></section>`,
+domande:`<section><div class="wrap"><div class="head"><p class="label">Fragen</p><h1>Häufige Fragen</h1></div><div class="faq">
+<details><summary>Mit wem spreche ich, wenn ich abends schreibe?</summary><div class="ans"><p>Mit dem virtuellen Assistenten der Agentur, der sich immer als solcher vorstellt. Er beantwortet Fragen zu den Immobilien, vereinbart, verschiebt und storniert Besichtigungen und übergibt das Gespräch bei Bedarf an einen Makler.</p></div></details>
+<details><summary>Warum fragt der Assistent nach einem Kredit?</summary><div class="ans"><p>Um Ihnen die passenden Immobilien und Besichtigungen vorzuschlagen und damit der Makler schon weiß, wie er helfen kann. Sie können jederzeit sagen, dass Sie das lieber mit dem Makler besprechen.</p></div></details>
+<details><summary>Kann ich eine Besichtigung per WhatsApp verschieben oder absagen?</summary><div class="ans"><p>Ja, rund um die Uhr. Der Makler wird sofort informiert und der Termin wird für andere Kunden frei.</p></div></details>
+<details><summary>Was steht in der Erinnerung?</summary><div class="ans"><p>Tag, Uhrzeit, Adresse der Immobilie sowie Name und Nummer des begleitenden Maklers. Antworten Sie 1 zum Bestätigen, 2 zum Verschieben, 3 zum Absagen.</p></div></details>
+<details><summary>Kann der Assistent über den Preis verhandeln?</summary><div class="ans"><p>Nein. Angebote und Verhandlungen führt immer ein Makler, schriftlich.</p></div></details>
+<details><summary>Sprechen Sie Englisch oder Deutsch?</summary><div class="ans"><p>Der Assistent antwortet auf Italienisch, Englisch und Deutsch, und die Exposés gibt es ebenfalls in beiden Sprachen.</p></div></details>
+</div></div></section>`,
+titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Ansicht für die Agentur</p><h1>Was der Assistent erledigt hat, während die Agentur geschlossen war</h1><p class="lead">Jeden Morgen findet die Agentur die Interessenten der Nacht bereits qualifiziert vor, Besichtigungen im Kalender mit versendeten Erinnerungen und Absagen mit frei gewordenem Termin. Die Makler rufen zuerst die an, die bereit sind.</p><span class="ex">Beispieldaten: Agentur, Kunden und Makler sind erfunden</span></div>
+<div class="kpis"><div class="kpi"><b>14</b><span>Anfragen zu Inseraten zwischen 19:30 und 9:00</span></div><div class="kpi"><b>6</b><span>qualifizierte Interessenten (Kredit, Zeitrahmen, Lage)</span></div><div class="kpi"><b>3</b><span>Besichtigungen fürs Wochenende vereinbart</span></div><div class="kpi"><b>1</b><span>Besichtigung abgesagt, Termin neu vergeben</span></div></div>
+<div class="owner-grid"><div class="panel"><h3>Besichtigungen von morgen und Erinnerungen</h3><div class="rows">
+<div class="row"><time>09:30</time><div class="t">Zweizimmerwohnung Marina · C. D. · Maklerin Marta<br><span class="pill ok">Per WhatsApp bestätigt</span></div></div>
+<div class="row"><time>10:30</time><div class="t">Wohnung Altstadt · E. V. · Makler Paolo<br><span class="pill ok">Per WhatsApp bestätigt</span></div></div>
+<div class="row"><time>12:00</time><div class="t">Wohnung Altstadt · F. N. · Makler Paolo<small>Termin durch eine Absage um 21:30 frei geworden, um 22:14 von einem neuen Interessenten übernommen</small><span class="pill ok">Neu vergeben</span></div></div>
+<div class="row"><time>16:00</time><div class="t">Villa Hügellage · R. S. · Maklerin Marta<br><span class="pill wait">Erinnerung gesendet, Antwort offen</span></div></div>
+<div class="row"><time>17:30</time><div class="t">Penthouse Strandpromenade · B. L. · Makler Paolo<br><span class="pill alert">Keine Antwort: anrufen</span></div></div></div></div>
+<div class="phone" aria-label="Beispiel einer WhatsApp-Erinnerung"><div class="scr"><div class="who">Domèa Immobilien</div><div class="bub">Erinnerung von Domèa Immobilien: Morgen um 10:30 Besichtigung der Wohnung in der Via del Porto 8. Es begleitet Sie Makler Paolo, 000 000 0000.
+Antworten Sie 1 zum Bestätigen, 2 zum Verschieben, 3 zum Absagen.</div><div class="bub me">1</div><div class="bub">Danke, Besichtigung bestätigt. Paolo erwartet Sie vor der Haustür.</div></div></div></div>
+<div class="owner-grid" style="margin-top:16px"><div class="panel"><h3>Neue Interessenten der Nacht</h3><div class="rows">
+<div class="row"><time>23:12</time><div class="t">Wohnung Altstadt · Kredit genehmigt, innerhalb von 3 Monaten<small>Besichtigung am Samstag um 12:00 vereinbart</small><span class="pill ok">Bereit</span></div></div>
+<div class="row"><time>00:40</time><div class="t">Villa Hügellage · muss zuerst die eigene Immobilie verkaufen<small>Bewertung der eigenen Immobilie angeboten</small><span class="pill wait">Weiter betreuen</span><span class="pill wait">Möglicher Verkäufer</span></div></div>
+<div class="row"><time>22:30</time><div class="t">Bewertungsanfrage · Wohnung mit etwa 110 m²<small>Bittet um Rückruf am Vormittag</small><span class="pill alert">Heute zurückrufen</span></div></div>
+<div class="row"><time>07:55</time><div class="t">Wohnung Marina · sucht zur Miete, nicht zum Kauf<small>Freundlich beantwortet, keine Besichtigung</small><span class="pill wait">Passt nicht</span></div></div></div></div>
+<div class="panel"><h3>Aus dem Chat dieser Seite</h3><p class="muted small">Probieren Sie den Chat: Jede Aktion erscheint hier, so wie die Agentur sie sehen würde.</p><div class="rows live" data-live></div><a class="btn sm" href="#de" data-chat="sd">Besichtigung verschieben oder absagen testen</a></div></div>
+<div class="panel" style="margin-top:16px"><h3>Was der Assistent nie tut</h3><p class="muted">Er verhandelt nie über den Preis und verspricht keine Rabatte. Er gibt keine Rechts- oder Steuerberatung. Er stellt sich immer als virtueller Assistent vor. Er übergibt an einen Makler, wenn der Kunde es wünscht oder wenn es nötig ist.</p></div>
+</div></section>
+<section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Möchten Sie das für Ihre Agentur sehen?</h2><p style="margin-top:10px">Diese Website ist ein Beispiel von Celea. Die Demo des Assistenten und alle Preise finden Sie auf der Website von Celea.</p></div><a class="btn" href="${CELEA}#de">Zur Website von Celea</a></div></div></section>`
+},
+footer:`<div class="wrap cols"><div><p><b>Dies ist eine Demo-Website.</b> Domèa Immobilien gibt es nicht: Es ist ein Beispiel von Celea, das zeigt, wie die Website einer Immobilienagentur aussehen kann, mit einem Assistenten, der Anfragen zu Inseraten beantwortet, Interessenten qualifiziert, Besichtigungen vereinbart, verschiebt und storniert und Erinnerungen verschickt. Immobilien, Preise, Makler und Zahlen sind Beispiele.</p></div>
+<div><p>Eine solche Website entspricht der <b>mehrsprachigen Premium-Website</b> von Celea (10 Seiten auf Italienisch, Englisch und Deutsch): 1.990 € + 79 €/Monat. Der Website-Assistent kommt zur Rezeption hinzu: 49 €/Monat + 90 € Einrichtung. Einfachere Variante: Präsentations-Website, 990 € + 49 €/Monat. Preise ohne MwSt.</p><p style="margin-top:10px"><a href="${CELEA}#de">Demo und alle Preise von Celea</a></p></div></div>`
+};
+
+["it","en","de"].forEach(function(l){ var P=SITE.i18n[l].pages; P.home=P.home.replace("%P2%",cards(l,2)); P.immobili=P.immobili.replace("%P4%",cards(l,4)); });
+})();
+
+</script>
+<script>
+(function(){
+  "use strict";
+  var S=window.SITE, LANGS=["it","en","de"];
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $=function(s,r){return (r||document).querySelector(s);};
+  var lang="it", page="home", L=S.i18n.it, events=[], seen=0, firstRender=true;
+
+  /* ---------- chat ---------- */
+  var chat=$("#chat"), log=$("#log"), opts=$("#opts"), form=$("#chat-form"), input=$("#chat-input");
+  var slotHome=$("#chat-park"), dock=$("#dock"), fab=$("#fab"), run=0;
+  function greet(){
+    var h=new Date().getHours();
+    if(lang==="it") return (h>=5&&h<18)?"Buongiorno":"Buonasera";
+    if(lang==="en") return h>=5&&h<12?"Good morning":(h>=12&&h<18?"Good afternoon":"Good evening");
+    return h>=5&&h<11?"Guten Morgen":(h>=11&&h<18?"Guten Tag":"Guten Abend");
+  }
+  function fill(t){return t.replace(/%HI%/g,greet());}
+  function add(cls,t,tag){
+    var d=document.createElement("div"); d.className="m "+cls;
+    if(tag){var s=document.createElement("span");s.className="tag";s.textContent=tag;d.appendChild(s);}
+    d.appendChild(document.createTextNode(fill(t))); log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
+  }
+  function wait(ms){return new Promise(function(r){setTimeout(r,reduce?40:ms);});}
+  function note(text){
+    var d=new Date(), hh=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+    events.unshift({t:hh,text:text,lang:lang}); renderLive(); badge();
+  }
+  async function go(k,silentUser){
+    var C=L.chat, n=C.flows[k]; if(!n){n=C.flows[C.fb];}
+    var id=++run; opts.innerHTML="";
+    if(n.u&&!silentUser) add("u",n.u);
+    if(n.r){ await wait(300); if(id!==run) return; add("s",n.r[0]); await wait(500); if(id!==run) return; add("r",n.r[1],n.r[2]); }
+    var a=n.a||[];
+    for(var i=0;i<a.length;i++){
+      var ty=document.createElement("div"); ty.className="typing"; ty.textContent=L.ui.typing; log.appendChild(ty); log.scrollTop=log.scrollHeight;
+      await wait(Math.min(1300,450+a[i].length*7)); ty.remove(); if(id!==run) return; add("a",a[i]);
+    }
+    if(n.s){await wait(300); if(id!==run) return; add("s",n.s);}
+    if(n.log){note(n.log);}
+    var list=n.o||C.end;
+    list.forEach(function(o){
+      var b=document.createElement("button"); b.type="button"; b.textContent=o[0];
+      b.addEventListener("click",function(){ if(o[1]==="__owner"){navigate("titolare");return;} if(o[1]==="start"){log.innerHTML="";} go(o[1]); });
+      opts.appendChild(b);
+    });
+  }
+  function startChat(){ log.innerHTML=""; go("start"); }
+  form.addEventListener("submit",function(e){
+    e.preventDefault(); var q=input.value.trim(); if(!q) return; input.value="";
+    add("u",q); var C=L.chat, key=C.fb;
+    for(var i=0;i<C.kw.length;i++){ if(C.kw[i][0].test(q)){ key=C.kw[i][1]; break; } }
+    go(key,true);
+  });
+  function openDock(){ dock.hidden=false; fab.classList.remove("show"); chat.setAttribute("role","dialog"); chat.setAttribute("aria-modal","false"); setTimeout(function(){input.focus();},30); }
+  function closeDock(){ dock.hidden=true; if(page!=="home") fab.classList.add("show"); fab.focus(); }
+  fab.addEventListener("click",openDock);
+  $("#chat-x").addEventListener("click",closeDock);
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!dock.hidden) closeDock(); });
+  function placeChat(){
+    var slot=$("[data-chat-slot]",$("#main"));
+    if(slot){ slot.appendChild(chat); dock.hidden=true; fab.classList.remove("show"); $("#chat-x").hidden=true; chat.removeAttribute("role"); }
+    else { dock.appendChild(chat); $("#chat-x").hidden=false; if(dock.hidden) fab.classList.add("show"); }
+  }
+  function openChatWith(k){
+    if(!$("[data-chat-slot]",$("#main"))) openDock(); else chat.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});
+    log.innerHTML=""; go(k);
+  }
+
+  /* ---------- vista del titolare: registro in tempo reale ---------- */
+  function renderLive(){
+    var box=$("[data-live]"); if(!box) return;
+    box.setAttribute("data-empty",L.ui.liveEmpty); box.innerHTML="";
+    events.forEach(function(ev){
+      var r=document.createElement("div"); r.className="row";
+      var t=document.createElement("time"); t.textContent=ev.t;
+      var x=document.createElement("div"); x.className="t"; x.textContent=ev.text;
+      var p=document.createElement("span"); p.className="pill ok"; p.textContent=L.ui.livePill; x.appendChild(document.createElement("br")); x.appendChild(p);
+      r.appendChild(t); r.appendChild(x); box.appendChild(r);
+    });
+  }
+  function badge(){
+    document.querySelectorAll("[data-badge]").forEach(function(b){
+      var n=page==="titolare"?0:events.length-seen; b.textContent=n>0?n:""; b.hidden=!(n>0);
+      b.setAttribute("aria-label",n>0?(n+" "+L.ui.newEvents):"");
+    });
+  }
+
+  /* ---------- pagine ---------- */
+  function href(p,lg){ lg=lg||lang; var a=(lg==="it"?"":lg+"/")+(p==="home"?"":p); return "#"+(a.replace(/\/$/,"")||"home"); }
+  function navigate(p,lg){ var h=href(p,lg); if(location.hash===h){route();} else location.hash=h; }
+  function buildNav(){
+    var nav=$("#nav"), dn=$("#drawer-nav"); nav.innerHTML=""; dn.innerHTML="";
+    L.nav.forEach(function(it){
+      [nav,dn].forEach(function(box){
+        var a=document.createElement("a"); a.href=href(it[0]); a.setAttribute("data-go",it[0]); a.textContent=it[1];
+        if(it[0]==="titolare"){var b=document.createElement("span");b.className="badge";b.setAttribute("data-badge","");b.hidden=true;a.appendChild(b);}
+        if(it[0]===page) a.setAttribute("aria-current","page");
+        box.appendChild(a);
+      });
+    });
+    $("#menu-btn").setAttribute("aria-label",L.ui.menu); $("#hcta").textContent=L.cta; $("#hcta").href=href("home");
+    $("#band").innerHTML=L.band; $("#back").textContent=L.back; $("#skip").textContent=L.ui.skip;
+    $("#fab-t").textContent=L.ui.fab; $("#chat-input").placeholder=L.ui.placeholder; $("#chat-input").setAttribute("aria-label",L.ui.placeholder);
+    $("#chat-send").textContent=L.ui.send; $("#chat-name").textContent=L.chat.name; $("#chat-sub").textContent=L.chat.sub;
+    $("#chat-note").textContent=L.ui.demoNote; $("#chat-owner").textContent=L.ui.ownerLink; $("#chat-owner").href=href("titolare");
+    $("#chat-x").setAttribute("aria-label",L.ui.close); $("#log").setAttribute("aria-label",L.chat.name);
+    $("#foot").innerHTML=L.footer;
+    document.querySelectorAll(".langs button").forEach(function(b){ b.setAttribute("aria-pressed",b.dataset.l===lang?"true":"false"); });
+    $("#langs").setAttribute("aria-label",L.ui.langs);
+    badge();
+  }
+  function route(){
+    var h=decodeURIComponent(location.hash.slice(1)), parts=h.split("/"), lg="it", p;
+    if(LANGS.indexOf(parts[0])>=0){ lg=parts[0]; p=parts[1]||"home"; } else { p=parts[0]||"home"; }
+    if(!S.i18n[lg].pages[p]) p="home";
+    var langChanged=lg!==lang||firstRender; lang=lg; L=S.i18n[lang]; page=p;
+    if(page==="titolare") seen=events.length;
+    document.documentElement.lang=lang;
+    var main=$("#main"); if(main.contains(chat)) $("#chat-park").appendChild(chat); main.innerHTML=L.pages[page];
+    document.title=L.titles[page];
+    var md=$('meta[name="description"]'); if(md) md.setAttribute("content",L.desc[page]||L.desc.home);
+    buildNav(); $("#drawer-nav").classList.remove("open"); $("#menu-btn").setAttribute("aria-expanded","false");
+    placeChat();
+    if(langChanged){ events=events.filter(function(e){return e.lang===lang;}); seen=Math.min(seen,events.length); startChat(); }
+    renderLive(); badge();
+    if(S.init) S.init(lang,page,main);
+    if(!firstRender){ window.scrollTo(0,0); var h1=$("h1",main); if(h1){h1.setAttribute("tabindex","-1");h1.focus({preventScroll:true});} }
+    firstRender=false;
+  }
+  document.addEventListener("click",function(e){
+    var a=e.target.closest("[data-go],[data-chat],[data-l],#skip");
+    if(!a) return;
+    if(a.id==="skip"){ e.preventDefault(); var m=$("#main"); m.focus(); return; }
+    if(a.hasAttribute("data-l")){ e.preventDefault(); navigate(page,a.dataset.l); return; }
+    if(a.hasAttribute("data-chat")){ e.preventDefault(); openChatWith(a.getAttribute("data-chat")); return; }
+    if(a.hasAttribute("data-go")){ e.preventDefault(); navigate(a.getAttribute("data-go")); }
+  });
+  $("#menu-btn").addEventListener("click",function(){ var d=$("#drawer-nav"), o=!d.classList.contains("open"); d.classList.toggle("open",o); this.setAttribute("aria-expanded",o?"true":"false"); });
+  window.addEventListener("hashchange",route);
+  route();
+})();
+
+</script>
+
+
+</body>
+</html>
