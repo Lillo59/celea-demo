@@ -22,7 +22,7 @@ def font_face(fam):
             nome = f'{pre}-{sub}-{"wght" if p == "wght" else p}-normal.woff2'
             shutil.copy(os.path.join(FONTPKG, pkg, 'package', 'files', nome), os.path.join(RADICE, 'fonts', nome))
             w = rng if p == 'wght' else p
-            out.append(f'@font-face{{font-family:"{fam}";src:url("../fonts/{nome}") format("woff2");font-weight:{w};font-style:normal;font-display:swap;unicode-range:{ur}}}')
+            out.append(f'@font-face{{font-family:"{fam}";src:url("../fonts/{nome}") format("woff2");font-weight:{w};font-style:normal;font-display:optional;unicode-range:{ur}}}')
     return '\n'.join(out)
 
 TEL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'

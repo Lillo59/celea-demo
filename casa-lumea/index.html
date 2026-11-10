@@ -10,12 +10,17 @@
 <title>Casa Lumèa · B&B sul mare (sito di esempio)</title>
 <meta name="description" content="Sito di esempio realizzato da Celea per un B&B inventato: camere, arrivo e self check-in, assistente virtuale che risponde agli ospiti in tre lingue, gestisce cancellazioni e messaggi prima dell'arrivo, e la vista del titolare.">
 <meta name="robots" content="noindex">
+<link rel="preload" href="../fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>setTimeout(function(){document.documentElement.classList.add("r-ok")},2000)</script>
 <style>
+/* finché lo script non ha disegnato la pagina, fascia d'esempio e piè di pagina restano invisibili (evita il salto al caricamento) */
+html:not(.r-ok) .sample,html:not(.r-ok) footer.site{visibility:hidden}
 /* RESTYLING-2026-11: caratteri inclusi nel sito (licenza OFL), prima non venivano caricati */
-@font-face{font-family:"Young Serif";src:url("../fonts/young-serif-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Young Serif";src:url("../fonts/young-serif-latin-ext-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:"Nunito Sans";src:url("../fonts/nunito-sans-latin-wght-normal.woff2") format("woff2");font-weight:200 1000;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Nunito Sans";src:url("../fonts/nunito-sans-latin-ext-wght-normal.woff2") format("woff2");font-weight:200 1000;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Young Serif";src:url("../fonts/young-serif-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:optional;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Young Serif";src:url("../fonts/young-serif-latin-ext-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:optional;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Nunito Sans";src:url("../fonts/nunito-sans-latin-wght-normal.woff2") format("woff2");font-weight:200 1000;font-style:normal;font-display:optional;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Nunito Sans";src:url("../fonts/nunito-sans-latin-ext-wght-normal.woff2") format("woff2");font-weight:200 1000;font-style:normal;font-display:optional;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
 :root{--bg:#F7F2EA;--surface:#FFFDF9;--ink:#2A2620;--muted:#5F574C;--line:#E6DDD0;--acc:#4E5F2A;--acc-ink:#FFFFFF;--acc-text:#4E5F2A;--label:#8A4A2A;--soft:#EEE7D8;--warn:#A1470F;--band:#2A2620;--band-ink:#F7F2EA;--shadow:rgba(42,38,32,.13);--ok-bg:#E1E8CF;--ok-ink:#33401A;--wa-bg:#0B141A;--wa-bub:#FFFFFF;--f-display:'Young Serif',Georgia,serif;--f-body:'Nunito Sans',ui-sans-serif,system-ui,sans-serif;--w-display:400;--w-h3:800;--track:-.01em;--r:20px;}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171511;--surface:#211E18;--ink:#F1ECE3;--muted:#B5AB9C;--line:#352F26;--acc:#C3D08F;--acc-ink:#1C2108;--acc-text:#CAD69A;--label:#E3A17E;--soft:#2A261E;--warn:#A1470F;--band:#0F0D0A;--band-ink:#F1ECE3;--shadow:rgba(0,0,0,.45);--ok-bg:#37431E;--ok-ink:#E5EDC9;--wa-bg:#0B141A;--wa-bub:#FFFFFF;color-scheme:dark}}
@@ -194,9 +199,44 @@ footer.site .cols{display:grid;gap:18px}
 @media (min-width:1020px) and (max-width:1239px){.hcta{display:none}}
 
 h3{font-family:var(--f-body)}.hero h1 em{font-style:normal;color:var(--label)}.steps li::before,.kpi b{font-weight:400}.rooms{display:grid;gap:18px}@media (min-width:760px){.rooms{grid-template-columns:1fr 1fr}}.room{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;min-width:0}.room .art{background:var(--soft);aspect-ratio:16/8;color:var(--acc-text)}.room .art svg{width:100%;height:100%}.room .body{padding:20px;display:grid;gap:8px}.room ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}.room li{border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:.85rem;color:var(--muted)}.room .from{font-weight:800}
+
+/* Siti di esempio di Celea · aggiunte del restyling 2026-11 (scena animata e «Parla ora»).
+   Usa i colori e i caratteri di ogni demo (variabili --acc, --surface, --soft, --ink, --muted, --line, --f-display, --f-body):
+   ogni demo resta con la sua identità. */
+.scena-demo .scena-grid{display:grid;gap:28px;align-items:center}
+@media (min-width:900px){.scena-demo .scena-grid{grid-template-columns:.95fr 1.05fr;gap:56px}}
+.sc-stage{position:relative;display:grid;justify-items:center;padding:6px 0 18px}
+.sc-phone{width:min(330px,100%);border-radius:34px;background:var(--ink);padding:10px;box-shadow:0 30px 60px -34px rgba(0,0,0,.55)}
+.sc-screen{border-radius:26px;overflow:hidden;background:var(--soft);display:flex;flex-direction:column;min-height:400px}
+.sc-bar{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--surface);border-bottom:1px solid var(--line)}
+.sc-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:var(--acc-ink);font:700 1rem var(--f-display);flex:none}
+.sc-bar b{font-family:var(--f-display);font-size:1.02rem;color:var(--ink);display:block;line-height:1.1}
+.sc-bar small{font-size:.78rem;color:var(--muted)}
+.sc-msgs{list-style:none;margin:0;padding:14px 12px;display:flex;flex-direction:column;gap:8px;flex:1;justify-content:flex-end}
+.sc-msgs li{max-width:86%;padding:9px 12px;border-radius:16px;font-size:.9rem;line-height:1.38;color:var(--ink)}
+.sc-msgs .me{align-self:flex-end;background:var(--surface);border-bottom-right-radius:5px;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.sc-msgs .ai{align-self:flex-start;background:var(--acc);color:var(--acc-ink);border-bottom-left-radius:5px}
+.sc-msgs .ai b{display:block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:2px}
+.sc-card{position:relative;z-index:2;width:min(300px,92%);margin-top:-46px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:0 18px 40px -26px rgba(0,0,0,.5)}
+.sc-k{font:700 .78rem var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--label,var(--acc-text));margin:0 0 6px}
+.sc-row{display:grid;grid-template-columns:48px 1fr;gap:10px;align-items:center;min-height:38px;border-top:1px dashed var(--line)}
+.sc-row time{font:700 .82rem var(--f-body);color:var(--muted);font-variant-numeric:tabular-nums}
+.sc-row i{display:block;height:8px;border-radius:4px;background:var(--soft);width:60%}
+.sc-ev{display:block;margin:5px 0;padding:6px 10px;border-radius:10px;background:var(--soft);border-left:4px solid var(--acc);font-weight:700;font-size:.9rem;color:var(--ink)}
+.sc-ev small{display:block;font-weight:600;font-size:.76rem;color:var(--muted)}
+.sc-chip{position:relative;z-index:3;margin-top:10px;display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.84rem;font-weight:700;color:var(--ink);box-shadow:0 10px 24px -18px rgba(0,0,0,.5)}
+.sc-chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.sc-nota{font-size:.86rem;color:var(--muted);margin-top:12px}
+@media (min-width:900px){.sc-stage{grid-template-columns:auto auto;justify-content:center;align-items:end}.sc-card{margin:0 0 54px -40px}.sc-chip{position:absolute;right:0;top:10px;margin:0}}
+/* passi: senza JavaScript o con «riduci movimento» resta il fotogramma finale */
+.sc-stage.playing [data-at]{transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+.sc-stage.playing [data-at]:not(.on){opacity:0;transform:translateY(10px)}
+/* «Parla ora» con l'assistente della demo */
+.btn.parla{gap:10px}
+.btn.parla svg{width:18px;height:18px}
+.parla-msg{font-size:.86rem;color:var(--muted);margin-top:8px;min-height:1.2em}
+@media (prefers-reduced-motion:reduce){.sc-stage [data-at]{opacity:1!important;transform:none!important}}
 </style>
-<link rel="stylesheet" href="../celea-demo.css">
-<script src="../celea-demo.js" defer></script>
 <a class="skip" id="skip" href="#home">Vai al contenuto</a>
 <div class="sample" role="note"><div class="wrap"><span id="band"></span><a id="back" href="https://www.celea.it/">Torna al sito di Celea</a></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 24 24"><circle cx="12" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v1.5M4.5 10H3M21 10h-1.5M6.7 4.7l1 1M17.3 4.7l-1 1M3 17c3-2 6 2 9 0s6 2 9 0M5 21c2.4-1.5 4.8 1.5 7 0s4.6 1.5 7 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol></svg>
@@ -659,10 +699,12 @@ footer:`<div class="wrap cols"><div><p><b>Dies ist eine Demo-Website.</b> Die Ca
   $("#menu-btn").addEventListener("click",function(){ var d=$("#drawer-nav"), o=!d.classList.contains("open"); d.classList.toggle("open",o); this.setAttribute("aria-expanded",o?"true":"false"); });
   window.addEventListener("hashchange",route);
   route();
+  document.documentElement.classList.add("r-ok"); // pagina pronta: compaiono fascia e piè di pagina (niente salti)
 })();
 
 </script>
 
 
+<script src="../celea-demo.js" defer></script>
 </body>
 </html>
