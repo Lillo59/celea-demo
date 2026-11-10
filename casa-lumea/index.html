@@ -243,7 +243,7 @@ back:"Torna al sito di Celea",
 cta:"Verifichi le date",
 nav:[["home","Home"],["camere","Camere"],["soggiorno","Arrivo e servizi"],["dove","Dove siamo"],["domande","Domande"],["titolare","Vista del titolare"]],
 titles:{home:"Casa Lumèa · B&B sul mare (sito di esempio)",camere:"Camere · Casa Lumèa (esempio)",soggiorno:"Arrivo e servizi · Casa Lumèa (esempio)",dove:"Dove siamo · Casa Lumèa (esempio)",domande:"Domande · Casa Lumèa (esempio)",titolare:"Vista del titolare · Casa Lumèa (esempio)"},
-desc:{home:"Sito di esempio di Celea per un B&B inventato: l'assistente risponde agli ospiti a ogni ora in italiano, inglese e tedesco, gestisce arrivi tardi, cancellazioni secondo le condizioni e il messaggio prima dell'arrivo.",titolare:"Cosa trova il titolare la mattina: arrivi con orario confermato, cancellazioni da decidere, richieste dall'estero. Dati d'esempio."},
+desc:{home:"Sito di esempio di Celea per un B&B inventato: l'assistente risponde agli ospiti anche fuori orario, in italiano, inglese e tedesco, gestisce arrivi tardi, cancellazioni secondo le condizioni e il messaggio prima dell'arrivo.",titolare:"Cosa trova il titolare la mattina: arrivi con orario confermato, cancellazioni da decidere, richieste dall'estero. Dati d'esempio."},
 ui:{menu:"Menu",skip:"Vai al contenuto",fab:"Scriva alla struttura",placeholder:"Scriva una domanda…",send:"Invia",close:"Chiudi la chat",typing:"sta scrivendo…",demoNote:"Dimostrazione: risposte preimpostate, nulla viene inviato o salvato.",ownerLink:"Cosa vede il titolare →",liveEmpty:"Ancora nulla: provi la chat (per esempio «Cancellare una prenotazione») e torni qui.",livePill:"dalla chat di questa pagina",newEvents:"novità per il titolare",langs:"Lingua"},
 chat:{name:"Assistente di Casa Lumèa",sub:"Assistente virtuale · dimostrazione",fb:"fb",
 end:[["Ricomincia","start"],["Cosa vede il titolare","__owner"]],
@@ -273,7 +273,7 @@ ch:{u:"Siete aperti in inverno?",a:["Casa Lumèa è chiusa da novembre a marzo (
 ch1:{u:"Sì, raccogliete la richiesta.",a:["Fatto: ho annotato la richiesta. Le scriviamo su WhatsApp appena il calendario della nuova stagione è aperto."],s:"Richiesta salvata per la riapertura",log:"Richiesta durante la chiusura: da confermare all'apertura del calendario"},
 co:{a:["La colazione è servita dalle 7:30 alle 10:30, dolce e salata, con prodotti del territorio. Senza glutine o senza lattosio su richiesta: basta dirlo prima dell'arrivo."]},
 dv:{a:["Casa Lumèa è in Via del Faro 3 (indirizzo inventato), a cinque minuti a piedi dal mare. Parcheggio gratuito in cortile. Vuole che Le mandi le indicazioni su WhatsApp il giorno prima?"],o:[["Sì","at"],["No, grazie","start"]]},
-lg:{a:["Rispondo in italiano, inglese e tedesco, a qualsiasi ora: può scrivermi nella lingua che preferisce."]}
+lg:{a:["Rispondo in italiano, inglese e tedesco, anche fuori orario: può scrivermi nella lingua che preferisce."]}
 }},
 pages:{
 home:`<section class="hero"><div class="wrap">
@@ -281,10 +281,10 @@ home:`<section class="hero"><div class="wrap">
 <h1>Arriva all'1:30? <em>Le rispondiamo.</em></h1>
 <p class="lead">Sei camere a cinque minuti dal mare. Scriva quando vuole, anche in inglese o tedesco: l'assistente verifica le date, Le spiega l'arrivo e il self check-in, gestisce le cancellazioni secondo le condizioni e passa al titolare quando serve.</p>
 <div class="cta"><a class="btn" href="#home" data-chat="dl">Verifichi le date</a><a class="btn line" href="#camere" data-go="camere">Veda le camere</a></div>
-<ul class="facts" aria-label="In breve"><li>Su WhatsApp e sul sito</li><li>Italiano, inglese e tedesco</li><li>Self check-in a ogni ora</li></ul></div>
+<ul class="facts" aria-label="In breve"><li>Su WhatsApp e sul sito</li><li>Italiano, inglese e tedesco</li><li>Self check-in dopo le 20:00</li></ul></div>
 <div data-chat-slot></div></div></section>
 <section class="alt"><div class="wrap"><div class="head"><p class="label">Perché scriverci</p><h2>Ogni ospite ha una risposta, anche a mezzanotte.</h2></div>
-<div class="strip"><div><b>Nella lingua dell'ospite</b><p>Italiano, inglese e tedesco, a ogni ora: niente richieste perse per il fuso orario.</p></div><div><b>Arrivi senza sorprese</b><p>Due giorni prima, orari di check-in e istruzioni; l'ospite conferma a che ora arriva.</p></div><div><b>Cancellazioni chiare</b><p>L'assistente spiega le condizioni, propone di spostare le date e passa la decisione al titolare.</p></div></div></div></section>
+<div class="strip"><div><b>Nella lingua dell'ospite</b><p>Italiano, inglese e tedesco, anche fuori orario: meno richieste perse per il fuso orario.</p></div><div><b>Arrivi senza sorprese</b><p>Due giorni prima, orari di check-in e istruzioni; l'ospite conferma a che ora arriva.</p></div><div><b>Cancellazioni chiare</b><p>L'assistente spiega le condizioni, propone di spostare le date e passa la decisione al titolare.</p></div></div></div></section>
 <section><div class="wrap"><div class="head"><p class="label">Camere</p><h2>Dormire a due passi dal mare</h2><p class="lead">Camere e prezzi d'esempio, colazione sempre inclusa.</p></div>%R2%
 <p style="margin-top:22px"><a href="#camere" data-go="camere"><b>Tutte le camere →</b></a></p></div></section>
 <section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">Per il titolare della struttura</p><h2 style="margin-top:8px">Cosa trova il titolare la mattina?</h2><p style="margin-top:10px">Gli arrivi del giorno con l'orario confermato, le richieste dall'estero già risposte e solo le decisioni che spettano a lui. Lo vede in un colpo d'occhio.</p></div><a class="btn" href="#titolare" data-go="titolare">Apra la vista del titolare</a></div></div></section>`,
@@ -302,7 +302,7 @@ domande:`<section><div class="wrap"><div class="head"><p class="label">Domande</
 <details><summary>Come funziona la cancellazione?</summary><div class="ans"><p>L'assistente Le spiega le condizioni della struttura e Le propone, se possibile, di spostare le date. La cancellazione e l'eventuale addebito li conferma sempre il titolare, per iscritto.</p></div></details>
 <details><summary>Devo dare i dati della carta in chat?</summary><div class="ans"><p>No, mai. La prenotazione si completa sul sistema di prenotazione della struttura, con il link che riceve.</p></div></details>
 <details><summary>Siete aperti in inverno?</summary><div class="ans"><p>La struttura è chiusa da novembre a marzo, ma l'assistente risponde lo stesso e raccoglie le richieste per la nuova stagione.</p></div></details>
-<details><summary>Parlate inglese o tedesco?</summary><div class="ans"><p>L'assistente risponde in italiano, inglese e tedesco, a qualsiasi ora.</p></div></details>
+<details><summary>Parlate inglese o tedesco?</summary><div class="ans"><p>L'assistente risponde in italiano, inglese e tedesco, anche fuori orario.</p></div></details>
 </div></div></section>`,
 titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Vista del titolare</p><h1>Cosa ha fatto l'assistente mentre Lei dormiva</h1><p class="lead">Ogni mattina il titolare trova gli arrivi del giorno con l'orario confermato, le domande degli ospiti stranieri già risposte e solo le decisioni che spettano a lui, come una cancellazione fuori termine.</p><span class="ex">Dati d'esempio: la struttura e gli ospiti sono inventati</span></div>
 <div class="kpis"><div class="kpi"><b>11</b><span>messaggi tra le 21:00 e le 8:00, 6 in inglese o tedesco</span></div><div class="kpi"><b>2</b><span>richieste di prenotazione con link inviato</span></div><div class="kpi"><b>4</b><span>orari di arrivo confermati per oggi</span></div><div class="kpi"><b>1</b><span>cancellazione da decidere</span></div></div>
@@ -322,7 +322,7 @@ ${PHONE}</div>
 <section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Vuole vederlo con la Sua struttura?</h2><p style="margin-top:10px">Questo sito è un esempio di Celea. La demo dell'assistente e tutti i prezzi sono sul sito di Celea.</p></div><a class="btn" href="${CELEA}">Vada al sito di Celea</a></div></div></section>`
 },
 footer:`<div class="wrap cols"><div><p><b>Questo è un sito dimostrativo.</b> Casa Lumèa non esiste: è un esempio realizzato da Celea per far vedere come può diventare il sito di una struttura ricettiva, con l'assistente che risponde agli ospiti in tre lingue, gestisce arrivi, cancellazioni e messaggi prima dell'arrivo. Camere, prezzi, condizioni e numeri sono d'esempio.</p></div>
-<div><p>Un sito così rientra nel <b>Sito premium multilingua</b> di Celea (10 pagine in italiano, inglese e tedesco): 1.990 € + 79 €/mese. L'assistente sul sito si aggiunge alla receptionist a 49 €/mese + 90 € di attivazione. Versione più semplice: Sito vetrina, 990 € + 49 €/mese. Prezzi IVA esclusa.</p><p style="margin-top:10px"><a href="${CELEA}">La demo e tutti i prezzi di Celea</a></p></div></div>`
+<div><p>Un sito così rientra nel <b>Sito premium</b> di Celea (10 pagine in italiano, inglese e tedesco): 1.190 € + 49 €/mese. Versione più semplice: Sito vetrina, 5 pagine, 590 € + 29 €/mese. Con l'assistente: pacchetto Pro + sito, 249 €/mese. Prezzi finali: IVA non applicata (regime forfettario).</p><p style="margin-top:10px"><a href="${CELEA}">La demo e tutti i prezzi di Celea</a></p></div></div>`
 };
 
 /* ======================= ENGLISH ======================= */
@@ -332,7 +332,7 @@ back:"Back to Celea",
 cta:"Check dates",
 nav:[["home","Home"],["camere","Rooms"],["soggiorno","Arrival & services"],["dove","Location"],["domande","FAQ"],["titolare","Owner view"]],
 titles:{home:"Casa Lumèa · B&B by the sea (sample website)",camere:"Rooms · Casa Lumèa (sample)",soggiorno:"Arrival & services · Casa Lumèa (sample)",dove:"Location · Casa Lumèa (sample)",domande:"FAQ · Casa Lumèa (sample)",titolare:"Owner view · Casa Lumèa (sample)"},
-desc:{home:"Celea sample website for an invented B&B: the assistant answers guests at any hour in Italian, English and German, handles late arrivals, cancellations under the terms and the pre-arrival message.",titolare:"What the owner finds in the morning: arrivals with confirmed times, cancellations to decide, enquiries from abroad. Sample data."},
+desc:{home:"Celea sample website for an invented B&B: the assistant answers guests after hours too, in Italian, English and German, handles late arrivals, cancellations under the terms and the pre-arrival message.",titolare:"What the owner finds in the morning: arrivals with confirmed times, cancellations to decide, enquiries from abroad. Sample data."},
 ui:{menu:"Menu",skip:"Skip to content",fab:"Message us",placeholder:"Type a question…",send:"Send",close:"Close chat",typing:"typing…",demoNote:"Demo: preset replies, nothing is sent or stored.",ownerLink:"What the owner sees →",liveEmpty:"Nothing yet: try the chat (for example «Cancel a booking») and come back here.",livePill:"from the chat on this page",newEvents:"updates for the owner",langs:"Language"},
 chat:{name:"Casa Lumèa assistant",sub:"Virtual assistant · demo",fb:"fb",
 end:[["Start again","start"],["What the owner sees","__owner"]],
@@ -362,7 +362,7 @@ ch:{u:"Are you open in winter?",a:["Casa Lumèa is closed from November to March
 ch1:{u:"Yes, take my request.",a:["Done: your request is noted. We'll message you on WhatsApp as soon as the new season's calendar is open."],s:"Request saved for reopening",log:"Request during closure: to confirm when the calendar opens"},
 co:{a:["Breakfast is served from 7:30 to 10:30, sweet and savoury, with local produce. Gluten-free or lactose-free on request: just let us know before arrival."]},
 dv:{a:["Casa Lumèa is at Via del Faro 3 (invented address), a five-minute walk from the sea. Free parking in the courtyard. Shall I send you directions on WhatsApp the day before?"],o:[["Yes","at"],["No, thanks","start"]]},
-lg:{a:["I reply in Italian, English and German, at any hour: write in whichever you prefer."]}
+lg:{a:["I reply in Italian, English and German, after hours too: write in whichever you prefer."]}
 }},
 pages:{
 home:`<section class="hero"><div class="wrap">
@@ -370,10 +370,10 @@ home:`<section class="hero"><div class="wrap">
 <h1>Arriving at 1:30 am? <em>We'll answer.</em></h1>
 <p class="lead">Six rooms five minutes from the sea. Write whenever you like, in English, German or Italian: the assistant checks dates, explains arrival and self check-in, handles cancellations under the terms and hands over to the owner when needed.</p>
 <div class="cta"><a class="btn" href="#en" data-chat="dl">Check dates</a><a class="btn line" href="#en/camere" data-go="camere">See the rooms</a></div>
-<ul class="facts" aria-label="At a glance"><li>On WhatsApp and the website</li><li>Italian, English and German</li><li>Self check-in at any hour</li></ul></div>
+<ul class="facts" aria-label="At a glance"><li>On WhatsApp and the website</li><li>Italian, English and German</li><li>Self check-in after 8 pm</li></ul></div>
 <div data-chat-slot></div></div></section>
 <section class="alt"><div class="wrap"><div class="head"><p class="label">Why message us</p><h2>Every guest gets an answer, even at midnight.</h2></div>
-<div class="strip"><div><b>In the guest's language</b><p>Italian, English and German, at any hour: no enquiry lost to time zones.</p></div><div><b>Arrivals without surprises</b><p>Two days before: check-in times and directions; the guest confirms when they'll arrive.</p></div><div><b>Clear cancellations</b><p>The assistant explains the terms, offers to move the dates and leaves the decision to the owner.</p></div></div></div></section>
+<div class="strip"><div><b>In the guest's language</b><p>Italian, English and German, after hours too: fewer enquiries lost to time zones.</p></div><div><b>Arrivals without surprises</b><p>Two days before: check-in times and directions; the guest confirms when they'll arrive.</p></div><div><b>Clear cancellations</b><p>The assistant explains the terms, offers to move the dates and leaves the decision to the owner.</p></div></div></div></section>
 <section><div class="wrap"><div class="head"><p class="label">Rooms</p><h2>Sleep a stone's throw from the sea</h2><p class="lead">Sample rooms and prices, breakfast always included.</p></div>%R2%
 <p style="margin-top:22px"><a href="#en/camere" data-go="camere"><b>All rooms →</b></a></p></div></section>
 <section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">For the property owner</p><h2 style="margin-top:8px">What does the owner find in the morning?</h2><p style="margin-top:10px">Today's arrivals with confirmed times, guest questions from abroad already answered and only the decisions that are theirs to make. All at a glance.</p></div><a class="btn" href="#en/titolare" data-go="titolare">Open the owner view</a></div></div></section>`,
@@ -391,7 +391,7 @@ domande:`<section><div class="wrap"><div class="head"><p class="label">FAQ</p><h
 <details><summary>How does cancellation work?</summary><div class="ans"><p>The assistant explains the property's terms and, where possible, offers to move your dates. The cancellation and any charge are always confirmed by the owner, in writing.</p></div></details>
 <details><summary>Do I have to give card details in the chat?</summary><div class="ans"><p>No, never. Bookings are completed on the property's booking system, with the link you receive.</p></div></details>
 <details><summary>Are you open in winter?</summary><div class="ans"><p>The property is closed from November to March, but the assistant still replies and takes requests for the new season.</p></div></details>
-<details><summary>Do you speak English or German?</summary><div class="ans"><p>The assistant replies in Italian, English and German, at any hour.</p></div></details>
+<details><summary>Do you speak English or German?</summary><div class="ans"><p>The assistant replies in Italian, English and German, after hours too.</p></div></details>
 </div></div></section>`,
 titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Owner view</p><h1>What the assistant did while you were asleep</h1><p class="lead">Every morning the owner finds today's arrivals with confirmed times, foreign guests' questions already answered and only the decisions that are theirs to make, such as a late cancellation.</p><span class="ex">Sample data: the property and guests are invented</span></div>
 <div class="kpis"><div class="kpi"><b>11</b><span>messages between 21:00 and 8:00, 6 in English or German</span></div><div class="kpi"><b>2</b><span>booking requests with link sent</span></div><div class="kpi"><b>4</b><span>arrival times confirmed for today</span></div><div class="kpi"><b>1</b><span>cancellation to decide</span></div></div>
@@ -411,7 +411,7 @@ ${PHONE}</div>
 <section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Want to see this for your property?</h2><p style="margin-top:10px">This website is a Celea sample. The assistant demo and all prices are on Celea's website.</p></div><a class="btn" href="${CELEA}#en">Go to Celea</a></div></div></section>`
 },
 footer:`<div class="wrap cols"><div><p><b>This is a demo website.</b> Casa Lumèa does not exist: it is a sample made by Celea to show what a guest house or hotel website can become, with an assistant that answers guests in three languages and handles arrivals, cancellations and pre-arrival messages. Rooms, prices, terms and figures are examples.</p></div>
-<div><p>A site like this falls under Celea's <b>premium multilingual website</b> (10 pages in Italian, English and German): €1,990 + €79/month. The website assistant is added to the receptionist for €49/month + €90 setup. Simpler option: showcase website, €990 + €49/month. Prices excluding VAT.</p><p style="margin-top:10px"><a href="${CELEA}#en">Celea's demo and all prices</a></p></div></div>`
+<div><p>A site like this falls under Celea's <b>premium website</b> (10 pages in Italian, English and German): €1,190 + €49/month. Simpler option: showcase website, 5 pages, €590 + €29/month. With the assistant: Pro + website package, €249/month. Final prices: no VAT charged (Italian flat-rate scheme).</p><p style="margin-top:10px"><a href="${CELEA}#en">Celea's demo and all prices</a></p></div></div>`
 };
 
 /* ======================= DEUTSCH ======================= */
@@ -421,7 +421,7 @@ back:"Zurück zu Celea",
 cta:"Termine prüfen",
 nav:[["home","Start"],["camere","Zimmer"],["soggiorno","Anreise & Service"],["dove","Lage"],["domande","Fragen"],["titolare","Ansicht für Gastgeber"]],
 titles:{home:"Casa Lumèa · B&B am Meer (Beispiel-Website)",camere:"Zimmer · Casa Lumèa (Beispiel)",soggiorno:"Anreise & Service · Casa Lumèa (Beispiel)",dove:"Lage · Casa Lumèa (Beispiel)",domande:"Fragen · Casa Lumèa (Beispiel)",titolare:"Ansicht für Gastgeber · Casa Lumèa (Beispiel)"},
-desc:{home:"Beispiel-Website von Celea für ein erfundenes B&B: Der Assistent antwortet Gästen rund um die Uhr auf Italienisch, Englisch und Deutsch, kümmert sich um späte Ankünfte, Stornierungen nach den Bedingungen und die Nachricht vor der Anreise.",titolare:"Was der Gastgeber morgens vorfindet: Ankünfte mit bestätigter Uhrzeit, offene Stornierungen, Anfragen aus dem Ausland. Beispieldaten."},
+desc:{home:"Beispiel-Website von Celea für ein erfundenes B&B: Der Assistent antwortet Gästen auch außerhalb der Öffnungszeiten auf Italienisch, Englisch und Deutsch, kümmert sich um späte Ankünfte, Stornierungen nach den Bedingungen und die Nachricht vor der Anreise.",titolare:"Was der Gastgeber morgens vorfindet: Ankünfte mit bestätigter Uhrzeit, offene Stornierungen, Anfragen aus dem Ausland. Beispieldaten."},
 ui:{menu:"Menü",skip:"Zum Inhalt",fab:"Schreiben Sie uns",placeholder:"Frage eingeben…",send:"Senden",close:"Chat schließen",typing:"schreibt…",demoNote:"Demo: vorbereitete Antworten, nichts wird gesendet oder gespeichert.",ownerLink:"Was der Gastgeber sieht →",liveEmpty:"Noch nichts: Probieren Sie den Chat (zum Beispiel «Buchung stornieren») und kommen Sie hierher zurück.",livePill:"aus dem Chat dieser Seite",newEvents:"Neuigkeiten für den Gastgeber",langs:"Sprache"},
 chat:{name:"Assistent von Casa Lumèa",sub:"Virtueller Assistent · Demo",fb:"fb",
 end:[["Neu starten","start"],["Was der Gastgeber sieht","__owner"]],
@@ -451,7 +451,7 @@ ch:{u:"Haben Sie im Winter geöffnet?",a:["Die Casa Lumèa ist von November bis 
 ch1:{u:"Ja, bitte aufnehmen.",a:["Erledigt: Ihre Anfrage ist notiert. Wir schreiben Ihnen per WhatsApp, sobald der Kalender der neuen Saison geöffnet ist."],s:"Anfrage für die Wiedereröffnung gespeichert",log:"Anfrage während der Schließzeit: bei Öffnung des Kalenders bestätigen"},
 co:{a:["Frühstück gibt es von 7:30 bis 10:30, süß und herzhaft, mit regionalen Produkten. Glutenfrei oder laktosefrei auf Anfrage: Sagen Sie es uns einfach vor der Anreise."]},
 dv:{a:["Die Casa Lumèa liegt in der Via del Faro 3 (erfundene Adresse), fünf Gehminuten vom Meer. Kostenloses Parken im Hof. Soll ich Ihnen am Vortag die Wegbeschreibung per WhatsApp schicken?"],o:[["Ja","at"],["Nein, danke","start"]]},
-lg:{a:["Ich antworte auf Italienisch, Englisch und Deutsch, rund um die Uhr: Schreiben Sie in der Sprache, die Ihnen lieber ist."]}
+lg:{a:["Ich antworte auf Italienisch, Englisch und Deutsch, auch außerhalb der Öffnungszeiten: Schreiben Sie in der Sprache, die Ihnen lieber ist."]}
 }},
 pages:{
 home:`<section class="hero"><div class="wrap">
@@ -459,10 +459,10 @@ home:`<section class="hero"><div class="wrap">
 <h1>Ankunft um 1:30 Uhr? <em>Wir antworten.</em></h1>
 <p class="lead">Sechs Zimmer, fünf Minuten vom Meer. Schreiben Sie, wann Sie möchten, auf Deutsch, Englisch oder Italienisch: Der Assistent prüft freie Termine, erklärt Anreise und Self-Check-in, bearbeitet Stornierungen nach den Bedingungen und übergibt bei Bedarf an den Gastgeber.</p>
 <div class="cta"><a class="btn" href="#de" data-chat="dl">Termine prüfen</a><a class="btn line" href="#de/camere" data-go="camere">Zimmer ansehen</a></div>
-<ul class="facts" aria-label="Kurz gesagt"><li>Per WhatsApp und auf der Website</li><li>Italienisch, Englisch und Deutsch</li><li>Self-Check-in rund um die Uhr</li></ul></div>
+<ul class="facts" aria-label="Kurz gesagt"><li>Per WhatsApp und auf der Website</li><li>Italienisch, Englisch und Deutsch</li><li>Self-Check-in ab 20 Uhr</li></ul></div>
 <div data-chat-slot></div></div></section>
 <section class="alt"><div class="wrap"><div class="head"><p class="label">Warum uns schreiben</p><h2>Jeder Gast bekommt eine Antwort, auch um Mitternacht.</h2></div>
-<div class="strip"><div><b>In der Sprache des Gastes</b><p>Italienisch, Englisch und Deutsch, rund um die Uhr: Keine Anfrage geht wegen der Zeitzone verloren.</p></div><div><b>Anreise ohne Überraschungen</b><p>Zwei Tage vorher: Check-in-Zeiten und Wegbeschreibung; der Gast bestätigt seine Ankunftszeit.</p></div><div><b>Klare Stornierungen</b><p>Der Assistent erklärt die Bedingungen, schlägt eine Umbuchung vor und überlässt die Entscheidung dem Gastgeber.</p></div></div></div></section>
+<div class="strip"><div><b>In der Sprache des Gastes</b><p>Italienisch, Englisch und Deutsch, auch außerhalb der Öffnungszeiten: Weniger Anfragen gehen wegen der Zeitzone verloren.</p></div><div><b>Anreise ohne Überraschungen</b><p>Zwei Tage vorher: Check-in-Zeiten und Wegbeschreibung; der Gast bestätigt seine Ankunftszeit.</p></div><div><b>Klare Stornierungen</b><p>Der Assistent erklärt die Bedingungen, schlägt eine Umbuchung vor und überlässt die Entscheidung dem Gastgeber.</p></div></div></div></section>
 <section><div class="wrap"><div class="head"><p class="label">Zimmer</p><h2>Schlafen nur wenige Schritte vom Meer</h2><p class="lead">Beispielzimmer und -preise, Frühstück immer inklusive.</p></div>%R2%
 <p style="margin-top:22px"><a href="#de/camere" data-go="camere"><b>Alle Zimmer →</b></a></p></div></section>
 <section><div class="wrap"><div class="band-cta"><div><p class="label" style="color:inherit;opacity:.8">Für Gastgeber</p><h2 style="margin-top:8px">Was findet der Gastgeber am Morgen vor?</h2><p style="margin-top:10px">Die heutigen Ankünfte mit bestätigter Uhrzeit, bereits beantwortete Fragen ausländischer Gäste und nur die Entscheidungen, die ihm zustehen. Alles auf einen Blick.</p></div><a class="btn" href="#de/titolare" data-go="titolare">Ansicht für Gastgeber öffnen</a></div></div></section>`,
@@ -480,7 +480,7 @@ domande:`<section><div class="wrap"><div class="head"><p class="label">Fragen</p
 <details><summary>Wie funktioniert die Stornierung?</summary><div class="ans"><p>Der Assistent erklärt die Bedingungen der Unterkunft und schlägt, wenn möglich, eine Umbuchung vor. Die Stornierung und eventuelle Kosten bestätigt immer der Gastgeber, schriftlich.</p></div></details>
 <details><summary>Muss ich Kartendaten im Chat angeben?</summary><div class="ans"><p>Nein, niemals. Die Buchung wird im Buchungssystem der Unterkunft abgeschlossen, über den Link, den Sie erhalten.</p></div></details>
 <details><summary>Haben Sie im Winter geöffnet?</summary><div class="ans"><p>Die Unterkunft ist von November bis März geschlossen, aber der Assistent antwortet trotzdem und nimmt Anfragen für die neue Saison auf.</p></div></details>
-<details><summary>Sprechen Sie Englisch oder Deutsch?</summary><div class="ans"><p>Der Assistent antwortet auf Italienisch, Englisch und Deutsch, rund um die Uhr.</p></div></details>
+<details><summary>Sprechen Sie Englisch oder Deutsch?</summary><div class="ans"><p>Der Assistent antwortet auf Italienisch, Englisch und Deutsch, auch außerhalb der Öffnungszeiten.</p></div></details>
 </div></div></section>`,
 titolare:`<section><div class="wrap"><div class="owner-top"><p class="label">Ansicht für Gastgeber</p><h1>Was der Assistent erledigt hat, während Sie geschlafen haben</h1><p class="lead">Jeden Morgen findet der Gastgeber die heutigen Ankünfte mit bestätigter Uhrzeit, bereits beantwortete Fragen ausländischer Gäste und nur die Entscheidungen, die ihm zustehen, etwa eine kurzfristige Stornierung.</p><span class="ex">Beispieldaten: Unterkunft und Gäste sind erfunden</span></div>
 <div class="kpis"><div class="kpi"><b>11</b><span>Nachrichten zwischen 21:00 und 8:00, 6 auf Englisch oder Deutsch</span></div><div class="kpi"><b>2</b><span>Buchungsanfragen mit gesendetem Link</span></div><div class="kpi"><b>4</b><span>bestätigte Ankunftszeiten für heute</span></div><div class="kpi"><b>1</b><span>Stornierung zu entscheiden</span></div></div>
@@ -500,7 +500,7 @@ ${PHONE}</div>
 <section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Möchten Sie das für Ihre Unterkunft sehen?</h2><p style="margin-top:10px">Diese Website ist ein Beispiel von Celea. Die Demo des Assistenten und alle Preise finden Sie auf der Website von Celea.</p></div><a class="btn" href="${CELEA}#de">Zur Website von Celea</a></div></div></section>`
 },
 footer:`<div class="wrap cols"><div><p><b>Dies ist eine Demo-Website.</b> Die Casa Lumèa gibt es nicht: Es ist ein Beispiel von Celea, das zeigt, wie die Website einer Unterkunft aussehen kann, mit einem Assistenten, der Gästen in drei Sprachen antwortet und sich um Anreise, Stornierungen und Nachrichten vor der Ankunft kümmert. Zimmer, Preise, Bedingungen und Zahlen sind Beispiele.</p></div>
-<div><p>Eine solche Website entspricht der <b>mehrsprachigen Premium-Website</b> von Celea (10 Seiten auf Italienisch, Englisch und Deutsch): 1.990 € + 79 €/Monat. Der Website-Assistent kommt zur Rezeption hinzu: 49 €/Monat + 90 € Einrichtung. Einfachere Variante: Präsentations-Website, 990 € + 49 €/Monat. Preise ohne MwSt.</p><p style="margin-top:10px"><a href="${CELEA}#de">Demo und alle Preise von Celea</a></p></div></div>`
+<div><p>Eine solche Website entspricht der <b>Premium-Website</b> von Celea (10 Seiten auf Italienisch, Englisch und Deutsch): 1.190 € + 49 €/Monat. Einfachere Variante: Präsentations-Website, 5 Seiten, 590 € + 29 €/Monat. Mit Assistent: Paket Pro + Website, 249 €/Monat. Endpreise: keine MwSt. (italienische Pauschalregelung).</p><p style="margin-top:10px"><a href="${CELEA}#de">Demo und alle Preise von Celea</a></p></div></div>`
 };
 
 ["it","en","de"].forEach(function(l){ var P=SITE.i18n[l].pages; P.home=P.home.replace("%R2%",rooms(l,2)); P.camere=P.camere.replace("%R4%",rooms(l,4)); });
