@@ -10,7 +10,20 @@
 <title>Odontèa · Studio dentistico (sito di esempio)</title>
 <meta name="description" content="Sito di esempio realizzato da Celea per uno studio dentistico inventato: cure, prima visita, orari, assistente virtuale che fissa, sposta e disdice appuntamenti, e la vista del titolare.">
 <meta name="robots" content="noindex">
+<link rel="preload" href="../fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>setTimeout(function(){document.documentElement.classList.add("r-ok")},2000)</script>
 <style>
+/* finché lo script non ha disegnato la pagina, fascia d'esempio e piè di pagina restano invisibili (evita il salto al caricamento) */
+html:not(.r-ok) .sample,html:not(.r-ok) footer.site{visibility:hidden}
+/* RESTYLING-2026-11: caratteri inclusi nel sito (licenza OFL), prima non venivano caricati */
+@font-face{font-family:"Bricolage Grotesque";src:url("../fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:optional;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Bricolage Grotesque";src:url("../fonts/bricolage-grotesque-latin-ext-wght-normal.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:optional;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Atkinson Hyperlegible";src:url("../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:optional;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Atkinson Hyperlegible";src:url("../fonts/atkinson-hyperlegible-latin-ext-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:optional;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Atkinson Hyperlegible";src:url("../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");font-weight:700;font-style:normal;font-display:optional;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Atkinson Hyperlegible";src:url("../fonts/atkinson-hyperlegible-latin-ext-700-normal.woff2") format("woff2");font-weight:700;font-style:normal;font-display:optional;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
 :root{--bg:#F6F7F4;--surface:#FFFFFF;--ink:#1C2A30;--muted:#51626A;--line:#DCE3DF;--acc:#2D6A5C;--acc-ink:#FFFFFF;--acc-text:#2D6A5C;--label:#2D6A5C;--soft:#E6F0EC;--warn:#A1470F;--band:#1C2A30;--band-ink:#F6F7F4;--shadow:rgba(20,40,40,.13);--ok-bg:#D6EBE3;--ok-ink:#174A3E;--wa-bg:#0B141A;--wa-bub:#FFFFFF;--f-display:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;--f-body:'Atkinson Hyperlegible',ui-sans-serif,system-ui,sans-serif;--r:16px;}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#111A1E;--surface:#18252A;--ink:#E9EFEC;--muted:#A3B4B0;--line:#2A3B40;--acc:#7CC2AE;--acc-ink:#0F1E1A;--acc-text:#8FD1BD;--label:#8FD1BD;--soft:#1D3330;--warn:#A1470F;--band:#0A1114;--band-ink:#E9EFEC;--shadow:rgba(0,0,0,.4);--ok-bg:#1F4A3F;--ok-ink:#CFEDE3;--wa-bg:#0B141A;--wa-bub:#FFFFFF;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#111A1E;--surface:#18252A;--ink:#E9EFEC;--muted:#A3B4B0;--line:#2A3B40;--acc:#7CC2AE;--acc-ink:#0F1E1A;--acc-text:#8FD1BD;--label:#8FD1BD;--soft:#1D3330;--warn:#A1470F;--band:#0A1114;--band-ink:#E9EFEC;--shadow:rgba(0,0,0,.4);--ok-bg:#1F4A3F;--ok-ink:#CFEDE3;--wa-bg:#0B141A;--wa-bub:#FFFFFF;color-scheme:dark}
@@ -188,6 +201,43 @@ footer.site .cols{display:grid;gap:18px}
 @media (min-width:1020px) and (max-width:1239px){.hcta{display:none}}
 
 .arch{overflow-x:auto;min-width:0}.arch svg{display:block;width:100%;max-width:560px;height:auto}.arch text{font-family:var(--f-body);font-size:11px;fill:var(--muted)}.arch rect{fill:var(--surface);stroke:var(--line)}.arch rect.on{fill:var(--acc);stroke:var(--acc)}.arch text.on{fill:var(--acc-ink);font-weight:700}.arch g{cursor:pointer}.fdi-out{font-size:1rem;color:var(--muted);min-height:3.2em;margin-top:8px}.fdi-out b{color:var(--ink)}
+
+/* Siti di esempio di Celea · aggiunte del restyling 2026-11 (scena animata e «Parla ora»).
+   Usa i colori e i caratteri di ogni demo (variabili --acc, --surface, --soft, --ink, --muted, --line, --f-display, --f-body):
+   ogni demo resta con la sua identità. */
+.scena-demo .scena-grid{display:grid;gap:28px;align-items:center}
+@media (min-width:900px){.scena-demo .scena-grid{grid-template-columns:.95fr 1.05fr;gap:56px}}
+.sc-stage{position:relative;display:grid;justify-items:center;padding:6px 0 18px}
+.sc-phone{width:min(330px,100%);border-radius:34px;background:var(--ink);padding:10px;box-shadow:0 30px 60px -34px rgba(0,0,0,.55)}
+.sc-screen{border-radius:26px;overflow:hidden;background:var(--soft);display:flex;flex-direction:column;min-height:400px}
+.sc-bar{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--surface);border-bottom:1px solid var(--line)}
+.sc-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:var(--acc-ink);font:700 1rem var(--f-display);flex:none}
+.sc-bar b{font-family:var(--f-display);font-size:1.02rem;color:var(--ink);display:block;line-height:1.1}
+.sc-bar small{font-size:.78rem;color:var(--muted)}
+.sc-msgs{list-style:none;margin:0;padding:14px 12px;display:flex;flex-direction:column;gap:8px;flex:1;justify-content:flex-end}
+.sc-msgs li{max-width:86%;padding:9px 12px;border-radius:16px;font-size:.9rem;line-height:1.38;color:var(--ink)}
+.sc-msgs .me{align-self:flex-end;background:var(--surface);border-bottom-right-radius:5px;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.sc-msgs .ai{align-self:flex-start;background:var(--acc);color:var(--acc-ink);border-bottom-left-radius:5px}
+.sc-msgs .ai b{display:block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:2px}
+.sc-card{position:relative;z-index:2;width:min(300px,92%);margin-top:-46px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:0 18px 40px -26px rgba(0,0,0,.5)}
+.sc-k{font:700 .78rem var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--label,var(--acc-text));margin:0 0 6px}
+.sc-row{display:grid;grid-template-columns:48px 1fr;gap:10px;align-items:center;min-height:38px;border-top:1px dashed var(--line)}
+.sc-row time{font:700 .82rem var(--f-body);color:var(--muted);font-variant-numeric:tabular-nums}
+.sc-row i{display:block;height:8px;border-radius:4px;background:var(--soft);width:60%}
+.sc-ev{display:block;margin:5px 0;padding:6px 10px;border-radius:10px;background:var(--soft);border-left:4px solid var(--acc);font-weight:700;font-size:.9rem;color:var(--ink)}
+.sc-ev small{display:block;font-weight:600;font-size:.76rem;color:var(--muted)}
+.sc-chip{position:relative;z-index:3;margin-top:10px;display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.84rem;font-weight:700;color:var(--ink);box-shadow:0 10px 24px -18px rgba(0,0,0,.5)}
+.sc-chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.sc-nota{font-size:.86rem;color:var(--muted);margin-top:12px}
+@media (min-width:900px){.sc-stage{grid-template-columns:auto auto;justify-content:center;align-items:end}.sc-card{margin:0 0 54px -40px}.sc-chip{position:absolute;right:0;top:10px;margin:0}}
+/* passi: senza JavaScript o con «riduci movimento» resta il fotogramma finale */
+.sc-stage.playing [data-at]{transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+.sc-stage.playing [data-at]:not(.on){opacity:0;transform:translateY(10px)}
+/* «Parla ora» con l'assistente della demo */
+.btn.parla{gap:10px}
+.btn.parla svg{width:18px;height:18px}
+.parla-msg{font-size:.86rem;color:var(--muted);margin-top:8px;min-height:1.2em}
+@media (prefers-reduced-motion:reduce){.sc-stage [data-at]{opacity:1!important;transform:none!important}}
 </style>
 <a class="skip" id="skip" href="#home">Vai al contenuto</a>
 <div class="sample" role="note"><div class="wrap"><span id="band"></span><a id="back" href="https://www.celea.it/">Torna al sito di Celea</a></div></div>
@@ -227,7 +277,7 @@ back:"Torna al sito di Celea",
 cta:"Fissi un appuntamento",
 nav:[["home","Home"],["cure","Cure"],["prima-visita","Prima visita"],["studio","Orari e contatti"],["domande","Domande"],["titolare","Vista del titolare"]],
 titles:{home:"Odontèa · Studio dentistico (sito di esempio)",cure:"Cure · Odontèa (esempio)","prima-visita":"Prima visita · Odontèa (esempio)",studio:"Orari e contatti · Odontèa (esempio)",domande:"Domande · Odontèa (esempio)",titolare:"Vista del titolare · Odontèa (esempio)"},
-desc:{home:"Sito di esempio di Celea per uno studio dentistico inventato: l'assistente virtuale fissa, sposta e disdice appuntamenti a ogni ora e manda i promemoria.",titolare:"Cosa trova il titolare la mattina: agenda, disdette riassegnate dalla lista d'attesa, promemoria confermati. Dati d'esempio."},
+desc:{home:"Sito di esempio di Celea per uno studio dentistico inventato: l'assistente virtuale fissa, sposta e disdice appuntamenti anche fuori orario e manda i promemoria.",titolare:"Cosa trova il titolare la mattina: agenda, disdette riassegnate dalla lista d'attesa, promemoria confermati. Dati d'esempio."},
 ui:{menu:"Menu",skip:"Vai al contenuto",fab:"Scriva allo studio",placeholder:"Scriva una domanda…",send:"Invia",close:"Chiudi la chat",typing:"sta scrivendo…",demoNote:"Dimostrazione: risposte preimpostate, nulla viene inviato o salvato.",ownerLink:"Cosa vede lo studio →",liveEmpty:"Ancora nulla: provi la chat (per esempio «Spostare o disdire») e torni qui.",livePill:"dalla chat di questa pagina",newEvents:"novità per lo studio",langs:"Lingua"},
 chat:{name:"Assistente di Odontèa",sub:"Assistente virtuale · dimostrazione",fb:"fb",
 end:[["Ricomincia","start"],["Cosa vede lo studio","__owner"]],
@@ -249,7 +299,7 @@ sp2:{u:"Lunedì 16:30",a:["Spostato a lunedì alle 16:30. Il posto di giovedì a
 dd:{u:"Vorrei disdirlo.",a:["D'accordo. Prima di disdire: preferisce che Le proponga un altro giorno? Spesso è più comodo che ricominciare da capo."],o:[["Disdico comunque","dd1"],["Allora lo sposto","sp"]]},
 dd1:{u:"Disdico comunque.",a:["Fatto: l'appuntamento di giovedì alle 11:00 è disdetto. Il posto è stato offerto subito al primo paziente in lista d'attesa, così non resta vuoto.","Vuole che Le ricordi tra un mese di fissare una nuova igiene?"],s:"Disdetta registrata · posto offerto alla lista d'attesa",log:"Disdetta: igiene di giovedì 11:00 · posto offerto al primo in lista d'attesa",o:[["Sì, grazie","dd2"],["No, grazie","dd3"]]},
 dd2:{u:"Sì, grazie.",a:["Perfetto: tra un mese Le scrivo su WhatsApp con due orari liberi. A presto!"],log:"Ricontatto programmato tra un mese per una nuova igiene"},
-dd3:{u:"No, grazie.",a:["Va bene. Quando vuole, mi scriva qui o su WhatsApp, a qualsiasi ora. A presto!"]},
+dd3:{u:"No, grazie.",a:["Va bene. Quando vuole, mi scriva qui o su WhatsApp, anche fuori orario. A presto!"]},
 pr:{u:"Com'è il promemoria?",r:["Esempio del messaggio che il paziente riceve su WhatsApp il giorno prima","Promemoria di Odontèa: domani, giovedì, alle 11:00 ha l'appuntamento per l'igiene in Via dell'Esempio 12.\nRisponda 1 per confermare, 2 per spostare, 3 per disdire.","WhatsApp · il giorno prima"],a:["Il paziente risponde con un numero. Provi Lei:"],o:[["1 · Confermo","pr1"],["2 · Sposto","sp"],["3 · Disdico","dd1"]]},
 pr1:{u:"1",a:["Grazie, appuntamento confermato. A domani alle 11:00!"],s:"Conferma registrata in agenda",log:"Promemoria: igiene di giovedì 11:00 confermata dal paziente"},
 ur:{u:"Ho mal di denti da ieri.",a:["Mi dispiace. Non posso dare consigli medici: se il dolore è forte o c'è gonfiore e lo studio è chiuso, chiami la guardia medica o il 112.","Intanto posso riservarLe il primo posto per le urgenze di domani alle 9:00. Va bene?"],o:[["Sì, grazie","ur1"],["Preferisco essere richiamato","se1"]]},
@@ -257,7 +307,7 @@ ur1:{u:"Sì, grazie.",a:["Riservato domani alle 9:00. Ho avvisato lo studio che 
 se:{u:"Posso parlare con la segreteria?",a:["Certo. Preferisce essere richiamato o ricevere la risposta qui?"],o:[["Richiamatemi","se1"],["Rispondete qui","se2"]]},
 se1:{u:"Richiamatemi.",a:["D'accordo: la segreteria La richiama nel primo orario di apertura, con il riepilogo della conversazione già davanti."],s:"Richiesta passata alla segreteria",log:"Da richiamare: il paziente chiede di parlare con la segreteria"},
 se2:{u:"Rispondete qui.",a:["D'accordo: la segreteria Le risponde qui appena possibile, in orario di studio."],s:"Richiesta passata alla segreteria",log:"Da rispondere in chat: domanda per la segreteria"},
-or:{a:["Lo studio è aperto dal lunedì al giovedì 9:00–13:00 e 14:30–19:00, il venerdì 9:00–13:00 e 14:30–17:00, il sabato 9:00–12:30 solo per l'igiene. Io rispondo a qualsiasi ora."]},
+or:{a:["Lo studio è aperto dal lunedì al giovedì 9:00–13:00 e 14:30–19:00, il venerdì 9:00–13:00 e 14:30–17:00, il sabato 9:00–12:30 solo per l'igiene. Io rispondo anche fuori orario."]},
 pz:{a:["Il costo dipende dalla cura: dopo la prima visita riceve un preventivo scritto, da valutare con calma. Vuole che La passi alla segreteria per una domanda precisa?"],o:[["Sì","se"],["No, grazie","start"]]},
 dv:{a:["Lo studio è in Via dell'Esempio 12 (indirizzo inventato), con ingresso senza gradini e ascensore. Vuole fissare un appuntamento?"],o:[["Sì","pv"],["No, grazie","start"]]},
 lg:{a:["Rispondo in italiano, inglese e tedesco: può scrivermi nella lingua che preferisce. In studio Le diamo anche il piano di cura per iscritto."]}
@@ -265,13 +315,14 @@ lg:{a:["Rispondo in italiano, inglese e tedesco: può scrivermi nella lingua che
 pages:{
 home:`<section class="hero"><div class="wrap">
 <div class="hero-text"><p class="label">Studio dentistico · esempio</p>
-<h1>Le rispondiamo anche <em>alle 22.</em></h1>
+<h1>Le rispondiamo anche <em>fuori orario.</em></h1>
 <p class="lead">Prime visite, igiene, cure e urgenze. Scriva all'assistente dello studio quando vuole: propone un orario libero, sposta o disdice l'appuntamento, Le manda il promemoria e passa a una persona quando serve.</p>
-<div class="cta"><a class="btn" href="#home" data-chat="pv">Fissi un appuntamento</a><a class="btn line" href="#prima-visita" data-go="prima-visita">Come si svolge la prima visita</a></div>
+<div class="cta"><a class="btn" href="#home" data-chat="pv">Fissi un appuntamento</a><a class="btn line" href="#prima-visita" data-go="prima-visita">Come si svolge la prima visita</a></div><div class="parla-box"><a class="btn line parla" href="#" data-parla data-agente="agent_d707460b8b0bc2d50382aa3aa9" data-nome="Sofia" data-titolo="Odontèa · Sofia" data-fab="Parla con Sofia" data-carico="Collegamento in corso…" data-aperto="La chiamata è già aperta in basso a destra." data-errore="Non riesco ad aprire la chiamata: ricarichi la pagina e riprovi."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Parla ora con Sofia</a><p class="parla-msg small" role="status" aria-live="polite"></p><p class="small muted">Chiamata di prova dal browser con Sofia, l'assistente AI dimostrativo di Celea: nome dello studio e dati sono d'esempio. Serve il microfono; al massimo 3 minuti.</p></div>
 <ul class="facts" aria-label="In breve"><li>Su WhatsApp e sul sito</li><li>Italiano, inglese e tedesco</li><li>Nessun consiglio medico in chat</li></ul></div>
 <div data-chat-slot></div></div></section>
+<section class="scena-demo"><div class="wrap scena-grid"><div class="head"><p class="label">Una sera, dopo la chiusura</p><h2>Un paziente sposta la pulizia. L'agenda si aggiorna.</h2><p class="lead">Esempio con dati inventati: l'assistente AI dello studio propone due orari liberi, sposta l'appuntamento e offre il posto liberato a chi è in lista d'attesa.</p><p class="sc-nota">Esempio illustrativo: pazienti, orari e studio sono inventati.</p></div><div class="sc-stage" aria-hidden="true"><div class="sc-phone"><div class="sc-screen"><div class="sc-bar"><span class="sc-av">O</span><span><b>Odontèa</b><small>assistente AI · esempio</small></span></div><ol class="sc-msgs"><li class="me" data-at="1">Devo spostare la pulizia di giovedì.</li><li class="ai" data-at="2"><b>AI</b>Certo. Ho venerdì alle 9:00 o lunedì alle 17:30. Quale preferisce?</li><li class="me" data-at="3">Venerdì alle 9, grazie.</li><li class="ai" data-at="4"><b>AI</b>Fatto: venerdì alle 9:00. Il giorno prima Le mando il promemoria.</li></ol></div></div><div class="sc-card" data-at="5"><p class="sc-k">Agenda dello studio · venerdì</p><div class="sc-row"><time>9:00</time><span class="sc-ev">Pulizia · M. Rossi<small>spostata dall'assistente</small></span></div><div class="sc-row"><time>10:00</time><i></i></div></div><div class="sc-chip" data-at="6">Giovedì 17:30 offerto alla lista d'attesa</div></div></div></section>
 <section class="alt"><div class="wrap"><div class="head"><p class="label">Perché scriverci</p><h2>Meno telefonate perse, meno poltrone vuote.</h2></div>
-<div class="strip"><div><b>A qualsiasi ora</b><p>La sera, nel weekend, mentre lo studio è al lavoro: la richiesta non resta senza risposta.</p></div><div><b>Disdette che non lasciano buchi</b><p>Se un paziente disdice, il posto viene offerto subito a chi è in lista d'attesa.</p></div><div><b>Promemoria il giorno prima</b><p>Un messaggio su WhatsApp: si conferma, si sposta o si disdice rispondendo con un numero.</p></div></div></div></section>
+<div class="strip"><div><b>Anche fuori orario</b><p>La sera, nel weekend, mentre lo studio è al lavoro: la richiesta riceve una risposta o passa a una persona.</p></div><div><b>Disdette che non lasciano buchi</b><p>Se un paziente disdice, il posto viene offerto subito a chi è in lista d'attesa.</p></div><div><b>Promemoria il giorno prima</b><p>Un messaggio su WhatsApp: si conferma, si sposta o si disdice rispondendo con un numero.</p></div></div></div></section>
 <section><div class="wrap"><div class="head"><p class="label">Cure</p><h2>Cosa facciamo</h2></div>
 <div class="grid3"><div class="card"><h3>Igiene e prevenzione</h3><p>Pulizia professionale e controllo delle gengive, di solito ogni sei mesi.</p></div><div class="card"><h3>Cure e ricostruzioni</h3><p>Otturazioni, ricostruzioni, devitalizzazioni e corone.</p></div><div class="card"><h3>Implantologia e ortodonzia</h3><p>Denti mancanti, apparecchi fissi e allineatori trasparenti.</p></div></div>
 <p style="margin-top:22px"><a href="#cure" data-go="cure"><b>Tutte le cure e lo schema dei denti →</b></a></p></div></section>
@@ -291,7 +342,7 @@ studio:`<section><div class="wrap"><div class="head"><p class="label">Orari e co
 <div class="kv" style="gap:14px"><div class="kv"><span class="muted">Indirizzo (inventato)</span><span class="v">Via dell'Esempio 12, Città</span></div><div class="kv"><span class="muted">Telefono e WhatsApp (inventati)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Accesso</span><span class="v">Senza gradini, con ascensore</span></div><p class="note">Fuori orario l'assistente risponde e fissa l'appuntamento, ma non dà consigli medici. Per dolore forte o gonfiore fuori orario chiami la guardia medica o il 112.</p></div></div></div></section>`,
 domande:`<section><div class="wrap"><div class="head"><p class="label">Domande</p><h1>Le domande più frequenti</h1></div><div class="faq">
 <details><summary>Con chi parlo quando scrivo alle 22?</summary><div class="ans"><p>Con l'assistente virtuale dello studio, che si presenta sempre come tale. Fissa, sposta e disdice appuntamenti e passa la conversazione alla segreteria quando serve.</p></div></details>
-<details><summary>Posso disdire un appuntamento su WhatsApp?</summary><div class="ans"><p>Sì, a qualsiasi ora. Il posto liberato viene offerto subito a chi è in lista d'attesa, così altri pazienti possono anticipare la visita.</p></div></details>
+<details><summary>Posso disdire un appuntamento su WhatsApp?</summary><div class="ans"><p>Sì, anche fuori orario. Il posto liberato viene offerto subito a chi è in lista d'attesa, così altri pazienti possono anticipare la visita.</p></div></details>
 <details><summary>Come funziona la lista d'attesa?</summary><div class="ans"><p>Se il primo orario utile è lontano, può chiedere di essere avvisato. Quando qualcuno disdice, l'assistente Le offre il posto su WhatsApp: risponde sì o no.</p></div></details>
 <details><summary>Che cosa dice il promemoria?</summary><div class="ans"><p>Giorno, ora e indirizzo. Non scrive mai il tipo di cura. Risponde 1 per confermare, 2 per spostare, 3 per disdire.</p></div></details>
 <details><summary>L'assistente può dirmi se è grave?</summary><div class="ans"><p>No. Non dà consigli medici: fissa il primo posto utile e, per dolore forte o gonfiore fuori orario, indica la guardia medica o il 112.</p></div></details>
@@ -318,7 +369,7 @@ Risponda 1 per confermare, 2 per spostare, 3 per disdire.</div><div class="bub m
 <section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Vuole vederlo con il Suo studio?</h2><p style="margin-top:10px">Questo sito è un esempio di Celea. La demo dell'assistente e tutti i prezzi sono sul sito di Celea.</p></div><a class="btn" href="${CELEA}">Vada al sito di Celea</a></div></div></section>`
 },
 footer:`<div class="wrap cols"><div><p><b>Questo è un sito dimostrativo.</b> Odontèa non esiste: è un esempio realizzato da Celea per far vedere come può diventare il sito di uno studio dentistico, con l'assistente che risponde, fissa, sposta e disdice appuntamenti e manda i promemoria. Pazienti, orari e numeri della vista del titolare sono d'esempio.</p></div>
-<div><p>Un sito così rientra nel <b>Sito premium multilingua</b> di Celea (10 pagine in italiano, inglese e tedesco): 1.990 € + 79 €/mese. L'assistente sul sito si aggiunge alla receptionist a 49 €/mese + 90 € di attivazione. Versione più semplice: Sito vetrina, 990 € + 49 €/mese. Prezzi IVA esclusa.</p><p style="margin-top:10px"><a href="${CELEA}">La demo e tutti i prezzi di Celea</a></p></div></div>`
+<div><p>Un sito così rientra nel <b>Sito premium</b> di Celea (10 pagine in italiano, inglese e tedesco): 1.190 € + 49 €/mese. Versione più semplice: Sito vetrina, 5 pagine, 590 € + 29 €/mese. Con l'assistente: pacchetto Pro + sito, 249 €/mese. Prezzi finali: IVA non applicata (regime forfettario).</p><p style="margin-top:10px"><a href="${CELEA}">La demo e tutti i prezzi di Celea</a></p></div></div>`
 };
 
 /* ======================= ENGLISH ======================= */
@@ -328,7 +379,7 @@ back:"Back to Celea",
 cta:"Book an appointment",
 nav:[["home","Home"],["cure","Treatments"],["prima-visita","First visit"],["studio","Hours & contact"],["domande","FAQ"],["titolare","Owner view"]],
 titles:{home:"Odontèa · Dental practice (sample website)",cure:"Treatments · Odontèa (sample)","prima-visita":"First visit · Odontèa (sample)",studio:"Hours & contact · Odontèa (sample)",domande:"FAQ · Odontèa (sample)",titolare:"Owner view · Odontèa (sample)"},
-desc:{home:"Celea sample website for an invented dental practice: the virtual assistant books, moves and cancels appointments at any hour and sends reminders.",titolare:"What the owner finds in the morning: diary, cancellations refilled from the waiting list, confirmed reminders. Sample data."},
+desc:{home:"Celea sample website for an invented dental practice: the virtual assistant books, moves and cancels appointments after hours too and sends reminders.",titolare:"What the owner finds in the morning: diary, cancellations refilled from the waiting list, confirmed reminders. Sample data."},
 ui:{menu:"Menu",skip:"Skip to content",fab:"Message the practice",placeholder:"Type a question…",send:"Send",close:"Close chat",typing:"typing…",demoNote:"Demo: preset replies, nothing is sent or stored.",ownerLink:"What the practice sees →",liveEmpty:"Nothing yet: try the chat (for example «Move or cancel») and come back here.",livePill:"from the chat on this page",newEvents:"updates for the practice",langs:"Language"},
 chat:{name:"Odontèa assistant",sub:"Virtual assistant · demo",fb:"fb",
 end:[["Start again","start"],["What the practice sees","__owner"]],
@@ -350,7 +401,7 @@ sp2:{u:"Monday 16:30",a:["Moved to Monday at 16:30. The Thursday 11:00 slot has 
 dd:{u:"I'd like to cancel it.",a:["Of course. Before cancelling: would you prefer another day? It's often easier than starting over."],o:[["Cancel anyway","dd1"],["Then I'll move it","sp"]]},
 dd1:{u:"Cancel anyway.",a:["Done: your Thursday 11:00 appointment is cancelled. The slot was offered straight away to the first patient on the waiting list, so it won't stay empty.","Shall I remind you in a month to book a new hygiene visit?"],s:"Cancellation recorded · slot offered to the waiting list",log:"Cancellation: hygiene Thursday 11:00 · slot offered to the first on the waiting list",o:[["Yes, please","dd2"],["No, thanks","dd3"]]},
 dd2:{u:"Yes, please.",a:["Perfect: in a month I'll message you on WhatsApp with two free times. Speak soon!"],log:"Follow-up scheduled in a month for a new hygiene visit"},
-dd3:{u:"No, thanks.",a:["All right. Write to me here or on WhatsApp whenever you like, at any hour. Speak soon!"]},
+dd3:{u:"No, thanks.",a:["All right. Write to me here or on WhatsApp whenever you like, after hours too. Speak soon!"]},
 pr:{u:"What does the reminder look like?",r:["Example of the message the patient receives on WhatsApp the day before","Odontèa reminder: tomorrow, Thursday, at 11:00 you have your hygiene appointment at Via dell'Esempio 12.\nReply 1 to confirm, 2 to move, 3 to cancel.","WhatsApp · the day before"],a:["The patient replies with a number. Try it:"],o:[["1 · Confirm","pr1"],["2 · Move","sp"],["3 · Cancel","dd1"]]},
 pr1:{u:"1",a:["Thank you, appointment confirmed. See you tomorrow at 11:00!"],s:"Confirmation recorded in the diary",log:"Reminder: Thursday 11:00 hygiene confirmed by the patient"},
 ur:{u:"I've had toothache since yesterday.",a:["I'm sorry. I can't give medical advice: if the pain is severe or there is swelling and the practice is closed, call the out-of-hours doctor or 112.","Meanwhile I can hold the first emergency slot tomorrow at 9:00 for you. Is that all right?"],o:[["Yes, please","ur1"],["I'd rather be called back","se1"]]},
@@ -358,7 +409,7 @@ ur1:{u:"Yes, please.",a:["Held for tomorrow at 9:00. I've told the practice it's
 se:{u:"Can I talk to reception?",a:["Of course. Would you like a call back or a reply here?"],o:[["Call me back","se1"],["Reply here","se2"]]},
 se1:{u:"Call me back.",a:["All right: reception will call you back as soon as the practice opens, with a summary of this conversation in front of them."],s:"Request passed to reception",log:"Call back: the patient asks to speak to reception"},
 se2:{u:"Reply here.",a:["All right: reception will reply here as soon as possible, during opening hours."],s:"Request passed to reception",log:"Reply in chat: question for reception"},
-or:{a:["The practice is open Monday to Thursday 9:00–13:00 and 14:30–19:00, Friday 9:00–13:00 and 14:30–17:00, Saturday 9:00–12:30 for hygiene only. I answer at any hour."]},
+or:{a:["The practice is open Monday to Thursday 9:00–13:00 and 14:30–19:00, Friday 9:00–13:00 and 14:30–17:00, Saturday 9:00–12:30 for hygiene only. I answer after hours too."]},
 pz:{a:["The cost depends on the treatment: after the first visit you receive a written quote to consider at your own pace. Shall I pass you to reception for a specific question?"],o:[["Yes","se"],["No, thanks","start"]]},
 dv:{a:["The practice is at Via dell'Esempio 12 (invented address), step-free with a lift. Would you like to book an appointment?"],o:[["Yes","pv"],["No, thanks","start"]]},
 lg:{a:["I reply in Italian, English and German: write in whichever you prefer. At the practice you also receive your treatment plan in writing."]}
@@ -366,13 +417,14 @@ lg:{a:["I reply in Italian, English and German: write in whichever you prefer. A
 pages:{
 home:`<section class="hero"><div class="wrap">
 <div class="hero-text"><p class="label">Dental practice · sample</p>
-<h1>We reply even <em>at 10 pm.</em></h1>
+<h1>We reply even <em>after hours.</em></h1>
 <p class="lead">First visits, hygiene, treatments and emergencies. Message the practice assistant whenever you like: it offers a free slot, moves or cancels your appointment, sends you a reminder and puts you through to a person when needed.</p>
-<div class="cta"><a class="btn" href="#en" data-chat="pv">Book an appointment</a><a class="btn line" href="#en/prima-visita" data-go="prima-visita">How the first visit works</a></div>
+<div class="cta"><a class="btn" href="#en" data-chat="pv">Book an appointment</a><a class="btn line" href="#en/prima-visita" data-go="prima-visita">How the first visit works</a></div><div class="parla-box"><a class="btn line parla" href="#" data-parla data-agente="agent_d707460b8b0bc2d50382aa3aa9" data-nome="Sofia" data-titolo="Odontèa · Sofia" data-fab="Talk to Sofia" data-carico="Connecting…" data-aperto="The call is already open at the bottom right." data-errore="The call can't open: please reload the page and try again."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Talk now with Sofia</a><p class="parla-msg small" role="status" aria-live="polite"></p><p class="small muted">Test call from your browser with Sofia, Celea's demo AI assistant: the practice name and data are examples. You need a microphone; 3 minutes at most.</p></div>
 <ul class="facts" aria-label="At a glance"><li>On WhatsApp and the website</li><li>Italian, English and German</li><li>No medical advice in chat</li></ul></div>
 <div data-chat-slot></div></div></section>
+<section class="scena-demo"><div class="wrap scena-grid"><div class="head"><p class="label">One evening, after closing</p><h2>A patient moves their cleaning. The diary updates itself.</h2><p class="lead">Example with made-up data: the practice's AI assistant offers two free slots, moves the appointment and offers the freed slot to the waiting list.</p><p class="sc-nota">Illustrative example: patients, times and practice are made up.</p></div><div class="sc-stage" aria-hidden="true"><div class="sc-phone"><div class="sc-screen"><div class="sc-bar"><span class="sc-av">O</span><span><b>Odontèa</b><small>AI assistant · example</small></span></div><ol class="sc-msgs"><li class="me" data-at="1">I need to move Thursday's cleaning.</li><li class="ai" data-at="2"><b>AI</b>Of course. I have Friday at 9:00 or Monday at 17:30. Which do you prefer?</li><li class="me" data-at="3">Friday at 9, thanks.</li><li class="ai" data-at="4"><b>AI</b>Done: Friday at 9:00. I'll send you a reminder the day before.</li></ol></div></div><div class="sc-card" data-at="5"><p class="sc-k">Practice diary · Friday</p><div class="sc-row"><time>9:00</time><span class="sc-ev">Cleaning · M. Rossi<small>moved by the assistant</small></span></div><div class="sc-row"><time>10:00</time><i></i></div></div><div class="sc-chip" data-at="6">Thursday 17:30 offered to the waiting list</div></div></div></section>
 <section class="alt"><div class="wrap"><div class="head"><p class="label">Why message us</p><h2>Fewer missed calls, fewer empty chairs.</h2></div>
-<div class="strip"><div><b>At any hour</b><p>In the evening, at weekends, while the team is busy: no request goes unanswered.</p></div><div><b>Cancellations without gaps</b><p>When a patient cancels, the slot is offered straight away to someone on the waiting list.</p></div><div><b>A reminder the day before</b><p>One WhatsApp message: confirm, move or cancel by replying with a number.</p></div></div></div></section>
+<div class="strip"><div><b>After hours too</b><p>In the evening, at weekends, while the team is busy: every request gets an answer or goes to a person.</p></div><div><b>Cancellations without gaps</b><p>When a patient cancels, the slot is offered straight away to someone on the waiting list.</p></div><div><b>A reminder the day before</b><p>One WhatsApp message: confirm, move or cancel by replying with a number.</p></div></div></div></section>
 <section><div class="wrap"><div class="head"><p class="label">Treatments</p><h2>What we do</h2></div>
 <div class="grid3"><div class="card"><h3>Hygiene and prevention</h3><p>Professional cleaning and gum check, usually every six months.</p></div><div class="card"><h3>Fillings and restorations</h3><p>Fillings, restorations, root canals and crowns.</p></div><div class="card"><h3>Implants and orthodontics</h3><p>Missing teeth, fixed braces and clear aligners.</p></div></div>
 <p style="margin-top:22px"><a href="#en/cure" data-go="cure"><b>All treatments and the tooth chart →</b></a></p></div></section>
@@ -392,7 +444,7 @@ studio:`<section><div class="wrap"><div class="head"><p class="label">Hours & co
 <div class="kv" style="gap:14px"><div class="kv"><span class="muted">Address (invented)</span><span class="v">Via dell'Esempio 12, Città</span></div><div class="kv"><span class="muted">Phone and WhatsApp (invented)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Access</span><span class="v">Step-free, with a lift</span></div><p class="note">Out of hours the assistant replies and books appointments, but gives no medical advice. For severe pain or swelling out of hours call the out-of-hours doctor or 112.</p></div></div></div></section>`,
 domande:`<section><div class="wrap"><div class="head"><p class="label">FAQ</p><h1>Frequently asked questions</h1></div><div class="faq">
 <details><summary>Who am I talking to when I write at 10 pm?</summary><div class="ans"><p>The practice's virtual assistant, which always introduces itself as such. It books, moves and cancels appointments and passes the conversation to reception when needed.</p></div></details>
-<details><summary>Can I cancel an appointment on WhatsApp?</summary><div class="ans"><p>Yes, at any hour. The freed slot is offered straight away to the waiting list, so other patients can come in sooner.</p></div></details>
+<details><summary>Can I cancel an appointment on WhatsApp?</summary><div class="ans"><p>Yes, after hours too. The freed slot is offered straight away to the waiting list, so other patients can come in sooner.</p></div></details>
 <details><summary>How does the waiting list work?</summary><div class="ans"><p>If the first free slot is far away, you can ask to be notified. When someone cancels, the assistant offers you the slot on WhatsApp: you reply yes or no.</p></div></details>
 <details><summary>What does the reminder say?</summary><div class="ans"><p>Day, time and address. It never mentions the type of treatment. Reply 1 to confirm, 2 to move, 3 to cancel.</p></div></details>
 <details><summary>Can the assistant tell me if it's serious?</summary><div class="ans"><p>No. It gives no medical advice: it books the first free slot and, for severe pain or swelling out of hours, points you to the out-of-hours doctor or 112.</p></div></details>
@@ -419,7 +471,7 @@ Reply 1 to confirm, 2 to move, 3 to cancel.</div><div class="bub me">1</div><div
 <section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Want to see this for your practice?</h2><p style="margin-top:10px">This website is a Celea sample. The assistant demo and all prices are on Celea's website.</p></div><a class="btn" href="${CELEA}#en">Go to Celea</a></div></div></section>`
 },
 footer:`<div class="wrap cols"><div><p><b>This is a demo website.</b> Odontèa does not exist: it is a sample made by Celea to show what a dental practice's website can become, with an assistant that replies, books, moves and cancels appointments and sends reminders. Patients, times and figures in the owner view are examples.</p></div>
-<div><p>A site like this falls under Celea's <b>premium multilingual website</b> (10 pages in Italian, English and German): €1,990 + €79/month. The website assistant is added to the receptionist for €49/month + €90 setup. Simpler option: showcase website, €990 + €49/month. Prices excluding VAT.</p><p style="margin-top:10px"><a href="${CELEA}#en">Celea's demo and all prices</a></p></div></div>`
+<div><p>A site like this falls under Celea's <b>premium website</b> (10 pages in Italian, English and German): €1,190 + €49/month. Simpler option: showcase website, 5 pages, €590 + €29/month. With the assistant: Pro + website package, €249/month. Final prices: no VAT charged (Italian flat-rate scheme).</p><p style="margin-top:10px"><a href="${CELEA}#en">Celea's demo and all prices</a></p></div></div>`
 };
 
 /* ======================= DEUTSCH ======================= */
@@ -429,7 +481,7 @@ back:"Zurück zu Celea",
 cta:"Termin vereinbaren",
 nav:[["home","Start"],["cure","Behandlungen"],["prima-visita","Erster Besuch"],["studio","Zeiten & Kontakt"],["domande","Fragen"],["titolare","Ansicht für die Praxis"]],
 titles:{home:"Odontèa · Zahnarztpraxis (Beispiel-Website)",cure:"Behandlungen · Odontèa (Beispiel)","prima-visita":"Erster Besuch · Odontèa (Beispiel)",studio:"Zeiten & Kontakt · Odontèa (Beispiel)",domande:"Fragen · Odontèa (Beispiel)",titolare:"Ansicht für die Praxis · Odontèa (Beispiel)"},
-desc:{home:"Beispiel-Website von Celea für eine erfundene Zahnarztpraxis: Der virtuelle Assistent vereinbart, verschiebt und storniert Termine rund um die Uhr und verschickt Erinnerungen.",titolare:"Was die Praxis morgens vorfindet: Terminkalender, über die Warteliste neu vergebene Absagen, bestätigte Erinnerungen. Beispieldaten."},
+desc:{home:"Beispiel-Website von Celea für eine erfundene Zahnarztpraxis: Der virtuelle Assistent vereinbart, verschiebt und storniert Termine auch außerhalb der Öffnungszeiten und verschickt Erinnerungen.",titolare:"Was die Praxis morgens vorfindet: Terminkalender, über die Warteliste neu vergebene Absagen, bestätigte Erinnerungen. Beispieldaten."},
 ui:{menu:"Menü",skip:"Zum Inhalt",fab:"Der Praxis schreiben",placeholder:"Frage eingeben…",send:"Senden",close:"Chat schließen",typing:"schreibt…",demoNote:"Demo: vorbereitete Antworten, nichts wird gesendet oder gespeichert.",ownerLink:"Was die Praxis sieht →",liveEmpty:"Noch nichts: Probieren Sie den Chat (zum Beispiel «Verschieben oder absagen») und kommen Sie hierher zurück.",livePill:"aus dem Chat dieser Seite",newEvents:"Neuigkeiten für die Praxis",langs:"Sprache"},
 chat:{name:"Assistent von Odontèa",sub:"Virtueller Assistent · Demo",fb:"fb",
 end:[["Neu starten","start"],["Was die Praxis sieht","__owner"]],
@@ -459,7 +511,7 @@ ur1:{u:"Ja, bitte.",a:["Reserviert für morgen um 9:00. Ich habe der Praxis mitg
 se:{u:"Kann ich mit der Rezeption sprechen?",a:["Natürlich. Möchten Sie einen Rückruf oder eine Antwort hier?"],o:[["Bitte zurückrufen","se1"],["Antwort hier","se2"]]},
 se1:{u:"Bitte zurückrufen.",a:["In Ordnung: Die Rezeption ruft Sie zur ersten Öffnungszeit zurück, mit der Zusammenfassung dieses Gesprächs vor sich."],s:"Anfrage an die Rezeption weitergeleitet",log:"Rückruf: Der Patient möchte mit der Rezeption sprechen"},
 se2:{u:"Antwort hier.",a:["In Ordnung: Die Rezeption antwortet Ihnen hier so bald wie möglich während der Öffnungszeiten."],s:"Anfrage an die Rezeption weitergeleitet",log:"Antwort im Chat: Frage für die Rezeption"},
-or:{a:["Die Praxis ist Montag bis Donnerstag 9:00–13:00 und 14:30–19:00 geöffnet, Freitag 9:00–13:00 und 14:30–17:00, Samstag 9:00–12:30 nur für Prophylaxe. Ich antworte rund um die Uhr."]},
+or:{a:["Die Praxis ist Montag bis Donnerstag 9:00–13:00 und 14:30–19:00 geöffnet, Freitag 9:00–13:00 und 14:30–17:00, Samstag 9:00–12:30 nur für Prophylaxe. Ich antworte auch außerhalb der Öffnungszeiten."]},
 pz:{a:["Die Kosten hängen von der Behandlung ab: Nach dem ersten Besuch erhalten Sie einen schriftlichen Kostenvoranschlag, den Sie in Ruhe prüfen können. Soll ich Sie für eine genaue Frage an die Rezeption weiterleiten?"],o:[["Ja","se"],["Nein, danke","start"]]},
 dv:{a:["Die Praxis liegt in der Via dell'Esempio 12 (erfundene Adresse), barrierefrei mit Aufzug. Möchten Sie einen Termin vereinbaren?"],o:[["Ja","pv"],["Nein, danke","start"]]},
 lg:{a:["Ich antworte auf Italienisch, Englisch und Deutsch: Schreiben Sie in der Sprache, die Ihnen lieber ist. In der Praxis erhalten Sie den Behandlungsplan auch schriftlich."]}
@@ -467,13 +519,14 @@ lg:{a:["Ich antworte auf Italienisch, Englisch und Deutsch: Schreiben Sie in der
 pages:{
 home:`<section class="hero"><div class="wrap">
 <div class="hero-text"><p class="label">Zahnarztpraxis · Beispiel</p>
-<h1>Wir antworten auch <em>um 22 Uhr.</em></h1>
+<h1>Wir antworten auch <em>nach Feierabend.</em></h1>
 <p class="lead">Erste Besuche, Prophylaxe, Behandlungen und Notfälle. Schreiben Sie dem Assistenten der Praxis, wann Sie möchten: Er schlägt einen freien Termin vor, verschiebt oder storniert ihn, schickt Ihnen eine Erinnerung und verbindet Sie bei Bedarf mit einem Menschen.</p>
-<div class="cta"><a class="btn" href="#de" data-chat="pv">Termin vereinbaren</a><a class="btn line" href="#de/prima-visita" data-go="prima-visita">So läuft der erste Besuch</a></div>
+<div class="cta"><a class="btn" href="#de" data-chat="pv">Termin vereinbaren</a><a class="btn line" href="#de/prima-visita" data-go="prima-visita">So läuft der erste Besuch</a></div><div class="parla-box"><a class="btn line parla" href="#" data-parla data-agente="agent_d707460b8b0bc2d50382aa3aa9" data-nome="Sofia" data-titolo="Odontèa · Sofia" data-fab="Mit Sofia sprechen" data-carico="Verbindung wird hergestellt…" data-aperto="Der Anruf ist unten rechts schon geöffnet." data-errore="Der Anruf lässt sich nicht öffnen: Bitte laden Sie die Seite neu."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Jetzt mit Sofia sprechen</a><p class="parla-msg small" role="status" aria-live="polite"></p><p class="small muted">Testanruf im Browser mit Sofia, der Demo-KI-Assistentin von Celea: Praxisname und Daten sind Beispiele. Sie brauchen ein Mikrofon; höchstens 3 Minuten.</p></div>
 <ul class="facts" aria-label="Kurz gesagt"><li>Per WhatsApp und auf der Website</li><li>Italienisch, Englisch und Deutsch</li><li>Kein medizinischer Rat im Chat</li></ul></div>
 <div data-chat-slot></div></div></section>
+<section class="scena-demo"><div class="wrap scena-grid"><div class="head"><p class="label">Ein Abend, nach Praxisschluss</p><h2>Ein Patient verschiebt die Reinigung. Der Kalender aktualisiert sich.</h2><p class="lead">Beispiel mit erfundenen Daten: Der KI-Assistent der Praxis schlägt zwei freie Termine vor, verschiebt den Termin und bietet den frei gewordenen Platz der Warteliste an.</p><p class="sc-nota">Beispiel: Patienten, Zeiten und Praxis sind erfunden.</p></div><div class="sc-stage" aria-hidden="true"><div class="sc-phone"><div class="sc-screen"><div class="sc-bar"><span class="sc-av">O</span><span><b>Odontèa</b><small>KI-Assistent · Beispiel</small></span></div><ol class="sc-msgs"><li class="me" data-at="1">Ich muss die Reinigung am Donnerstag verschieben.</li><li class="ai" data-at="2"><b>AI</b>Gern. Ich habe Freitag um 9:00 oder Montag um 17:30. Was passt Ihnen?</li><li class="me" data-at="3">Freitag um 9, danke.</li><li class="ai" data-at="4"><b>AI</b>Erledigt: Freitag um 9:00. Am Vortag schicke ich Ihnen eine Erinnerung.</li></ol></div></div><div class="sc-card" data-at="5"><p class="sc-k">Praxiskalender · Freitag</p><div class="sc-row"><time>9:00</time><span class="sc-ev">Reinigung · M. Rossi<small>vom Assistenten verschoben</small></span></div><div class="sc-row"><time>10:00</time><i></i></div></div><div class="sc-chip" data-at="6">Donnerstag 17:30 der Warteliste angeboten</div></div></div></section>
 <section class="alt"><div class="wrap"><div class="head"><p class="label">Warum uns schreiben</p><h2>Weniger verpasste Anrufe, weniger leere Stühle.</h2></div>
-<div class="strip"><div><b>Rund um die Uhr</b><p>Abends, am Wochenende, während das Team beschäftigt ist: Keine Anfrage bleibt unbeantwortet.</p></div><div><b>Absagen ohne Lücken</b><p>Sagt ein Patient ab, wird der Termin sofort jemandem auf der Warteliste angeboten.</p></div><div><b>Erinnerung am Vortag</b><p>Eine WhatsApp-Nachricht: Mit einer Zahl bestätigen, verschieben oder absagen.</p></div></div></div></section>
+<div class="strip"><div><b>Auch außerhalb der Öffnungszeiten</b><p>Abends, am Wochenende, während das Team beschäftigt ist: Jede Anfrage bekommt eine Antwort oder geht an einen Menschen.</p></div><div><b>Absagen ohne Lücken</b><p>Sagt ein Patient ab, wird der Termin sofort jemandem auf der Warteliste angeboten.</p></div><div><b>Erinnerung am Vortag</b><p>Eine WhatsApp-Nachricht: Mit einer Zahl bestätigen, verschieben oder absagen.</p></div></div></div></section>
 <section><div class="wrap"><div class="head"><p class="label">Behandlungen</p><h2>Was wir machen</h2></div>
 <div class="grid3"><div class="card"><h3>Prophylaxe und Vorsorge</h3><p>Professionelle Zahnreinigung und Zahnfleischkontrolle, meist alle sechs Monate.</p></div><div class="card"><h3>Füllungen und Aufbauten</h3><p>Füllungen, Aufbauten, Wurzelbehandlungen und Kronen.</p></div><div class="card"><h3>Implantate und Kieferorthopädie</h3><p>Fehlende Zähne, feste Zahnspangen und transparente Aligner.</p></div></div>
 <p style="margin-top:22px"><a href="#de/cure" data-go="cure"><b>Alle Behandlungen und das Zahnschema →</b></a></p></div></section>
@@ -493,7 +546,7 @@ studio:`<section><div class="wrap"><div class="head"><p class="label">Zeiten & K
 <div class="kv" style="gap:14px"><div class="kv"><span class="muted">Adresse (erfunden)</span><span class="v">Via dell'Esempio 12, Città</span></div><div class="kv"><span class="muted">Telefon und WhatsApp (erfunden)</span><span class="v">000 000 0000</span></div><div class="kv"><span class="muted">Zugang</span><span class="v">Barrierefrei, mit Aufzug</span></div><p class="note">Außerhalb der Öffnungszeiten antwortet der Assistent und vereinbart Termine, gibt aber keinen medizinischen Rat. Bei starken Schmerzen oder Schwellung rufen Sie den ärztlichen Bereitschaftsdienst oder die 112 an.</p></div></div></div></section>`,
 domande:`<section><div class="wrap"><div class="head"><p class="label">Fragen</p><h1>Häufige Fragen</h1></div><div class="faq">
 <details><summary>Mit wem spreche ich, wenn ich um 22 Uhr schreibe?</summary><div class="ans"><p>Mit dem virtuellen Assistenten der Praxis, der sich immer als solcher vorstellt. Er vereinbart, verschiebt und storniert Termine und leitet das Gespräch bei Bedarf an die Rezeption weiter.</p></div></details>
-<details><summary>Kann ich einen Termin per WhatsApp absagen?</summary><div class="ans"><p>Ja, rund um die Uhr. Der frei gewordene Termin wird sofort der Warteliste angeboten, damit andere Patienten früher kommen können.</p></div></details>
+<details><summary>Kann ich einen Termin per WhatsApp absagen?</summary><div class="ans"><p>Ja, auch außerhalb der Öffnungszeiten. Der frei gewordene Termin wird sofort der Warteliste angeboten, damit andere Patienten früher kommen können.</p></div></details>
 <details><summary>Wie funktioniert die Warteliste?</summary><div class="ans"><p>Ist der erste freie Termin weit entfernt, können Sie sich benachrichtigen lassen. Sagt jemand ab, bietet Ihnen der Assistent den Termin per WhatsApp an: Sie antworten mit Ja oder Nein.</p></div></details>
 <details><summary>Was steht in der Erinnerung?</summary><div class="ans"><p>Tag, Uhrzeit und Adresse. Die Art der Behandlung wird nie genannt. Antworten Sie 1 zum Bestätigen, 2 zum Verschieben, 3 zum Absagen.</p></div></details>
 <details><summary>Kann mir der Assistent sagen, ob es ernst ist?</summary><div class="ans"><p>Nein. Er gibt keinen medizinischen Rat: Er reserviert den ersten freien Termin und verweist bei starken Schmerzen oder Schwellung außerhalb der Öffnungszeiten auf den Bereitschaftsdienst oder die 112.</p></div></details>
@@ -520,7 +573,7 @@ Antworten Sie 1 zum Bestätigen, 2 zum Verschieben, 3 zum Absagen.</div><div cla
 <section class="alt"><div class="wrap"><div class="band-cta"><div><h2>Möchten Sie das für Ihre Praxis sehen?</h2><p style="margin-top:10px">Diese Website ist ein Beispiel von Celea. Die Demo des Assistenten und alle Preise finden Sie auf der Website von Celea.</p></div><a class="btn" href="${CELEA}#de">Zur Website von Celea</a></div></div></section>`
 },
 footer:`<div class="wrap cols"><div><p><b>Dies ist eine Demo-Website.</b> Odontèa gibt es nicht: Es ist ein Beispiel von Celea, das zeigt, wie die Website einer Zahnarztpraxis aussehen kann, mit einem Assistenten, der antwortet, Termine vereinbart, verschiebt und storniert und Erinnerungen verschickt. Patienten, Zeiten und Zahlen in der Praxisansicht sind Beispiele.</p></div>
-<div><p>Eine solche Website entspricht der <b>mehrsprachigen Premium-Website</b> von Celea (10 Seiten auf Italienisch, Englisch und Deutsch): 1.990 € + 79 €/Monat. Der Website-Assistent kommt zur Rezeption hinzu: 49 €/Monat + 90 € Einrichtung. Einfachere Variante: Präsentations-Website, 990 € + 49 €/Monat. Preise ohne MwSt.</p><p style="margin-top:10px"><a href="${CELEA}#de">Demo und alle Preise von Celea</a></p></div></div>`
+<div><p>Eine solche Website entspricht der <b>Premium-Website</b> von Celea (10 Seiten auf Italienisch, Englisch und Deutsch): 1.190 € + 49 €/Monat. Einfachere Variante: Präsentations-Website, 5 Seiten, 590 € + 29 €/Monat. Mit Assistent: Paket Pro + Website, 249 €/Monat. Endpreise: keine MwSt. (italienische Pauschalregelung).</p><p style="margin-top:10px"><a href="${CELEA}#de">Demo und alle Preise von Celea</a></p></div></div>`
 };
 
 /* schema FDI (solo pagina Cure) */
@@ -689,10 +742,12 @@ SITE.init=function(lang,page,root){
   $("#menu-btn").addEventListener("click",function(){ var d=$("#drawer-nav"), o=!d.classList.contains("open"); d.classList.toggle("open",o); this.setAttribute("aria-expanded",o?"true":"false"); });
   window.addEventListener("hashchange",route);
   route();
+  document.documentElement.classList.add("r-ok"); // pagina pronta: compaiono fascia e piè di pagina (niente salti)
 })();
 
 </script>
 
 
+<script src="../celea-demo.js" defer></script>
 </body>
 </html>
