@@ -26,6 +26,8 @@
     var rc = document.createElement("script"); rc.async = true; rc.src = "https://www.google.com/recaptcha/api.js?render=" + encodeURIComponent(TALK.recaptcha); document.head.appendChild(rc);
     var w = document.createElement("script"); w.type = "module"; w.id = "retell-widget"; w.src = "https://dashboard.retellai.com/retell-widget-v2.js";
     var a = { "data-voice-public-key":TALK.key, "data-voice-agent-id":T.agente, "data-recaptcha-key":TALK.recaptcha, "data-title":T.titolo, "data-bot-name":T.nome, "data-fab-text":T.fab, "data-color":getComputedStyle(document.documentElement).getPropertyValue("--acc").trim() || "#1C2A30", "data-show-ai-popup":"false", "data-auto-open":"true" };
+    // l'assistente si presenta con il nome della demo (Odontèa, Casa Lumèa, Domèa): variabile {{nome_attivita}} su Retell
+    var attivita = String(T.titolo || "").split(" · ")[0]; if(attivita) a["data-dynamic"] = JSON.stringify({ nome_attivita: attivita });
     Object.keys(a).forEach(function(k){ w.setAttribute(k, a[k]); });
     w.onerror = function(){ caricato = false; if(msg) msg.textContent = T.errore || ""; };
     document.head.appendChild(w);
